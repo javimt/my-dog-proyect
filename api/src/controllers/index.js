@@ -11,6 +11,18 @@ async function getAllApiData() {
   const dataApi = await apiInfo.data.map(d => {
 
            // const dataApi = dataJson.map(d => {
+    
+  /* const heightPlus = [];
+  if(d.height) {
+    heightPlus = d.height.metric.slice(0, 2).split(' - ');
+    heightPlus.push(d.height.metric.split(' - '));
+  }
+         
+   const weightPlus = [];
+  if(d.weight) {
+    weightPlus = d.weight.metric.slice(4).split(' - ');
+    weightPlus.push(d.weight.metric.split(' - '));
+  } */
 
     return {
       id: d.id,
@@ -75,7 +87,7 @@ const createDog = async (req,res, next) => {
 
   const { name, weight, height, life_span, image, tempers, createdInDb } = req.body;
   try {
-    if(name) {
+    if(name && weight && height) {
       const createdDog = await Dog.findOrCreate({
         where: {
           name: name,
