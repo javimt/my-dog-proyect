@@ -1,0 +1,22 @@
+*{
+    font-family: cursive;
+}
+.landing{
+    color: rgb(31, 69, 240);
+    text-align: center;
+}
+
+.landing button{
+    border-radius: 5px;
+    border:solid rgb(47, 46, 46);
+    font-size: 25px;
+    background-color:rgba(1, 1, 10, 0.8) ;
+    font-family: cursive;
+    font-weight: 600;
+    color: rgb(72, 255, 0);
+    margin-top: 430px;
+}
+.landing button:hover{
+    cursor: pointer;
+    color: rgb(200, 255, 0);
+}
