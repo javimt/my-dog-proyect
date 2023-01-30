@@ -1,20 +1,25 @@
 import axios from 'axios';
 
 export const getDogs = () => {
-  return async (dispatch) => {
+  return async function (dispatch) {
     const response = await axios.get("http://localhost:3001/dogs");
-console.log(response.data.data);
+//console.log(response.data.data);
     return dispatch({
       type: "GET_DOGS",
-      payload: response. data.data,
+      payload: response.data.data,
     })
   };
 };
 
 export const getDogsByName = (name) => {
-  return {
-    type: "GET_DOGS_BY_NAME",
-    payload: name
+  return async function(dispatch) {
+    const response = await axios.get(`http://localhost:3001/dogs?name=${name}`);
+console.log(response.data)
+    return dispatch({
+      type: "GET_DOGS_BY_NAME",
+      payload: response.data
+    })
+    
   }
 };
 
