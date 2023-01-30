@@ -28,9 +28,6 @@ export default function SearchBar() {
 
   return (
     <div className={style.search}>
-      <Link to='/home'>
-        <button type="submit" > Back to Home </button>
-      </Link>
       <input className={style.input} value={name} type="text" placeholder="Write your breed" onChange={handleName}/>
       <button className={style.button} type="submit" onClick={handleSubmit} > Search </button>
     </div>
