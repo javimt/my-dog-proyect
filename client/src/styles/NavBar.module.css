@@ -7,15 +7,15 @@
     justify-content: center;
     margin: auto; 
     transition: all 0.25s;
-  background-color: rgba(153, 236, 0, 0.726);
+  background-color: rgba(0, 236, 185, 0.158);
   box-shadow: 0 2px 2px rgba(0, 0, 0, 2);
 }
-/* .create{
+.create{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 300px;
-} */
+}
 .create:hover {
     color: rgb(200, 255, 0);
     opacity: 0.8;
@@ -32,6 +32,12 @@
     padding: 0 6px 0 6px;
     font-family:cursive;
 }
+.link:hover{
+    /* background-color: #0e84d3; */
+    color: rgb(200, 255, 0);
+    opacity: 0.8;
+    cursor: pointer;
+}
 .img{
     margin-top: 5px;
     font-size: 30px;
@@ -47,8 +53,4 @@
 }
 .btn:hover{
     background-color: #b4e600;
-  }
-.link:hover{
-    background-color: #5499C7;
-    color: aliceblue;
 }
