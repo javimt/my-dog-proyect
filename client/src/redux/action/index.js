@@ -19,7 +19,6 @@ console.log(response.data)
       type: "GET_DOGS_BY_NAME",
       payload: response.data
     })
-    
   }
 };
 

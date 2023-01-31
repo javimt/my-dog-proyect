@@ -3,14 +3,14 @@ import Card from "./Card";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getDogs } from "../redux/action";
-//import style from '../styles/Card.module.css'
+// import style from '../styles/Card.module.css'
 
 export default function Cards() {
-  const stateDog = useSelector(state => state.dogsFilter);
+  const stateDog = useSelector(state => state.allDogs);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDogs());
+    if(!stateDog.length)dispatch(getDogs());
   })
   
   return (

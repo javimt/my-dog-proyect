@@ -14,9 +14,9 @@ export default function Card({ name, image, temperament, weight }) {
     <div className={style.card} >
       <h4 className={style.name} >{name}</h4>
       <img className={style.image} src={image} alt="" width="200px" height="120px" />
-      <p className={style.temp} >{temperament}</p>
-      <div className={style.weight} > 
-        <p>weight: {weight}</p>
+      <p className={style.p}>Temperament: {temperament}</p>
+      <div> 
+        <p className={style.p}>weight: {weight}</p>
       </div>
     </div>
   )
