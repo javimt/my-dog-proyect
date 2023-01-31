@@ -1,7 +1,6 @@
 const axios = require('axios');
-const { create } = require('browser-sync');
 const { Dog, Temperament } = require('../db');
-
+//const jsonApi = require('../../jsonApi.json');
 
 const apiUrl = "https://api.thedogapi.com/v1/breeds/";
 
@@ -16,19 +15,22 @@ async function getAllApiData() {
   if(d.height) {
     heightPlus = d.height.metric.slice(0, 2).split(' - ');
     heightPlus.push(d.height.metric.split(' - '));
-  }
-         
-   const weightPlus = [];
-  if(d.weight) {
-    weightPlus = d.weight.metric.slice(4).split(' - ');
-    weightPlus.push(d.weight.metric.split(' - '));
   } */
 
+  /* const heightArr = d.height.metric;
+  const heightFiltred = []
+  if(heightArr.length) {
+    const max = [...heightArr].join("").split("-")[1]//.trim();
+    const min = [...heightArr].join("").split("-")[0]//.trim();
+    heightFiltred.push([min, max])
+    return [min, max]; 
+  }
+ */
     return {
       id: d.id,
       name: d.name,
-      height: d.height,
-      weight: d.weight,
+      height: [d.height.metric],  //heightFiltred.trim(),
+      weight: [d.weight.metric],
       life_span: d.life_span,
       image: d.image.url,
       temperament: d.temperament,
@@ -36,9 +38,10 @@ async function getAllApiData() {
   })
   const myDb = await Dog.findAll({include: {model: Temperament}});
   const allApiData = [...dataApi, ...myDb];
-console.log(allApiData)
+//console.log(allApiData)
   return allApiData;
 }
+
 
 const getAllDogs = async (req, res, next) => {
 
@@ -46,20 +49,21 @@ const getAllDogs = async (req, res, next) => {
   // Debe devolver solo los datos necesarios para la ruta principal
   
   const name = req.query.name;
-  try {
+  //try {
     const dataApi = await getAllApiData();
-    if(dataApi.length) {
+    //if(dataApi.length) {
       ! name 
       ? res.status(200).json({ length: dataApi.length, data: dataApi })
       : res.status(200).json(dataApi.filter(r => r.name.toLowerCase().includes(name.toLowerCase())))
       // res.status(400).send('missing data')
-    }
+   // }
 //console.log(dataApi)
-    res.status(400).send('missing data');
+   /*  res.status(400).send('missing data');
   } catch (error) {
     return ({error: error.message})
-  }
+  } */
 }
+
 
 const getDogsId = async (req, res, next) => {
 
@@ -79,6 +83,7 @@ const getDogsId = async (req, res, next) => {
     return ({ error: error.message });
   }
 }
+
 
 const createDog = async (req,res, next) => {
 
@@ -106,6 +111,7 @@ console.log(createdDog);
   } catch (error) {
     return ({ error: error.message });
   }
+  
 }
 
 

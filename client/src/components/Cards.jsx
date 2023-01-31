@@ -6,13 +6,13 @@ import { getDogs } from "../redux/action";
 // import style from '../styles/Card.module.css'
 
 export default function Cards() {
-  const stateDog = useSelector(state => state.allDogs);
+  const stateDog = useSelector(state => state.dogsRender);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(!stateDog.length)dispatch(getDogs());
-  })
-  
+    dispatch(getDogs());
+  },[])
+  console.log(stateDog)
   return (
     <div>
       {

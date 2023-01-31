@@ -1,6 +1,6 @@
 const axios = require('axios');
 const { Router } = require('express');
-const { /* getAllApiData */ getAllDogs, getDogsId, createDog } = require('../controllers');
+const { /* getAllApiData */ getAllDogs, getDogsId, createDog } = require('../controllers/dogController.js');
 
 const router = Router();
 

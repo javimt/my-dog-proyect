@@ -18,16 +18,16 @@ export default function SearchBar() {
   function handleSubmit(e) {
     // e.preventDefault();
     // dispatch(getDogsByName(name));
-    if(name) {
+    //if(name) {
       e.preventDefault();
       dispatch(getDogsByName(name));
       setSearch(true);
-      setName(e.target.value)
-    } else {
-      e.preventDefault();
-      setSearch(false)
       setName("")
-    }
+    //} else {
+      // e.preventDefault();
+      // setSearch(false)
+      // setName("")
+    //}
   }
   
   function handleReset(e) {
@@ -40,7 +40,7 @@ export default function SearchBar() {
       <div>
         <button onClick={handleReset} type="submit">Home</button>
       </div>
-      <input /* className={style.input}  value={name}*/ type="text" placeholder="Write your breed" onChange={handleName}/>
+      <input /* className={style.input} */ value={name} type="text" placeholder="Write your breed" onChange={handleName}/>
       <button /*className={style.button}*/ type="submit" onClick={handleSubmit} > Search </button>
     </div>
   );
