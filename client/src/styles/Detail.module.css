@@ -1,0 +1,112 @@
+.body{
+    padding-top: 5px;
+    margin:auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align:center;
+    width: 600px;
+    justify-content: center;
+    border: solid black 1px;
+    border-radius: 8px;
+    background-color: rgba(12, 53, 236, 0.205) ;
+    color: white;
+      /* height: 100vh;
+      position: absolute;
+      align-self: center;
+      width: 800px;
+      height: 500px;
+      margin: 100px 0 0 300px;
+      transition: all 0.25s;
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 2); */
+}
+.btn button{
+    margin-top: 15px;
+    font-size: 20px;
+    font-family: cursive;
+    border-radius: 10px;
+    border: inset #5499C7;
+    color: rgb(100, 248, 37);
+    background-color: #34495E;
+}
+.btn button:hover{
+    background-color: #5499C7;   
+}
+.id{
+    text-align: left;
+    font-size: 15px; 
+    font-family: cursive;
+    color: rgb(30, 87, 5);
+    padding-left: 20px;
+}
+.title{
+    font-size: 60px; 
+    font-family: cursive;
+    color: rgb(100, 248, 37);
+}
+.image{
+    border-radius: 10px;
+    width: 250px;
+    
+}
+.temperament{
+    text-align: center;
+    background-color: transparent;
+    font-family: cursive, fantasy;
+    font-size: 31px;
+    color: rgb(30, 87, 5);
+}
+.life{
+    display: flex;
+    font-family: cursive;
+    color: rgb(68, 211, 7);
+} 
+.text{
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    color: rgb(30, 87, 5);
+    /* display: flex;
+    padding-bottom: 20px;
+    margin-top: 30px; 
+    border-radius: 10px;*/
+}
+.height {
+    font-family: cursive;
+    color: blue;
+}
+.weight {
+    font-family: cursive;
+    color: blue;
+}
+
+  
+  /* .detail{
+    padding-top: 5px;
+    margin:auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    font-family: sans-serif;
+    text-align:center;
+    width:330px;
+    border: solid black 1px;
+    border-radius: 8px;
+    background-color: rgba(1, 1, 10, 0.8) ;
+    color: white;
+}
+.detail div{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.detail div h2{
+    text-align: center;
+}
+.detail  button{
+    margin-left: 90%;
+    height:25px;
+    background-color: red;
+    color: white;
+    font-weight: 600;
+  }*/
+ 
+  

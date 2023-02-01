@@ -12,7 +12,7 @@ export default function Cards() {
   useEffect(() => {
     dispatch(getDogs());
   },[])
-  console.log(stateDog)
+//console.log(stateDog)
   return (
     <div>
       {

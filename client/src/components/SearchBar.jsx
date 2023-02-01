@@ -38,7 +38,7 @@ export default function SearchBar() {
   return (
     <div className={style.bar}>
       <div>
-        <button onClick={handleReset} type="submit">Home</button>
+        <button className={style.home} onClick={handleReset} type="submit">Home</button>
       </div>
       <input /* className={style.input} */ value={name} type="text" placeholder="Write your breed" onChange={handleName}/>
       <button /*className={style.button}*/ type="submit" onClick={handleSubmit} > Search </button>

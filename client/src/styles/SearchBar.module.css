@@ -12,18 +12,22 @@
   padding: 5px;
 }
 .bar button{
-  height: 38px;
-  width: 100px;
-  margin: auto;
+  /* height: 38px;
+  width: 100px; */
+  margin: 10px;
   border: inset #5499C7;
   border-radius: 10px;
   font-family: cursive;
   background-color: #34495E;
   color: rgb(255, 255, 255);
+  
 }
 .bar button:hover{
   color: rgb(200, 255, 0);
   opacity: 0.8;
   cursor: pointer;
 }
-  
+/* .home {
+  display: block;
+  flex-direction: row;
+} */

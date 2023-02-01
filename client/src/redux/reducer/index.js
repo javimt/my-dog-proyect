@@ -1,4 +1,4 @@
-import { cases } from "../action";
+//import { cases } from "../action";
 
 const initialState = {
   allDogs: [],
@@ -19,20 +19,28 @@ export default function rootReducer(state = initialState, action) {
       }
     case "GET_DOGS_BY_NAME": 
    // const result = [...state.allDogs].filter(d => d.name.includes(action.payload));
-console.log(state.allDogs)
+//console.log(state.allDogs)
       return {
         ...state,
         //allDogs: action.payload,
         dogsRender: [...state.allDogs].filter(d => d.name.toLowerCase().includes(action.payload.toLowerCase()))
       }
-    case "GET_DETAIL": {
+    case "GET_DETAIL": 
       //const ids = [...state.allDogs].filter(d => d.id.includes(action.payload))
 //console.log(ids)
       return {
         ...state,
-        detail: action.payload //ids
+        detail: action.payload[0] //ids
       }
-    }
+    case "GET_TEMPERAMENTS":
+      return {
+        ...state,
+        tempers: action.payload
+      }
+    case "CREATE_DOGS":
+      return {
+        ...state,
+      }
     default:
       return {
         ...state
