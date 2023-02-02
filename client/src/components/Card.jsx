@@ -16,9 +16,7 @@ export default function Card({ name, image, temperament, weight }) {
       <img className={style.image} src={image} alt="" width="200px" height="120px" />
       <p className={style.p}>Temperament: {temperament}</p>
       <div> 
-        <h3 className={style.p}>Weight {`min: ${weight.join("").split("-")[0]}`} - Weight {`max: ${weight.join("").split("-")[1]}`}
-          
-        </h3>
+        <h3 className={style.p}>Weight {`min: ${weight.join("").split("-")[0]}`} - Weight {`max: ${weight.join("").split("-")[1]}`}</h3>
       </div>
     </div>
   )
