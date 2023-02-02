@@ -41,16 +41,17 @@ console.log(detail.name)
       </h3>
      <h3 className={style.life}>life span: {detail.life_span}</h3>
       <div className={style.text}>
-        <h3 className={style.height}>Height: 
-          <p>{`Min: ${detail.height.join("").split("-")[0]}`}</p>
-          <p>{`Max: ${detail.height.join("").split("-")[1]}`}</p>
-        </h3>  
+        <h3 className={style.height}>Height min: {detail.height[0]}</h3> 
+          {/* <p>{`Min: ${detail.height.join("").split("-")[0]}`}</p>
+          <p>{`Max: ${detail.height.join("").split("-")[1]}`}</p> */}
+         <h3 className={style.height}>Height max: {detail.height[1]}</h3>
       </div>
       <br />
-      <h3 className={style.weight}>Weight: 
-        <p>{`Min: ${detail.weight.join("").split("-")[0]}`}</p>
-        <p>{`Max: ${detail.weight.join("").split("-")[1]}`}</p>
-      </h3>  
+      <h3 className={style.weight}>Weight min: {detail.weight[0]}</h3>
+      <h3 className={style.weight}>Weight min: {detail.weight[1]}</h3>
+        {/* <p>{`Min: ${detail.weight.join("").split("-")[0]}`}</p>
+        <p>{`Max: ${detail.weight.join("").split("-")[1]}`}</p> */}
+        
     </div>
   ): <div>no llegó nada</div>
 }

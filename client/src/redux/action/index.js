@@ -37,7 +37,7 @@ export const getDetail = (id) => {
   return async function(dispatch) {
     try {
       const response = await axios.get(`http://localhost:3001/dogs/${id}`);
-console.log(response.data)
+//console.log(response.data)
     return dispatch({
       type: "GET_DETAIL",
       payload: response.data
@@ -51,7 +51,7 @@ console.log(response.data)
 export const getTemperaments = () => {
   return async function(dispatch) {
     const response = await axios.get("http://localhost:3001/tempers");
-console.log(response.data)
+//console.log(response.data)
     return dispatch({
       type: "GET_TEMPERAMENTS",
       payload: response.data

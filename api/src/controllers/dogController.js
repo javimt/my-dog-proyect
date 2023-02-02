@@ -29,8 +29,10 @@ async function getAllApiData() {
     return {
       id: d.id,
       name: d.name,
-      height: [d.height.metric],  //heightFiltred.trim(),
-      weight: [d.weight.metric],
+      height: [d.height.metric.split(" - ")[0], d.height.metric.split(" - ")[1]],// [d.height.metric],  //heightFiltred.trim(),
+      //heightMax: d.height.metric.split(" - ")[1],
+      weight: [d.weight.metric.split(" - ")[0], d.weight.metric.split(" - ")[1]],
+      //weightMax: d.weight.metric.split(" - ")[1],
       life_span: d.life_span,
       image: d.image.url,
       temperament: d.temperament,
@@ -100,7 +102,7 @@ const createDog = async (req,res, next) => {
         defaults: { name, weight, height, life_span, image, createdInDb }
       });
       tempers.map(async t => {
-        const temper = Temperament.findOne({ where: { name: e } });
+        const temper = Temperament.findOne({ where: { name: t } });
         createdDog[0].addTemper(temper);
       });
 console.log(createdDog);
