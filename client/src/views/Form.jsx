@@ -5,15 +5,6 @@ import { Link } from 'react-router-dom';
 import { getTemperaments, createDogs } from "../redux/action";
 
 
-const validate = (form) => {
-  const errors = {};
-  if(!form.name) errors.name = "You must enter a breed or name";
-  if(!form.height.length < 2) errors.height = "You must enter a minimum and maximum height";
-  if(!form.weight.length < 2) errors.weight = "You must enter a minimum and maximum weight";
-  if(!form.life_span) errors.life_span = "You must enter a fife span";
-  return errors;
-}
-
 export default function Form() {
   const dispatch = useDispatch();
   const dogs = useSelector(state => state.allDogs);
@@ -28,7 +19,6 @@ export default function Form() {
     life_span: "",
   });
 
-
   const [input, setInput] = useState({
     name: "",
     image: "",
@@ -37,6 +27,7 @@ export default function Form() {
     life_span: "",
     temperament: []
   })
+//console.log(dogs) 
 
   useEffect(() => {
     if(input.name.length > 0 && input.height.length > 0 && input.weight.length > 0)setButton(false);
@@ -47,7 +38,10 @@ export default function Form() {
     dispatch(getTemperaments())
   },[])
 
-  function handleChange(e) {
+
+//============================>> HANDLERS <<==============================\\
+
+  function handlerChange(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value
@@ -60,12 +54,12 @@ export default function Form() {
     )
   }
 
-  function handleSubmit(e) {
+  function handlerSubmit(e) {
     e.preventDefault();
     if(!errors.name && !errors.image && input.temperament.length > 0) {
       dispatch(createDogs(input));
       alert("dog created!");
-      
+      setInput("")
     } else {
       if(input.temperament.length <= 0) {
         alert("Temperament are missing");
@@ -75,7 +69,7 @@ export default function Form() {
     }
   }
 
-  function handleSelect(e) {
+  function handlerSelect(e) {
     const value = e.target.value;
 console.log(value);
     setInput({
@@ -86,6 +80,28 @@ console.log(value);
       : [...input.temperament]
     })
   }
+
+//============================>> END HANDLERS <<==============================\\
+
+
+//============================>> VALIDATIONS <<==============================\\
+
+const validate = (input) => {
+  const errors = {};
+  if(!input.name) {
+    errors.name = "You must enter a breed name";
+  } else if(!/^[a-zA-Z]+$/.test(input.name)) {
+
+  }
+
+
+  if(!input.height.length < 2) errors.height = "You must enter a minimum and maximum height";
+  if(!input.weight.length < 2) errors.weight = "You must enter a minimum and maximum weight";
+  if(!input.life_span) errors.life_span = "You must enter a fife span";
+  return errors;
+}
+
+//============================>> END VALIDATIONS <<==============================\\
 
 
 
@@ -98,7 +114,7 @@ console.log(value);
       </div> 
       <div className={style.form}>
         <h2 className={style.h1}>Create</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handlerSubmit}>
           <div className={style.div}>
             <label className={style.title} htmlFor="name">Name:</label>
              <input 
@@ -106,7 +122,7 @@ console.log(value);
               name="name"  
               value={input.name}
               type="text"
-              onChange={handleChange}
+              onChange={handlerChange}
             /> 
           </div>
            {errors.name && <p className={style.p}>{errors.name}</p>}
@@ -117,7 +133,7 @@ console.log(value);
               name="image" 
               value={input.image}
               type="text"
-              onChange={handleChange}
+              onChange={handlerChange}
             />
           </div>  
           <p className={style.p}>{errors.image}</p>
@@ -133,7 +149,7 @@ console.log(value);
                   min="0"
                   max="200"
                   value={input.height}
-                  onChange={handleChange}
+                  onChange={handlerChange}
                 />
               </div>
             </div>

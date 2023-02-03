@@ -1,6 +1,7 @@
 //import { cases } from "../action";
 
 const initialState = {
+  
   allDogs: [],
   dogsRender: [],
   detail: [],
