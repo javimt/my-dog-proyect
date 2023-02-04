@@ -6,6 +6,6 @@ const router = Router();
 
 router.get('/', getAllDogs);
 router.get('/:id', getDogsId);
-router.get('/', createDog);
+router.post('/', createDog); 
 
 module.exports = router

@@ -11,10 +11,10 @@ async function getAllApiData() {
 
            // const dataApi = dataJson.map(d => {
     
-  /* const heightPlus = [];
+  /* const heightArr = [];
   if(d.height) {
-    heightPlus = d.height.metric.slice(0, 2).split(' - ');
-    heightPlus.push(d.height.metric.split(' - '));
+    heightArr = d.height.metric.slice(0, 2).split(' - ');
+    heightArr.push(d.height.metric.split(' - '));
   } */
 
   /* const heightArr = d.height.metric;
@@ -87,27 +87,33 @@ const getDogsId = async (req, res, next) => {
 }
 
 
-const createDog = async (req,res, next) => {
+const createDog = async (req, res, next) => {
 
   // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de raza de perro por body
   // Crea una raza de perro en la base de datos relacionada con sus temperamentos
 
   const { name, weightMin, weightMax, heightMin, heightMax, life_span, image, tempers, createdInDb } = req.body;
-  
-    if(!name || !weightMin || !weightMax || !heightMin || !heightMax) {
-      return res.status(400).send("faltan tados")
-    } else {
-      const createdDog = await Dog.create({ name, weightMin, weightMax, heightMin, heightMax, life_span, image, createdInDb });
-      tempers.map(async t => {
-        const temper = Temperament.findOne({ where: { name: t } });
-        createdDog[0].addTemper(temper);
+  //try {
+    if(name && weightMin && weightMax && heightMin && heightMax) {
+      const dogCreated = await Dog.findOrCreate({ 
+        where: {
+        name: name,
+        },
+        defaults: { name, weightMin, weightMax, heightMin, heightMax, life_span, image, createdInDb } 
+     });
+      tempers?.map(async t => {
+        const tempers = Temperament.findAll({ where: { name: t } });
+        dogCreated[0].addTempers(tempers);
       });
-console.log(createdDog);
+console.log(tempers);
       await Temperament.findAll();
-      return res.status(200).json({ data: createdDog[1] ? createdDog : 'its was created' })
-    
+      return res.status(200).json({ data: dogCreated[1] ? dogCreated : 'its was created!' })
     }
-    //return res.status(400).send('missing data')
+    res.status(400).send('missing data')
+  //}catch{
+    //res.status(400).send('misisng data')
+  //}
+    //
  
   
 }

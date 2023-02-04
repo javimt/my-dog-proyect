@@ -13,8 +13,10 @@ async function getAllApiTemperaments() {
     return {
       id: d.id,
       name: d.name,
-      height: d.height,
-      weight: d.weight,
+      heightMin: d.height.metric.split(" - ")[0],// d.height.metric.split(" - ")[1]],// [d.height.metric],  //heightFiltred.trim(),
+      heightMax: d.height.metric.split(" - ")[1],
+      weightMin: d.weight.metric.split(" - ")[0],//[`weightMin: ${d.weight.metric.split(" - ")[0]}, weightMax: ${d.weight.metric.split(" - ")[1]}`],
+      weightMax: d.weight.metric.split(" - ")[1],
       life_span: d.life_span,
       image: d.image.url,
       temperament: d.temperament,
