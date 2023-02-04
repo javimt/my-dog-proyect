@@ -29,10 +29,10 @@ async function getAllApiData() {
     return {
       id: d.id,
       name: d.name,
-      height: [d.height.metric.split(" - ")[0], d.height.metric.split(" - ")[1]],// [d.height.metric],  //heightFiltred.trim(),
-      //heightMax: d.height.metric.split(" - ")[1],
-      weight: [d.weight.metric.split(" - ")[0], d.weight.metric.split(" - ")[1]],
-      //weightMax: d.weight.metric.split(" - ")[1],
+      heightMin: d.height.metric.split(" - ")[0],// d.height.metric.split(" - ")[1]],// [d.height.metric],  //heightFiltred.trim(),
+      heightMax: d.height.metric.split(" - ")[1],
+      weightMin: d.weight.metric.split(" - ")[0],//[`weightMin: ${d.weight.metric.split(" - ")[0]}, weightMax: ${d.weight.metric.split(" - ")[1]}`],
+      weightMax: d.weight.metric.split(" - ")[1],
       life_span: d.life_span,
       image: d.image.url,
       temperament: d.temperament,
@@ -92,15 +92,12 @@ const createDog = async (req,res, next) => {
   // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de raza de perro por body
   // Crea una raza de perro en la base de datos relacionada con sus temperamentos
 
-  const { name, weight, height, life_span, image, tempers, createdInDb } = req.body;
-  try {
-    if(name && weight && height) {
-      const createdDog = await Dog.findOrCreate({
-        where: {
-          name: name,
-        },
-        defaults: { name, weight, height, life_span, image, createdInDb }
-      });
+  const { name, weightMin, weightMax, heightMin, heightMax, life_span, image, tempers, createdInDb } = req.body;
+  
+    if(!name || !weightMin || !weightMax || !heightMin || !heightMax) {
+      return res.status(400).send("faltan tados")
+    } else {
+      const createdDog = await Dog.create({ name, weightMin, weightMax, heightMin, heightMax, life_span, image, createdInDb });
       tempers.map(async t => {
         const temper = Temperament.findOne({ where: { name: t } });
         createdDog[0].addTemper(temper);
@@ -108,11 +105,10 @@ const createDog = async (req,res, next) => {
 console.log(createdDog);
       await Temperament.findAll();
       return res.status(200).json({ data: createdDog[1] ? createdDog : 'its was created' })
+    
     }
-    return res.status(400).send('missing data')
-  } catch (error) {
-    return ({ error: error.message });
-  }
+    //return res.status(400).send('missing data')
+ 
   
 }
 
