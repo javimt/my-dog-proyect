@@ -1,7 +1,7 @@
 import React from "react";
 import style from '../styles/Card.module.css';
 
-export default function Card({ name, image, temperament, weight }) {
+export default function Card({ name, image, temperament, weightMin, weightMax }) {
 
 // Área donde se verá el listado de razas de perros. Deberá mostrar su:
   // - Imagen
@@ -16,8 +16,8 @@ export default function Card({ name, image, temperament, weight }) {
       <img className={style.image} src={image} alt="" width="200px" height="120px" />
       <p className={style.p}>Temperament: {temperament}</p>
       <div> 
-        <h3 className={style.p}>Weight min: {weight[0]}</h3>
-        <h3 className={style.p}>Weight max: {weight[1]}</h3>
+        <h3 className={style.p}>Weight min: {weightMin}</h3>
+        <h3 className={style.p}>Weight max: {weightMax}</h3>
       </div>
     </div>
   )

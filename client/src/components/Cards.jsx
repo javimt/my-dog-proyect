@@ -23,7 +23,8 @@ export default function Cards() {
                 <Card 
                   name={d.name}
                   image={d.image}
-                  weight={d.weight}
+                  weightMin={d.weightMin}
+                  weightMax={d.weightMax}
                   temperament={d.temperament}
                 />
               </Link>

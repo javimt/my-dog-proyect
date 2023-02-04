@@ -19,32 +19,29 @@ export default function Form() {
   const dogs = useSelector(state => state.allDogs);
   const tempers = useSelector(state => state.tempers);
   const [button, setButton] = useState(true)
-//console.log(tempers)
+//console.log(tempers.map(e => e.name))
 
-  const [errors, setErrors] = useState({
-    name: "",
-    image: "",
-    weight: [],
-    height: [],
-    life_span: "",
-  });
+  const [errors, setErrors] = useState({});
 
   const [input, setInput] = useState({
     name: "",
     image: "",
-    weight: [],
-    height: [],
+    weightMin: "",
+    weightMax: "",
+    heightMin: "",
+    heightMax: "",
     life_span: "",
     temperament: []
   })
 //console.log(dogs) 
 
   useEffect(() => {
-    if(input.name.length > 0 && input.height.length > 0 && input.weight.length > 0)setButton(false);
+    if(input.name.length > 0 && input.heightMin.length > 0 && input.heightMax.length > 0  && input.weightMin.length > 0 && input.weightMax.length > 0)setButton(false);
     else setButton(true)
   },[input, setButton]);
 
   useEffect(() => {
+    //dispatch(createDogs())
     dispatch(getTemperaments())
   },[])
 
@@ -64,40 +61,51 @@ export default function Form() {
     )
   }
 
+  const [selectStateName, setSelectStateName] = useState([])
   function handlerSubmit(e) {
     e.preventDefault();
-    if(!errors.name && !errors.image && input.temperament.length > 0) {
+    if(!errors.name && !errors.heightMin && !errors.heightMax &&!errors.weightMin && !errors.weightMax) {
       dispatch(createDogs(input));
       alert("dog created!");
-      setInput("")
-    } else {
-      if(input.temperament.length <= 0) {
+      setInput("");
+      setSelectStateName([])
+    } else if(!input.temperament.length) {
         alert("Temperament are missing");
       } else {
         alert("Imcomplete required fields!")
       }
-    }
+    //}
   }
 
   function handlerSelect(e) {
+    if(input.temperament.includes(e.target.value)) {
+      setInput({
+        ...input,
+        temperament: [...input.temperament, e.target.value]
+      });
+    }
     const value = e.target.value;
 console.log(value);
-    setInput({
+    if(value === "Select") {
+      setInput({...input, temperament:[...input.temperament, value]});
+
+    }
+    /*setInput({
       ...input,
       temperament:
       ! input.temperament.includes(value) && value !== 'Select'
       ? [...input.temperament, value]
       : [...input.temperament]
-    })
+    }) */
   }
 
-  function handleError(e) {
+  function handlerError(e) {
     e.preventDefault();
     alert("Complete the form!");
+    
   }
 
 //============================>> END HANDLERS <<==============================\\
-
 
 //============================>> VALIDATIONS <<==============================\\
 
@@ -117,24 +125,47 @@ const validate = (input) => {
   //=======>> END NAME <<======\\
 
   //=======>> HEIGHT <<======\\
-  if(!input.height.length < 2) {
-    errors.height = "You must enter a minimum and maximum height";
-  } else if(!/^[0-9]+$/.test(input.height)) {
-    errors.height = "Can only contain numbers"
+  if(!input.heightMax) {
+    errors.heightMax = "You must enter a maximum height";
+  } else if(input.heightMax > 0) {
+    errors.heightMax = "The minimum height must be less than 70cm"
+  } else if(!/^[0-9]+$/.test(input.heightMax)) {
+    errors.heightMax = "Can only contain numbers";
+  }
+
+  if(!input.heightMin) {
+    errors.heightMin = "You must enter a minimum height";
+  } else if(input.heightMin >= input.heightMax) {
+    errors.heightMin = "The minimum height must be less than 70cm"
+  } else if(!/^[0-9]+$/.test(input.heightMin)) {
+    errors.heightMin = "Can only contain numbers";
   }
   //=======>> END HEIGHT <<======\\
   
-  if(!input.weight.length < 2) {
-    errors.weight = "You must enter a minimum and maximum weight";
-  }else if(!/^[0-9]+$/.test(input.weight)) {
-    errors.weight = ""
-
+  //=======>> WEIGHT <<======\\
+  if(!input.weightMax) {
+    errors.weightMax = "You must enter a minimum and maximum weight";
+  }else if(!/^[0-9]+$/.test(input.weightMax)) {
+    errors.weightMax = "Can only contain numbers";
   };
 
-  if(!input.life_span) errors.life_span = "You must enter a fife span";
+  if(!input.weightMin) {
+    errors.weightMin = "You must enter a minimum and maximum weight";
+  }else if(!/^[0-9]+$/.test(input.weightMin)) {
+    errors.weightMin = "Can only contain numbers";
+  };
+  //=======>> END HEIGHT <<======\\
+
+  //=======>> LIFE_SPAN <<======\\
+  if(!input.life_span) {
+    errors.life_span = "You must enter a fife span";
+  } else if(!/^[0-9]+$/.test(input.life_span)) {
+    errors.life_span = "Can only contain numbers";
+  }
+  //=======>> END LIFE_SPAN <<======\\
+
   return errors;
 }
-
 //============================>> END VALIDATIONS <<==============================\\
 
   return (
@@ -173,14 +204,24 @@ const validate = (input) => {
           <div className={style.dog}>
             <div className={style.height}>
               <div className={style.div}>
-                <label className={style.title} htmlFor="height">Height: </label>
+                <label className={style.title} htmlFor="heightMin">HeightMin: </label>
                 <input 
-                  className={errors.height && style.error}
+                  className={errors.heightMin && style.error}
                   type="number" 
-                  name="height"
+                  name="heightMin"
                   min="0"
+                  max="70"
+                  value={input.heightMin}
+                  onChange={handlerChange}
+                />
+                <label className={style.title} htmlFor="heightMax">HeightMax: </label>
+                <input 
+                  className={errors.heightMax && style.error}
+                  type="number" 
+                  name="heightMax"
+                  min="70"
                   max="200"
-                  value={input.height}
+                  value={input.heightMax}
                   onChange={handlerChange}
                 />
               </div>
@@ -189,23 +230,64 @@ const validate = (input) => {
           <div className={style.dog}>
             <div className={style.weight}>
               <div className={style.div}>
-                <label className={style.title} htmlFor="weight">Weight: </label>
+                <label className={style.title} htmlFor="weightMin">WeightMIn: </label>
                 <input 
-                  className={errors.weight && style.error}
+                  className={errors.weightMin && style.error}
                   type="number" 
-                  name="weight"
+                  name="weightMin"
                   min="0"
+                  max="70"
+                  value={input.weightMin}
+                  onChange={handlerChange}
+                />
+                <br />
+                <label className={style.title} htmlFor="weightMax">WeightMax: </label>
+                <input 
+                  className={errors.weightMax && style.error}
+                  type="number" 
+                  name="weightMax"
+                  min="70"
                   max="200"
-                  value={input.weight}
+                  value={input.weightMax}
                   onChange={handlerChange}
                 />
               </div>
             </div>
           </div>
+          <div className={style.div}>
+            <label className={style.title} htmlFor="life_span">Life span: </label>
+            <input 
+              className={errors.life_span && style.error}
+              name="life_span"
+              value={input.life_span}
+              onChange={handlerChange}
+            />
+          </div>
+          <div className={style.container}>
+            <div className={style.select}>
+              <label htmlFor="">Temperament: </label>
+              <select onChange={handlerSelect}>
+                {
+                  tempers.map(t => 
+                    <option 
+                      name="tempers"
+                      value={t.name}
+                      key={t.id}
+                    > {t.name} </option>
+                  )
+                }
+              </select>
+            </div>
+          </div>
+          
           {
             input.name === "" ? (
-              <button className={style.btn2} type="submit" onClick={handleError}>Create</button>
-            ) : <button className={style.btn2} type="submit" >Create</button>
+              <button 
+                disabled={!input.name || errors.name || errors.heightMin || errors.heightMax || errors.weightMin || errors.weightMax} 
+                className={style.btn2} 
+                type="submit" > Create 
+              </button>
+            ) : <button className={style.btn2} type="submit" onClick={handlerError}>Create</button>
           }
         </form>
       </div>

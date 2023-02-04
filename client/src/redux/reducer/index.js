@@ -38,9 +38,10 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         tempers: action.payload
       }
-    case "CREATE_DOGS":
+    case "CREATE_DOG":
       return {
         ...state,
+        allDogs: action.payolad
       }
     default:
       return {
