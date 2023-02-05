@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import style from '../styles/Form.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getTemperaments, createDogs } from "../redux/action";
+import { getTemperaments, createDogs, getDogs } from "../redux/action";
 
 
 export default function Form() {
@@ -31,17 +31,17 @@ export default function Form() {
     heightMin: "",
     heightMax: "",
     life_span: "",
-    temperament: []
+    temperament: ""
   })
 //console.log(dogs) 
 
   useEffect(() => {
-    if(input.name.length > 0 && input.heightMin.length > 0 && input.heightMax.length > 0  && input.weightMin.length > 0 && input.weightMax.length > 0)setButton(false);
+    if(!input.name.length > 0 && input.heightMin.length > 0 && input.heightMax.length > 0  && input.weightMin.length > 0 && input.weightMax.length > 0)setButton(false);
     else setButton(true)
   },[input, setButton]);
 
   useEffect(() => {
-    //dispatch(createDogs())
+    //dispatch(createDogs())0
     dispatch(getTemperaments())
   },[])
 
@@ -86,23 +86,26 @@ export default function Form() {
     }
     const value = e.target.value;
 console.log(value);
-    if(value === "Select") {
+    /* if(value === "Select") {
       setInput({...input, temperament:[...input.temperament, value]});
 
-    }
-    /*setInput({
+    } */
+    setInput({
       ...input,
       temperament:
       ! input.temperament.includes(value) && value !== 'Select'
       ? [...input.temperament, value]
       : [...input.temperament]
-    }) */
+    })
   }
 
   function handlerError(e) {
     e.preventDefault();
-    alert("Complete the form!");
-    
+    if(input.length === 0){
+      alert("Complete the form!");
+    } 
+    alert("dog created!")
+    setButton(errors)
   }
 
 //============================>> END HANDLERS <<==============================\\
@@ -112,23 +115,25 @@ console.log(value);
 const validate = (input) => {
   const errors = {};
 
-  //=======>> NAME <<======\\
+  //=========>> NAME <<========\\
   if(!input.name) {
     errors.name = "You must enter a breed name";
   } else if(!/^[a-zA-Z]+$/.test(input.name)) {
     errors.name = "Invalid name. The name must contain letters";
+  } else if(input.name.length < 2) {
+    errors.name = "The name must contain at least 2 letters"
   } else if(input.name.length < 2 || input.name.length > 20) {
     errors.name = "At least 2 letters, less than 20";
   } else if(dogs.includes(input.name)) {
     errors.name = "The dog already exists, use another name";
   };
-  //=======>> END NAME <<======\\
+  //=========>> END NAME <<========\\
 
-  //=======>> HEIGHT <<======\\
+  //=========>> HEIGHT <<========\\
   if(!input.heightMax) {
     errors.heightMax = "You must enter a maximum height";
-  } else if(input.heightMax > 0) {
-    errors.heightMax = "The minimum height must be less than 70cm"
+  } else if(input.heightMax > 200) {
+    errors.heightMax = "The maximum height must be less than 200cm"
   } else if(!/^[0-9]+$/.test(input.heightMax)) {
     errors.heightMax = "Can only contain numbers";
   }
@@ -136,33 +141,49 @@ const validate = (input) => {
   if(!input.heightMin) {
     errors.heightMin = "You must enter a minimum height";
   } else if(input.heightMin >= input.heightMax) {
-    errors.heightMin = "The minimum height must be less than 70cm"
+    errors.heightMin = "The minimum height must be less than 40cm"
   } else if(!/^[0-9]+$/.test(input.heightMin)) {
     errors.heightMin = "Can only contain numbers";
   }
-  //=======>> END HEIGHT <<======\\
+  //=========>> END HEIGHT <<========\\
   
-  //=======>> WEIGHT <<======\\
+  //=========>> WEIGHT <<========\\
   if(!input.weightMax) {
     errors.weightMax = "You must enter a minimum and maximum weight";
+  }else if(input.weightMax > 200) {
+    errors.weightMax = "The maximum height must be less than 200cm"
   }else if(!/^[0-9]+$/.test(input.weightMax)) {
     errors.weightMax = "Can only contain numbers";
   };
 
   if(!input.weightMin) {
     errors.weightMin = "You must enter a minimum and maximum weight";
+  }else if(input.weightMin >= input.weightMax) {
+    errors.weightMin = "The minimum weight must be less than 40cm"
   }else if(!/^[0-9]+$/.test(input.weightMin)) {
     errors.weightMin = "Can only contain numbers";
   };
-  //=======>> END HEIGHT <<======\\
+  //=========>> END HEIGHT <<========\\
 
-  //=======>> LIFE_SPAN <<======\\
+  //=========>> LIFE_SPAN <<=========\\
   if(!input.life_span) {
-    errors.life_span = "You must enter a fife span";
+    errors.life_span = "You must enter a life span";
   } else if(!/^[0-9]+$/.test(input.life_span)) {
     errors.life_span = "Can only contain numbers";
+  } else if(input.life_span.length < 1) {
+    errors.life_span = "You need to select at least 1 temperament"
   }
-  //=======>> END LIFE_SPAN <<======\\
+  //=========>> END LIFE_SPAN <<=========\\
+
+  //=========>> TEMPERAMENT <<==========\\
+  if (!input.temperament) {
+    errors.temperament = "You must select a temperament or create a new one";
+  } else if(input.temperament.length < 1 && input.temperament.length > 10) {
+    errors.temperament = "You need select one temperament"
+  } else if(input.temperament === input.temperament) {
+    errors.temperament = "You can't repeat temperaments"
+  }
+  //==========>> END TEMPERAMENT <<==========\\
 
   return errors;
 }
@@ -210,7 +231,7 @@ const validate = (input) => {
                   type="number" 
                   name="heightMin"
                   min="0"
-                  max="70"
+                  max="100"
                   value={input.heightMin}
                   onChange={handlerChange}
                 />
@@ -219,7 +240,7 @@ const validate = (input) => {
                   className={errors.heightMax && style.error}
                   type="number" 
                   name="heightMax"
-                  min="70"
+                  min="0"
                   max="200"
                   value={input.heightMax}
                   onChange={handlerChange}
@@ -236,7 +257,7 @@ const validate = (input) => {
                   type="number" 
                   name="weightMin"
                   min="0"
-                  max="70"
+                  max="100"
                   value={input.weightMin}
                   onChange={handlerChange}
                 />
@@ -246,7 +267,7 @@ const validate = (input) => {
                   className={errors.weightMax && style.error}
                   type="number" 
                   name="weightMax"
-                  min="70"
+                  min="0"
                   max="200"
                   value={input.weightMax}
                   onChange={handlerChange}
@@ -259,6 +280,9 @@ const validate = (input) => {
             <input 
               className={errors.life_span && style.error}
               name="life_span"
+              min="0"
+              max="100"
+              type="number"
               value={input.life_span}
               onChange={handlerChange}
             />
@@ -267,8 +291,9 @@ const validate = (input) => {
             <div className={style.select}>
               <label htmlFor="">Temperament: </label>
               <select onChange={handlerSelect}>
+                <option hidden value="">Select</option>
                 {
-                  tempers.map(t => 
+                  tempers?.map(t => 
                     <option 
                       name="tempers"
                       value={t.name}
@@ -281,7 +306,7 @@ const validate = (input) => {
           </div>
           
           {
-            input.name === "" ? (
+            input.name === " " ? (
               <button 
                 disabled={!input.name || errors.name || errors.heightMin || errors.heightMax || errors.weightMin || errors.weightMax} 
                 className={style.btn2} 
