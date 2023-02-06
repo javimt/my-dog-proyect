@@ -22,7 +22,6 @@ export const getDogsByName = (name) => {
     type: "GET_DOGS_BY_NAME",
     payload: name
   }
-
   /* return async function(dispatch) {
     const response = await axios.get(`http://localhost:3001/dogs?name=${name}`);
 console.log(response.data)
@@ -66,3 +65,53 @@ console.log(payload)
     return dogCreate;
   }
 }
+
+//======================>> FILTERS <<=========================\\
+
+// Botones/Opciones para filtrar por:
+// Temperamento
+// Raza existente (es decir las que vienen de la API) o agregada por nosotros (creadas mediante el form)
+
+export function filterByTemperaments(payload) {
+  return {
+    type: "FILTER_BY_TEMPERAMENTS",
+    payload,
+  }
+}
+
+export function filterBreedsByApi(payload) {
+  return {
+    types: "FILTER_BY_API",
+    payload
+  }
+}
+
+export function filterBreedsByDb(payload) {
+  return {
+    types: "FILTER_BY_DB",
+    payload
+  }
+}
+//======================>> END FILTERS <<=========================\\
+
+
+//========================>> SORT BY ASC AND DESC <<==========================\\
+
+// Botones/Opciones para ordenar tanto ascendentemente como descendentemente las razas de perro por:
+// Orden alfabético
+// Peso
+
+export function sortByWeight(payload) {
+  return {
+    type: "ORDER_BY_WEIGHT",
+    payload
+  }
+}
+
+export function sortByAlfab(payload) {
+  return {
+    type: "ORDER_ALFAB",
+    payload
+  }
+}
+

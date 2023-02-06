@@ -92,27 +92,39 @@ const createDog = async (req, res, next) => {
   // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de raza de perro por body
   // Crea una raza de perro en la base de datos relacionada con sus temperamentos
 
-  const { name, weightMin, weightMax, heightMin, heightMax, life_span, image, tempers, createdInDb } = req.body;
-  //try {
+//console.log(req.body.temperaments)
+ /* const [input, setInput] = useState({
+    name: "",
+    image: "",
+    weightMin: "",
+    weightMax: "",
+    heightMin: "",
+    heightMax: "",
+    life_span: "",
+    temperaments: []
+  }) */
+  const { name, weightMin, weightMax, heightMin, heightMax, life_span, image, temperaments } = req.body;
+  try {
     if(name && weightMin && weightMax && heightMin && heightMax) {
       const dogCreated = await Dog.findOrCreate({ 
-        where: {
-        name: name,
+        where: { 
+        name: name, 
         },
-        defaults: { name, weightMin, weightMax, heightMin, heightMax, life_span, image, createdInDb } 
+        defaults: { name, weightMin, weightMax, heightMin, heightMax, life_span, image } 
      });
-      tempers?.map(async t => {
-        const tempers = Temperament.findAll({ where: { name: t } });
-        dogCreated[0].addTempers(tempers);
+      temperaments?.map(async t => {
+        const temper = await Temperament.findOne({ where: { name: t } });
+        dogCreated[0].addTemperament(temper);  
+console.log(`hola ..${dogCreated[0]}`)
       });
-console.log(tempers);
+console.log(dogCreated[0]);  
       await Temperament.findAll();
       return res.status(200).json({ data: dogCreated[1] ? dogCreated : 'its was created!' })
     }
-    res.status(400).send('missing data')
-  //}catch{
-    //res.status(400).send('misisng data')
-  //}
+   res.status(400).send('name is required')
+  } catch (error){
+   res.json(error)
+  }
     //
  
   

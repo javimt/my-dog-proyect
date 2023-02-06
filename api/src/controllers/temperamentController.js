@@ -40,23 +40,21 @@ const getAllTemperaments = async (req, res, next) => {
       try {
         const response = await getAllApiTemperaments();
         const allTempers = response.map(t => t.temperament);
-        const tempers = allTempers.map(e => e).join(', ').split(', ')//.trim();
+        const temperaments = allTempers.map(e => e).join(', ')//.split(',')//.trim();
+        const tempers = temperaments.split(', ').filter(e => {
+          if(e !== '')return e.trim()
+        })
         const temperSet = new Set([...tempers]);
         const temperObj = [...temperSet].map(e => new Object({name: e}));
         temperObj.map(async e => await Temperament.findOrCreate({ 
-          where: {
-            name: e.name
-          },
-          defaults: {
-            name: e.name
-          },
+          where: {name: e.name},
         }));
 console.log(temperObj);
-        await Temperament.bulkCreate(temperObj);
+        await Temperament.bulkCreate(temperSet);
         return res.status(200).json(await Temperament.findAll());
   
       } catch (error) {
-        return res.status(400).send({ error: error.message });
+        res.status(400).send({ error: error.message });
       }
     }
     return res.status(200).json(allTemperaments)

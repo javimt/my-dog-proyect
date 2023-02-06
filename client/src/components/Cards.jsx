@@ -17,6 +17,7 @@ export default function Cards() {
     <div>
       {
         stateDog.length ? stateDog.map(d => {
+  console.log(d.Temperaments)
           return (
             <div key={d.id}>
               <Link to={`/dogs/${d.id}`} >
@@ -25,7 +26,7 @@ export default function Cards() {
                   image={d.image}
                   weightMin={d.weightMin}
                   weightMax={d.weightMax}
-                  temperament={d.temperament}
+                  temperament={d.Temperaments ? d.Temperaments.map(e => e.name).join(",") : d.temperament}
                 />
               </Link>
             </div>

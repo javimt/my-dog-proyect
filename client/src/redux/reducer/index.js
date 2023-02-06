@@ -43,7 +43,9 @@ export default function rootReducer(state = initialState, action) {
 //console.log(state1)
       return {
         ...state,
+        allDogs: action.payload
       }
+    
     default:
       return {
         ...state

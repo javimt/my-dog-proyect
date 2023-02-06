@@ -18,7 +18,7 @@ export default function Form() {
   const dogs = useSelector(state => state.allDogs);
   const tempers = useSelector(state => state.tempers);
   //const [button, setButton] = useState(true)
-console.log(tempers)
+//console.log(tempers.map(e=>e.name))
   const history = useHistory();
   const [errors, setErrors] = useState({});
 
@@ -30,7 +30,7 @@ console.log(tempers)
     heightMin: "",
     heightMax: "",
     life_span: "",
-    temperament: []
+    temperaments: []
   })
 //console.log(dogs) 
 
@@ -52,6 +52,7 @@ console.log(tempers)
       ...input,
       [e.target.name]: e.target.value
     });
+console.log(input)
     setErrors(
       validate({
         ...input,
@@ -63,31 +64,31 @@ console.log(tempers)
   //const [selectStateName, setSelectStateName] = useState([])
   function handlerSubmit(e) {
     e.preventDefault();
-    if(!errors.name && !errors.heightMin && !errors.heightMax &&!errors.weightMin && !errors.weightMax) {
+    //if(!errors.name && !errors.heightMin || !errors.heightMax || !errors.weightMin || !errors.weightMax || !errors.temperament) {
       dispatch(createDogs(input));
       alert("dog created!");
-      setInput("");
+      //setInput("");
       history.push('/home');
-      dispatch(getDogs());
+      dispatch(getDogs())
       dispatch(getTemperaments())
       //setSelectStateName([])
-    } else {
-      if(!input.temperament.length)alert("Temperament are missing");
-      else alert("Imcomplete required fields!");
-    }
+    //} else {
+    //  if(!input.temperament.length)alert("Temperament are missing");
+    //  else alert("Imcomplete required fields!");
+    //}
   }
 
   function handlerSelect(e) {
-    if(input.temperament.includes(e.target.value)) {
+    if(input.temperaments.includes(e.target.value)) {
       setInput({
         ...input,
-        temperament: [...input.temperament, e.target.value]
+        temperaments: [...input.temperaments, e.target.value]
       });
     }
     const value = e.target.value;
 console.log(value);
-    if(value === "default") {
-      setInput({...input, temperament:[...input.temperament, value]});
+    if(value !== "Select") {
+      setInput({...input, temperaments:[...input.temperaments, value]});
     }
     /* setInput({
       ...input,
@@ -105,6 +106,13 @@ console.log(value);
     //} 
     //alert("dog created!")
     //setButton(errors)
+  }
+
+  function handlerDelete(e) {
+    setInput({
+      ...input,
+      temperaments: input.temperaments.filter(t => t !== e)
+    })
   }
 
 //============================>> END HANDLERS <<==============================\\
@@ -175,12 +183,12 @@ const validate = (input) => {
   //=========>> END LIFE_SPAN <<=========\\
 
   //=========>> TEMPERAMENT <<==========\\
-  if (!input.temperament) {
-    errors.temperament = "You must select a temperament or create a new one";
-  } else if(input.temperament.length < 1 || input.temperament.length > 10) {
-    errors.temperament = "You need select one temperament"
-  } else if(input.temperament === input.temperament.value) {
-    errors.temperament = "You can't repeat temperaments"
+  if (!input.temperaments) {
+    errors.temperaments = "You must select a temperaments or create a new one";
+  } else if(input.temperaments.length < 1 || input.temperaments.length > 10) {
+    errors.temperaments = "You need select one temperaments"
+  } else if(input.temperaments === input.temperaments.value) {
+    errors.temperaments = "You can't repeat temperaments"
   }
   //==========>> END TEMPERAMENT <<==========\\
 
@@ -292,7 +300,7 @@ const validate = (input) => {
               <select onChange={handlerSelect}>
                 <option hidden value="">Select</option>
                 {
-                  tempers.map(t => 
+                  tempers?.map(t => 
                     <option 
                       name="tempers"
                       value={t.name}
@@ -303,17 +311,25 @@ const validate = (input) => {
               </select>
             </div>
           </div>
-          
+          <div className={style.delete}>
+            {input.temperaments.map(t => (
+              <div key={t} className={style.temp}>
+                <button onClick={handlerDelete} type="button" className={style.x}>X</button>
+                <p className={style.p}>{t}</p>
+              </div>
+            ))}
+          </div>
           {
             input.name !== " " ? (
               <button 
-                disabled={!input.name || errors.name || errors.heightMin || errors.heightMax || errors.weightMin || errors.weightMax} 
+                disabled={errors.name || errors.name || errors.heightMin || errors.heightMax || errors.weightMin || errors.weightMax} 
                 className={style.btn2} 
                 type="submit" > Create 
               </button>
             ) : <button className={style.btn2} type="submit" onClick={handlerError}>Create</button>
           }
         </form>
+        
       </div>
     </div>
   )

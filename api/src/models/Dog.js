@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     life_span: {
       type: DataTypes.STRING,
@@ -39,7 +39,8 @@ module.exports = (sequelize) => {
     createdInDb: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
-      allowNull: false,
     },
   }, { timestamps: false } );
 };
+{
+}
