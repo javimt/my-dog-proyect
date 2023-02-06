@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 /* export const cases = {
   get_Dogs: "GET_DOGS"
@@ -51,7 +51,7 @@ export const getDetail = (id) => {
 export const getTemperaments = () => {
   return async function(dispatch) {
     const response = await axios.get("http://localhost:3001/tempers");
-//console.log(response.data)
+console.log(response.data)
     return dispatch({
       type: "GET_TEMPERAMENTS",
       payload: response.data
@@ -62,6 +62,7 @@ export const getTemperaments = () => {
 export const createDogs = (payload) => {
   return () => {
     const dogCreate = axios.post("http://localhost:3001/dogs", payload);
-    return dogCreate.data;
+console.log(payload)
+    return dogCreate;
   }
 }

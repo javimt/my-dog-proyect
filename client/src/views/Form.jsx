@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import style from '../styles/Form.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { getTemperaments, createDogs, getDogs } from "../redux/action";
-
 
 export default function Form() {
 
@@ -18,9 +17,9 @@ export default function Form() {
   const dispatch = useDispatch();
   const dogs = useSelector(state => state.allDogs);
   const tempers = useSelector(state => state.tempers);
-  const [button, setButton] = useState(true)
-//console.log(tempers.map(e => e.name))
-
+  //const [button, setButton] = useState(true)
+console.log(tempers)
+  const history = useHistory();
   const [errors, setErrors] = useState({});
 
   const [input, setInput] = useState({
@@ -35,13 +34,13 @@ export default function Form() {
   })
 //console.log(dogs) 
 
-  useEffect(() => {
-    if(!input.name.length > 0 && input.heightMin.length > 0 && input.heightMax.length > 0  && input.weightMin.length > 0 && input.weightMax.length > 0)setButton(false);
+  /* useEffect(() => {
+    if(!input.name.length > 0 && !input.heightMin.length > 0 && !input.heightMax.length > 0  && !input.weightMin.length > 0 && !input.weightMax.length > 0)setButton(false);
     else setButton(true)
-  },[input, setButton]);
+  },[]); */
 
   useEffect(() => {
-    //dispatch(createDogs())0
+    dispatch(getDogs())
     dispatch(getTemperaments())
   },[])
 
@@ -61,20 +60,21 @@ export default function Form() {
     )
   }
 
-  const [selectStateName, setSelectStateName] = useState([])
+  //const [selectStateName, setSelectStateName] = useState([])
   function handlerSubmit(e) {
     e.preventDefault();
-    if(!errors.name && !errors.heightMin && !errors.heightMax &&!errors.weightMin && !errors.weightMax) {
+    if(!errors.name && !errors.heightMin && !errors.heightMax &&!errors.weightMin && !errors.weightMax && input.temperament.length > 0) {
       dispatch(createDogs(input));
       alert("dog created!");
       setInput("");
-      setSelectStateName([])
-    } else if(!input.temperament.length) {
-        alert("Temperament are missing");
-      } else {
-        alert("Imcomplete required fields!")
-      }
-    //}
+      history.push('/home');
+      dispatch(getDogs());
+      dispatch(getTemperaments())
+      //setSelectStateName([])
+    } else {
+      if(input.temperament.length <= 0)alert("Temperament are missing");
+      else alert("Imcomplete required fields!");
+    }
   }
 
   function handlerSelect(e) {
@@ -86,26 +86,25 @@ export default function Form() {
     }
     const value = e.target.value;
 console.log(value);
-    /* if(value === "Select") {
+    if(value === "default") {
       setInput({...input, temperament:[...input.temperament, value]});
-
-    } */
-    setInput({
+    }
+    /* setInput({
       ...input,
       temperament:
       ! input.temperament.includes(value) && value !== 'Select'
       ? [...input.temperament, value]
       : [...input.temperament]
-    })
+    }) */
   }
 
   function handlerError(e) {
     e.preventDefault();
-    if(input.length === 0){
+    //if(input.length === 0){
       alert("Complete the form!");
-    } 
-    alert("dog created!")
-    setButton(errors)
+    //} 
+    //alert("dog created!")
+    //setButton(errors)
   }
 
 //============================>> END HANDLERS <<==============================\\
@@ -293,7 +292,7 @@ const validate = (input) => {
               <select onChange={handlerSelect}>
                 <option hidden value="">Select</option>
                 {
-                  tempers?.map(t => 
+                  tempers.map(t => 
                     <option 
                       name="tempers"
                       value={t.name}
@@ -306,7 +305,7 @@ const validate = (input) => {
           </div>
           
           {
-            input.name === " " ? (
+            input.name !== " " ? (
               <button 
                 disabled={!input.name || errors.name || errors.heightMin || errors.heightMax || errors.weightMin || errors.weightMax} 
                 className={style.btn2} 
