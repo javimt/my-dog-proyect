@@ -30,7 +30,7 @@ console.log(tempers)
     heightMin: "",
     heightMax: "",
     life_span: "",
-    temperament: ""
+    temperament: []
   })
 //console.log(dogs) 
 
@@ -63,7 +63,7 @@ console.log(tempers)
   //const [selectStateName, setSelectStateName] = useState([])
   function handlerSubmit(e) {
     e.preventDefault();
-    if(!errors.name && !errors.heightMin && !errors.heightMax &&!errors.weightMin && !errors.weightMax && input.temperament.length > 0) {
+    if(!errors.name && !errors.heightMin && !errors.heightMax &&!errors.weightMin && !errors.weightMax) {
       dispatch(createDogs(input));
       alert("dog created!");
       setInput("");
@@ -72,7 +72,7 @@ console.log(tempers)
       dispatch(getTemperaments())
       //setSelectStateName([])
     } else {
-      if(input.temperament.length <= 0)alert("Temperament are missing");
+      if(!input.temperament.length)alert("Temperament are missing");
       else alert("Imcomplete required fields!");
     }
   }
@@ -177,9 +177,9 @@ const validate = (input) => {
   //=========>> TEMPERAMENT <<==========\\
   if (!input.temperament) {
     errors.temperament = "You must select a temperament or create a new one";
-  } else if(input.temperament.length < 1 && input.temperament.length > 10) {
+  } else if(input.temperament.length < 1 || input.temperament.length > 10) {
     errors.temperament = "You need select one temperament"
-  } else if(input.temperament === input.temperament) {
+  } else if(input.temperament === input.temperament.value) {
     errors.temperament = "You can't repeat temperaments"
   }
   //==========>> END TEMPERAMENT <<==========\\
