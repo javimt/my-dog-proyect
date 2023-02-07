@@ -1,9 +1,9 @@
 import React from "react";
 import style from '../styles/SearchBar.module.css';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from "react";
-import { getDogs, getDogsByName } from "../redux/action";
+import { getDogsByName } from "../redux/action";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export default function SearchBar() {
 
   function handleName(e) {
     e.preventDefault();
-    setName(e.target.value);
+    setName(e.target.value); 
   }
 
   function handleSubmit(e) {
@@ -30,16 +30,13 @@ export default function SearchBar() {
     //}
   }
   
-  function handleReset(e) {
+  /* function handleReset(e) {
     e.preventDefault();
     dispatch(getDogs())
-  }
+  } */
 
   return (
     <div className={style.bar}>
-      <div>
-        <button className={style.home} onClick={handleReset} type="submit">Home</button>
-      </div>
       <input /* className={style.input} */ value={name} type="text" placeholder="Write your breed" onChange={handleName}/>
       <button /*className={style.button}*/ type="submit" onClick={handleSubmit} > Search </button>
     </div>
