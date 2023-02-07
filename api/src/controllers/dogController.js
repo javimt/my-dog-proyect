@@ -93,16 +93,6 @@ const createDog = async (req, res, next) => {
   // Crea una raza de perro en la base de datos relacionada con sus temperamentos
 
 //console.log(req.body.temperaments)
- /* const [input, setInput] = useState({
-    name: "",
-    image: "",
-    weightMin: "",
-    weightMax: "",
-    heightMin: "",
-    heightMax: "",
-    life_span: "",
-    temperaments: []
-  }) */
   const { name, weightMin, weightMax, heightMin, heightMax, life_span, image, temperaments } = req.body;
   try {
     if(name && weightMin && weightMax && heightMin && heightMax) {
@@ -115,9 +105,9 @@ const createDog = async (req, res, next) => {
       temperaments?.map(async t => {
         const temper = await Temperament.findOne({ where: { name: t } });
         dogCreated[0].addTemperament(temper);  
-console.log(`hola ..${dogCreated[0]}`)
+//console.log(`hola ..${dogCreated[0]}`)
       });
-console.log(dogCreated[0]);  
+//console.log(dogCreated[0]);  
       await Temperament.findAll();
       return res.status(200).json({ data: dogCreated[1] ? dogCreated : 'its was created!' })
     }
@@ -125,15 +115,42 @@ console.log(dogCreated[0]);
   } catch (error){
    res.json(error)
   }
-    //
- 
-  
 }
 
+
+const deleteDog = async (req, res, next) => {
+  const {id} = req.params; 
+  try {
+    Dog.destroy({where: {id: id}});
+    let dataApi = await getAllApiData();
+    let dataDb = await Dog.findAll({include: Temperament});
+console.log(dataDb) 
+    dataDb = dataDb.map(e => {
+      return {
+        id: e.id,
+        name: e.name,
+        heightMin: e.heightMin, 
+        heightMax: e.heightMax,
+        weightMin: e.weightMin,
+        weightMax: e.weightMax,
+        life_span: e.life_span,
+        image: e.image,
+        temperaments: e.temperaments.map(t => t.name).join(",")
+      }
+    })
+    //const myDb = await Dog.findAll({include: {model: Temperament}});
+    let allApiData = [...dataApi, ...dataDb];
+console.log(allApiData)
+    return res.status(200).json(allApiData);
+  } catch(error) {
+    next(error)
+  }
+}
 
 module.exports = {
   //getAllApiData,
   getAllDogs,
   getDogsId,
-  createDog
+  createDog,
+  deleteDog,
 }
