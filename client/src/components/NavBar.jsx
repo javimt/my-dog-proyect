@@ -11,7 +11,7 @@ export default function NavBar() {
           <button className={style.link}>Create</button>
         </Link>
       </div>
-      <div className={style.dog}>
+      <div className={style.dog}> 
         <img className={style.img} src={dog} alt="" />
       </div>
       <div className={style.search}>

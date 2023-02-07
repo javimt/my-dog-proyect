@@ -148,7 +148,7 @@ const validate = (input) => {
   if(!input.heightMin) {
     errors.heightMin = "You must enter a minimum height";
   } else if(input.heightMin >= input.heightMax) {
-    errors.heightMin = "The minimum height must be less than 40cm"
+    errors.heightMin = "The minimum and maximum height cannot be the same."
   } else if(!/^[0-9]+$/.test(input.heightMin)) {
     errors.heightMin = "Can only contain numbers";
   }
@@ -166,7 +166,7 @@ const validate = (input) => {
   if(!input.weightMin) {
     errors.weightMin = "You must enter a minimum and maximum weight";
   }else if(input.weightMin >= input.weightMax) {
-    errors.weightMin = "The minimum weight must be less than 40cm"
+    errors.weightMin = "The minimum and maximum weight cannot be the same."
   }else if(!/^[0-9]+$/.test(input.weightMin)) {
     errors.weightMin = "Can only contain numbers";
   };
@@ -209,7 +209,7 @@ const validate = (input) => {
           <div className={style.div}>
             <label className={style.title} htmlFor="name">Name:</label>
              <input 
-              className={errors.name && style.error} 
+              className={errors.name && style.error || style.input} 
               name="name"  
               value={input.name}
               type="text"
@@ -221,6 +221,7 @@ const validate = (input) => {
           <div className={style.div}>
             <label className={style.title} htmlFor="image">Image:</label>
             <input 
+              className={style.input}
               name="image" 
               value={input.image}
               type="text"
@@ -234,7 +235,7 @@ const validate = (input) => {
               <div className={style.div}>
                 <label className={style.title} htmlFor="heightMin">HeightMin: </label>
                 <input 
-                  className={errors.heightMin && style.error}
+                  className={errors.heightMin && style.error || style.input}
                   type="number" 
                   name="heightMin"
                   min="0"
@@ -242,9 +243,10 @@ const validate = (input) => {
                   value={input.heightMin}
                   onChange={handlerChange}
                 />
+                <br />
                 <label className={style.title} htmlFor="heightMax">HeightMax: </label>
                 <input 
-                  className={errors.heightMax && style.error}
+                  className={errors.heightMax && style.error || style.input}
                   type="number" 
                   name="heightMax"
                   min="0"
@@ -260,7 +262,7 @@ const validate = (input) => {
               <div className={style.div}>
                 <label className={style.title} htmlFor="weightMin">WeightMIn: </label>
                 <input 
-                  className={errors.weightMin && style.error}
+                  className={errors.weightMin && style.error || style.input}
                   type="number" 
                   name="weightMin"
                   min="0"
@@ -271,7 +273,7 @@ const validate = (input) => {
                 <br />
                 <label className={style.title} htmlFor="weightMax">WeightMax: </label>
                 <input 
-                  className={errors.weightMax && style.error}
+                  className={errors.weightMax && style.error || style.input}
                   type="number" 
                   name="weightMax"
                   min="0"
@@ -285,7 +287,7 @@ const validate = (input) => {
           <div className={style.div}>
             <label className={style.title} htmlFor="life_span">Life span: </label>
             <input 
-              className={errors.life_span && style.error}
+              className={errors.life_span && style.error || style.input}
               name="life_span"
               min="0"
               max="100"
@@ -297,8 +299,8 @@ const validate = (input) => {
           <div className={style.container}>
             <div className={style.select}>
               <label htmlFor="">Temperament: </label>
-              <select onChange={handlerSelect}>
-                <option hidden value="">Select</option>
+              <select className={style.selct} onChange={handlerSelect}>
+                <option className={style.input} hidden value="">Select</option>
                 {
                   tempers?.map(t => 
                     <option 
@@ -322,8 +324,8 @@ const validate = (input) => {
           {
             input.name !== " " ? (
               <button 
-                disabled={errors.name || errors.name || errors.heightMin || errors.heightMax || errors.weightMin || errors.weightMax} 
-                className={style.btn2} 
+                disabled={!input.name || errors.name || errors.heightMin || errors.heightMax || errors.weightMin || errors.weightMax} 
+                className={style.btn1} 
                 type="submit" > Create 
               </button>
             ) : <button className={style.btn2} type="submit" onClick={handlerError}>Create</button>

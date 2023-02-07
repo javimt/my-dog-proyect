@@ -29,34 +29,39 @@
   transition: all 0.25s;
   background-color:rgba(39, 99, 239, 0.13);
 }
-
-.btn {
+.btn{
+  /* height: 38px;
+  width: 100px; */
+  margin: 10px;
+  border: inset #5499C7;
+  border-radius: 10px;
+  font-family: cursive;
+  font-weight: 600;
+  background-color: #34495E;
+  color: rgb(255, 255, 255);
+  font-size: 25px;
+}
+.btn:hover{
+  color: rgb(200, 255, 0);
+  opacity: 0.8;
+  cursor: pointer;
+}
+.btn1 {
     border-radius: 10px;
-    border:solid rgb(47, 46, 46);
+    border: inset #5499C7;
     font-size: 25px;
     background-color:rgba(102, 102, 219, 0.8) ;
     font-family: cursive;
     font-weight: 600;
-    color: rgb(72, 255, 0);
+    color: rgb(255, 0, 0);
     margin-top: 15px;
 }
-.btn:hover {
+.btn1:hover {
     cursor: pointer;
-    color: rgb(255, 60, 0);
+    color: rgb(200, 255, 0);
+    opacity: 0.6;
 } 
-/* .btn {
-  margin-top: 25px;
-  font-size: 20px;
-  font-family: cursive;
-  border-radius: 10px;
-  border: inset #5499C7;
-  color: white;
-  background-color:rgba(102, 102, 219, 0.8) ;
-}
 
-.btn:hover {
-  background-color: #5499C7;
-}*/
 /* .btn1 {
     width: 20px;
     height: 20px;
@@ -70,36 +75,60 @@
   background-color:rgba(102, 102, 219, 0.8) ;
   font-family: cursive;
   font-weight: 600;
-  color: rgb(72, 255, 0);
+  color: rgb(234, 245, 230);
   margin-top: 15px;
 }
 .btn2 :hover {
   cursor: pointer;
   color: rgb(255, 60, 0);
+  opacity: 0.8;
 } 
 .title {
   color: rgb(100, 248, 37);
   font-size: 18px;
   font-family: cursive;
+  background-color: aliceblue;
 }
 .p {
   font-size: 13px;
   color: #810606;
   margin: 0;
 }
-/* .container {
-  display: flex;
-  margin-left: 20px;
+.selct {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: inset #5499C7;
+  background-color: black;
+  border-radius: 10px;
+  padding: 3px;
+  font-size: 20px;
+  font-family: cursive;
+  color: rgb(100, 248, 37);
 }
-.select {
-}*/
+.selct:hover {
+  background-color: #34495E;
+  cursor: pointer;
+}
+.input {
+  font-size: 20px;
+  font-family: cursive;
+  height: 25px;
+  border:solid rgb(47, 46, 46);
+  background-color: rgba(1, 1, 10, 0.8) ;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding-left: 10px;
+  color:rgb(237, 240, 227);
+  margin-left: 30px;
+  padding: 5px;
+}
 .select {
   margin-top: 20px;
   margin-bottom: 20px;
   border: inset #5499C7;
   border-radius: 10px;
   padding: 3px;
-  font-size: 15px;
+  font-size: 20px;
   font-family: cursive;
   color: rgb(100, 248, 37);
 } 
@@ -116,14 +145,6 @@
   height: 30px;
   justify-content: center;
 }
-
-.h1 {
-  font-size: 30px;
-  font-family: cursive;
-  color: rgb(100, 248, 37);
-}
-
-
 .div {
   margin-top: 10px;
 }

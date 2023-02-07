@@ -1,3 +1,7 @@
 /* .body {
-    
+    flex-direction: column;
+    flex-wrap: wrap;
+    display: block;
+    align-items: center;
+    justify-content: center;
 } */

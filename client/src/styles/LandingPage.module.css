@@ -12,7 +12,7 @@
 
 .landing button{
     border-radius: 10px;
-    border:solid rgb(47, 46, 46);
+    border: inset #5499C7;
     font-size: 25px;
     background-color:rgba(102, 102, 219, 0.8) ;
     font-family: cursive;
@@ -23,4 +23,5 @@
 .landing button:hover{
     cursor: pointer;
     color: rgb(255, 60, 0);
+    opacity: 0.6;
 }
