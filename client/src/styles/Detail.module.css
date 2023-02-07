@@ -17,9 +17,24 @@
       height: 500px;
       margin: 100px 0 0 300px;
       transition: all 0.25s;
-      box-shadow: 0 2px 2px rgba(0, 0, 0, 2); */
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 2); 
+      */
 }
 .btn button{
+    border-radius: 10px;
+    border:solid rgb(47, 46, 46);
+    font-size: 25px;
+    background-color:rgba(102, 102, 219, 0.8) ;
+    font-family: cursive;
+    font-weight: 600;
+    color: rgb(72, 255, 0);
+    margin-top: 15px;
+}
+.btn button:hover{
+    cursor: pointer;
+    color: rgb(255, 60, 0);
+}
+/* .btn button{
     margin-top: 15px;
     font-size: 20px;
     font-family: cursive;
@@ -27,10 +42,11 @@
     border: inset #5499C7;
     color: rgb(100, 248, 37);
     background-color: #34495E;
+    cursor: pointer;
 }
 .btn button:hover{
     background-color: #5499C7;   
-}
+} */
 .id{
     text-align: left;
     font-size: 15px; 

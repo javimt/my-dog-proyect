@@ -1,5 +1,9 @@
 *{
     font-family: cursive;
+    background: url("../images/Dog_Trick_-_Lick_Paw.gif");
+    background-size: cover;
+    background-attachment: fixed;
+    object-fit: contain;
 }
 .landing{
     color: rgb(31, 69, 240);
@@ -7,10 +11,10 @@
 }
 
 .landing button{
-    border-radius: 5px;
+    border-radius: 10px;
     border:solid rgb(47, 46, 46);
     font-size: 25px;
-    background-color:rgba(1, 1, 10, 0.8) ;
+    background-color:rgba(102, 102, 219, 0.8) ;
     font-family: cursive;
     font-weight: 600;
     color: rgb(72, 255, 0);
@@ -18,5 +22,5 @@
 }
 .landing button:hover{
     cursor: pointer;
-    color: rgb(200, 255, 0);
+    color: rgb(255, 60, 0);
 }

@@ -31,18 +31,32 @@
 }
 
 .btn {
+    border-radius: 10px;
+    border:solid rgb(47, 46, 46);
+    font-size: 25px;
+    background-color:rgba(102, 102, 219, 0.8) ;
+    font-family: cursive;
+    font-weight: 600;
+    color: rgb(72, 255, 0);
+    margin-top: 15px;
+}
+.btn:hover {
+    cursor: pointer;
+    color: rgb(255, 60, 0);
+} 
+/* .btn {
   margin-top: 25px;
   font-size: 20px;
   font-family: cursive;
   border-radius: 10px;
   border: inset #5499C7;
   color: white;
-  background-color: #34495E;
+  background-color:rgba(102, 102, 219, 0.8) ;
 }
 
 .btn:hover {
   background-color: #5499C7;
-}
+}*/
 /* .btn1 {
     width: 20px;
     height: 20px;
@@ -50,29 +64,65 @@
     margin: 5px 5px 0 5px;
 } */
 .btn2 {
-   
-    font-size: 40px;
-    font-family: cursive;
-    border-radius: 10px;
-    border: inset #25f800;
-    color: white;
-    background-color: rgb(206, 51, 40);
-}
-  
-.btn2:hover {
-    background-color: #f59e88;
-}
-/* .h1 {
-  font-size: 30px;
+  border-radius: 10px;
+  border:solid rgb(47, 46, 46);
+  font-size: 25px;
+  background-color:rgba(102, 102, 219, 0.8) ;
   font-family: cursive;
-  color: rgb(100, 248, 37);
+  font-weight: 600;
+  color: rgb(72, 255, 0);
+  margin-top: 15px;
 }
-
+.btn2 :hover {
+  cursor: pointer;
+  color: rgb(255, 60, 0);
+} 
 .title {
   color: rgb(100, 248, 37);
   font-size: 18px;
   font-family: cursive;
 }
+.p {
+  font-size: 13px;
+  color: #810606;
+  margin: 0;
+}
+/* .container {
+  display: flex;
+  margin-left: 20px;
+}
+.select {
+}*/
+.select {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: inset #5499C7;
+  border-radius: 10px;
+  padding: 3px;
+  font-size: 15px;
+  font-family: cursive;
+  color: rgb(100, 248, 37);
+} 
+/* .delete {
+  margin: 20px 0 0 10px;
+  font-size: 20px;
+  font-family: cursive;
+  border-radius: 10px;
+  border: inset #5499C7;
+  color: white;
+  background-color: #34495E;
+  padding: 0 6px 0 6px;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+}
+
+.h1 {
+  font-size: 30px;
+  font-family: cursive;
+  color: rgb(100, 248, 37);
+}
+
 
 .div {
   margin-top: 10px;
@@ -107,11 +157,7 @@
   color: antiquewhite;
 }
 
-.p {
-  font-size: 13px;
-  color: #810606;
-  margin: 0;
-}
+
 
 .containers {
   display: flex;

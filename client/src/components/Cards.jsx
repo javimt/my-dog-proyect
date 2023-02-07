@@ -17,7 +17,7 @@ export default function Cards() {
     <div>
       {
         stateDog.length ? stateDog.map(d => {
-  console.log(d.Temperaments)
+  //console.log(d.Temperaments)
           return (
             <div key={d.id}>
               <Link to={`/dogs/${d.id}`} >
