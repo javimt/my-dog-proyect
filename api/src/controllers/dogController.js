@@ -111,7 +111,7 @@ const createDog = async (req, res, next) => {
         name: name, 
         },
         defaults: { name, weightMin, weightMax, heightMin, heightMax, life_span, image } 
-     });
+     }); 
       temperaments?.map(async t => {
         const temper = await Temperament.findOne({ where: { name: t } });
         dogCreated[0].addTemperament(temper);  

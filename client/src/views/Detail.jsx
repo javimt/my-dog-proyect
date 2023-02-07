@@ -32,7 +32,7 @@ console.log(detail.name)
       <h3 className={style.id}>Dog Number: {detail.id}</h3>
       <h3 className={style.title}>{detail.name}</h3>
       <img className={style.image} src={detail.image} alt=""  width="250px"/>
-      <h3 className={style.temperament}>temperaments: {detail.temperament}
+      <h3 className={style.temperament}>temperaments: {detail.Temperaments ? detail.Temperaments.map(e => e.name).join(",") : detail.temperament}
        {/* }
           ! detail.createdInDb
           ? detail.temperament + " "

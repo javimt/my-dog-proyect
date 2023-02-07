@@ -111,7 +111,7 @@ console.log(value);
   function handlerDelete(e) {
     setInput({
       ...input,
-      temperaments: input.temperaments.filter(t => t !== e)
+      temperaments: input.temperaments.filter(t => t === e)// d.Temperaments ? d.Temperaments.map(e => e.name).join(",") : d.temperament
     })
   }
 
@@ -314,7 +314,7 @@ const validate = (input) => {
           <div className={style.delete}>
             {input.temperaments.map(t => (
               <div key={t} className={style.temp}>
-                <button onClick={handlerDelete} type="button" className={style.x}>X</button>
+                <button onClick={handlerDelete} className={style.x}>X</button>
                 <p className={style.p}>{t}</p>
               </div>
             ))}
