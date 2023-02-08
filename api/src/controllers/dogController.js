@@ -143,7 +143,23 @@ console.log(dataDb)
 console.log(allApiData)
     return res.status(200).json(allApiData);
   } catch(error) {
-    next(error)
+    return ({error: error.message})
+  }
+}
+
+
+const updateDog = async (req, res, next) => {
+  const id = req.params.id;
+  const dog = req.body
+  try {
+    let dogUpdated = await Dog.update(dog, {
+      where: {
+        id: id
+      }
+    })
+    return res.json({createdInDb: true})
+  } catch (error) {
+    return ({error: error.message})
   }
 }
 
@@ -153,4 +169,5 @@ module.exports = {
   getDogsId,
   createDog,
   deleteDog,
+  updateDog,
 }
