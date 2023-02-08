@@ -66,6 +66,9 @@ console.log(payload)
   }
 }
 
+export function deleteDog() {
+  return { type: "DELETE_DOG"}
+}
 //======================>> FILTERS <<=========================\\
 
 // Botones/Opciones para filtrar por:
@@ -79,14 +82,14 @@ export function filterByTemperaments(payload) {
   }
 }
 
-export function filterBreedsByApi(payload) {
+export function filterDogsByApi(payload) {
   return {
     types: "FILTER_BY_API",
     payload
   }
 }
 
-export function filterBreedsByDb(payload) {
+export function filterDogsByDb(payload) {
   return {
     types: "FILTER_BY_DB",
     payload
@@ -110,7 +113,7 @@ export function sortByWeight(payload) {
 
 export function sortByAlfab(payload) {
   return {
-    type: "ORDER_ALFAB",
+    type: "ORDER_BY_ALFAB",
     payload
   }
 }

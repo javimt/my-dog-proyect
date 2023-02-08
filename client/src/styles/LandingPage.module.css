@@ -1,6 +1,6 @@
 *{
     font-family: cursive;
-    background: url("../images/Dog_Trick_-_Lick_Paw.gif");
+    background: url("../images/bufanda.jfif");
     background-size: cover;
     background-attachment: fixed;
     object-fit: contain;
@@ -17,11 +17,12 @@
     background-color:rgba(102, 102, 219, 0.8) ;
     font-family: cursive;
     font-weight: 600;
-    color: rgb(72, 255, 0);
-    margin-top: 430px;
+    color: rgb(28, 141, 0);
+    margin-top: 500px;
+    margin-left: 720px;
 }
 .landing button:hover{
     cursor: pointer;
-    color: rgb(255, 60, 0);
+    color: rgb(255, 0, 0);
     opacity: 0.6;
 }

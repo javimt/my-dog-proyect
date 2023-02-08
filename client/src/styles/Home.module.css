@@ -1,7 +1,14 @@
 /* .body {
-    flex-direction: column;
-    flex-wrap: wrap;
-    display: block;
-    align-items: center;
-    justify-content: center;
-} */
+    margin-top: 10px;
+  
+  position: relative; 
+  
+  margin: 15px;
+  margin-bottom: 10px; 
+
+  overflow: visible;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  flex: auto;
+}*/

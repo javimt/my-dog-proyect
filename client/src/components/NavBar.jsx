@@ -18,9 +18,9 @@ export default function NavBar() {
 
   return (
     <nav className={style.nav} >
-      <div className={style.dog}>
-        <img className={style.img} src={dog} alt="" />
-      </div>
+      {/* <div className={style.dog}>
+        
+      </div> */}
       <div className={style.create}>
         <Link to='/form' >
           <button className={style.link}>Create</button>
@@ -28,12 +28,18 @@ export default function NavBar() {
       </div>
       <div className={style.reset}>
         <Link to='/home'>
-          <button className={style.home} onClick={handlerReset} type="submit">Home</button>
+          <button className={style.home} onClick={handlerReset} type="submit">
+            {`>>`}<img className={style.img} src={dog} alt="" /> {`<<`}
+          </button>
         </Link>
       </div>
-      <div className={style.search}>
+      <div className={style.search}> 
         <SearchBar />
       </div>
+      {/* <button className={style.prev}  onClick={handlerPrev} >Prev</button>
+      <button className={style.next} onClick={handlerNext} >Next</button>
+      <button>Asc</button>
+      <button>Des</button> */}
     </nav>
   )
 }

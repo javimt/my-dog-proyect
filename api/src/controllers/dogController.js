@@ -124,7 +124,7 @@ const deleteDog = async (req, res, next) => {
     Dog.destroy({where: {id: id}});
     let dataApi = await getAllApiData();
     let dataDb = await Dog.findAll({include: Temperament});
-console.log(dataDb) 
+//console.log(dataDb) 
     dataDb = dataDb.map(e => {
       return {
         id: e.id,
@@ -141,7 +141,7 @@ console.log(dataDb)
     //const myDb = await Dog.findAll({include: {model: Temperament}});
     let allApiData = [...dataApi, ...dataDb];
 console.log(allApiData)
-    return res.status(200).json(allApiData);
+    res.status(200).json(allApiData);
   } catch(error) {
     return ({error: error.message})
   }
@@ -157,7 +157,8 @@ const updateDog = async (req, res, next) => {
         id: id
       }
     })
-    return res.json({createdInDb: true})
+//console.log(dogUpdated)
+    return res.json(dog/*{createdInDb: true}*/)
   } catch (error) {
     return ({error: error.message})
   }

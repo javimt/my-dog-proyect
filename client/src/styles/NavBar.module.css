@@ -14,34 +14,41 @@
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-}
-.create:hover {
+} 
+/* .create:hover {
     color: rgb(200, 255, 0); 
     opacity: 0.8;
     cursor: pointer;
-}
+}*/
 .link {
-    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
     border: inset #5499C7;
     border-radius: 10px;
     font-family: cursive;
     background-color: #34495E;
     color: rgb(255, 0, 0);
     font-size: 25px;
-    /* color: rgb(255, 4, 4);
-    background-color: #34495E;
-    text-decoration: none;
-    font-size: 25px;
-    border-radius: 10px;
-    border: inset #5499C7;
-    margin: 25px 0 0 110px;
-    padding: 0 6px 0 6px;
-    font-family:cursive; */
 }
 .link:hover{
     /* background-color: #0e84d3; */
     color: rgb(200, 255, 0);
-    opacity: 0.8;
+    opacity: 0.6;
+    cursor: pointer;
+}
+.home {
+    margin-right: auto;
+    margin-left: auto;
+    border: none;
+    flex: content;
+    /* border-radius: 10px; */
+    font-family: cursive;
+    background-color: #34495E;
+    color: rgb(47, 165, 0);
+}
+.home:hover {
+    color: rgb(255, 0, 0);
+    /* opacity: 0.6; */
     cursor: pointer;
 }
 .img{
@@ -56,24 +63,11 @@
     margin-left: auto;
     margin-right: auto;
 }
-.dog{
+/* .dog{
     margin-left: auto;
     margin-right: auto;
-}
+} */
 .btn:hover{
     background-color: #b4e600;
 }
-.home {
-    margin-right: auto;
-    margin-left: auto;
-    border: inset #5499C7;
-    border-radius: 10px;
-    font-family: cursive;
-    background-color: #34495E;
-    color: rgb(200, 255, 0);
-}
-.home:hover {
-    color: rgb(255, 0, 0);
-    opacity: 0.6;
-    cursor: pointer;
-}
+
