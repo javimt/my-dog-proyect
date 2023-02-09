@@ -1,4 +1,4 @@
-/* .body {
+ /*.body {
     margin-top: 10px;
   
   position: relative; 
@@ -8,7 +8,8 @@
 
   overflow: visible;
   padding: 10px;
-  justify-content: space-between;
-  align-items: center;
   flex: auto;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }*/

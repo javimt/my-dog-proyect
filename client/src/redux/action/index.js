@@ -132,14 +132,14 @@ export const filterDogsByDb = (payload) => {
 
 export const sortByWeight = (payload) => {
   return {
-    type: "ORDER_BY_WEIGHT",
+    type: "SORT_BY_WEIGHT",
     payload
   }
 }
 
-export const sortByAlfab = (payload) => {
+export const sortByName = (payload) => {
   return {
-    type: "ORDER_BY_ALFAB",
+    type: "SORT_BY_NAME",
     payload
   }
 }

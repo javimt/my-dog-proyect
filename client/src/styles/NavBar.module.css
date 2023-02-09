@@ -42,8 +42,8 @@
     border: none;
     flex: content;
     /* border-radius: 10px; */
+    background-color: rgba(0, 122, 95, 0);
     font-family: cursive;
-    background-color: #34495E;
     color: rgb(47, 165, 0);
 }
 .home:hover {
@@ -55,7 +55,6 @@
     margin-left: auto;
     margin-left: auto;
     font-size: 30px;
-    font-weight: bold;
     height: 80px;
     padding:0;
 }

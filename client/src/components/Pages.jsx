@@ -5,14 +5,12 @@ import style from "../styles/Pages.module.css";
 
 export default function Pages() {
   const dispatch = useDispatch();
-  //const filterDog = useSelector((state) => state.dogsRender);
-  //const numbers = pageModulated();
 
   function handlerPage(e) {
     dispatch(changePage(e.target.value));
     //dispatch()
   }
-
+    
   return (
     <div>
       <button className={style.prev} value='prev' onClick={handlerPage} >Prev</button>

@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 import style from '../styles/Home.module.css';
 import Pages from "../components/Pages.jsx";
 
-export default function Home() {
+export default function Home() { 
 
   //  Input de búsqueda para encontrar razas de perros por nombre
   //  Área donde se verá el listado de razas de perros. Deberá mostrar su:

@@ -1,22 +1,24 @@
 .card{
   margin-top: 10px;
   padding: 8px;
-  width: 300px;
-  height: unset;
+   /*width: 300px;
+  height: unset; */
   border-radius: 15px;
   box-shadow: 7px 8px 9px -1px rgba(134, 20, 20, 0.7);
-  position: relative;
+  flex-direction: column;
   background-color:rgb(0, 128, 11);
-  background-size: cover;
-  /* background-position: -20px -50%; */
   text-decoration: none;
   margin: 15px;
+  display: flex;
   margin-bottom: 10px;
   align-items: center;
-  justify-content: space-between;
-  overflow: center;
-  background-attachment: fixed;
+  justify-content: center;
+  
   /*
+  position: relative;
+  overflow: center;
+  background-position: -20px -50%;
+  background-attachment: fixed;
      width: 300px;
     height: unset;
     position: relative;
@@ -55,7 +57,7 @@
     font-family:cursive;
     color: rgb(110, 153, 9);
     margin-top: 10px;
-    background-attachment: fixed;
+    text-decoration: none;
   }
 .p{
     width: fit-content;

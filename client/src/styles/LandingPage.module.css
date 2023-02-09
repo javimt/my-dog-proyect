@@ -1,8 +1,9 @@
 *{
     font-family: cursive;
-    background: url("../images/perros\ prado.jpg");
+    /* background: url("../images/perros\ prado.jpg");
+    background-color: black;
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed; */
     object-fit: contain;
 }
 .landing{
@@ -14,7 +15,7 @@
     border-radius: 10px;
     border: inset #5499C7;
     font-size: 25px;
-    background-color:rgba(102, 102, 219, 0.8) ;
+    background-color:rgba(101, 235, 223, 0.8) ;
     font-family: cursive;
     font-weight: 600;
     color: rgb(255, 0, 0);
