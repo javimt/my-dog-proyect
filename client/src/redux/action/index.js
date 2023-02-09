@@ -50,7 +50,7 @@ export const getDetail = (id) => {
 export const getTemperaments = () => {
   return async function(dispatch) {
     const response = await axios.get("http://localhost:3001/tempers");
-console.log(response.data)
+//console.log(response.data)
     return dispatch({
       type: "GET_TEMPERAMENTS",
       payload: response.data
@@ -66,8 +66,34 @@ console.log(payload)
   }
 }
 
-export function deleteDog() {
-  return { type: "DELETE_DOG"}
+export const deleteDog = (id) => {
+  return async function(dispatch) {
+    try {
+      const deleteDog = axios.delete(`http://localhost:3001/dogs/${id}`)
+console.log(deleteDog)
+    return dispatch({
+      type: "DELETE_DOG",
+      payload: deleteDog.data
+    })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const updateDog = (id) => {
+  return async function(dispatch) {
+    try {
+      const updateDog = axios.delete(`http://localhost:3001/dogs/${id}`)
+console.log(updateDog)
+    return dispatch({
+      type: "UPDATE_DOG",
+      payload: updateDog.data
+    })
+    } catch (error) {
+      console.error(error)
+    }
+  }
 }
 //======================>> FILTERS <<=========================\\
 
@@ -75,21 +101,21 @@ export function deleteDog() {
 // Temperamento
 // Raza existente (es decir las que vienen de la API) o agregada por nosotros (creadas mediante el form)
 
-export function filterByTemperaments(payload) {
+export const filterByTemperaments = (payload) => {
   return {
     type: "FILTER_BY_TEMPERAMENTS",
     payload,
   }
 }
 
-export function filterDogsByApi(payload) {
+export const filterDogsByApi = (payload) => {
   return {
     types: "FILTER_BY_API",
     payload
   }
 }
 
-export function filterDogsByDb(payload) {
+export const filterDogsByDb = (payload) => {
   return {
     types: "FILTER_BY_DB",
     payload
@@ -104,17 +130,30 @@ export function filterDogsByDb(payload) {
 // Orden alfabético
 // Peso
 
-export function sortByWeight(payload) {
+export const sortByWeight = (payload) => {
   return {
     type: "ORDER_BY_WEIGHT",
     payload
   }
 }
 
-export function sortByAlfab(payload) {
+export const sortByAlfab = (payload) => {
   return {
     type: "ORDER_BY_ALFAB",
     payload
   }
 }
+//========================>> END SORT BY ASC AND DESC <<==========================\\
+
+
+//========================>> PAGINATED <<==========================\\
+
+export const changePage = (payload) => {
+  return {
+    type: "CHANGE_PAGE",
+    payload
+  }
+}
+
+//========================>> END PAGINATED <<==========================\\
 

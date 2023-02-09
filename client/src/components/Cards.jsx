@@ -7,16 +7,17 @@ import { getDogs } from "../redux/action";
 
 export default function Cards() {
   const stateDog = useSelector(state => state.dogsRender);
+  const page = useSelector(state => state.page);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDogs());
+    if(!stateDog.length)dispatch(getDogs());
   },[])
 //console.log(stateDog)
   return (
     <div>
       {
-        stateDog.length ? stateDog.map(d => {
+        stateDog.length ? stateDog[page].map(d => {
   //console.log(d.Temperaments)
           return (
             <div key={d.id}>

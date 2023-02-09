@@ -1,4 +1,5 @@
 //import { cases } from "../action";
+import pageModulated from "../../pageFunction";
 
 const initialState = {
   
@@ -6,6 +7,7 @@ const initialState = {
   dogsRender: [],
   detail: [],
   tempers: [],
+  page: 0
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -16,15 +18,15 @@ export default function rootReducer(state = initialState, action) {
       return {
        ...state,
        allDogs: action.payload,
-       dogsRender: action.payload 
+       dogsRender: pageModulated([...action.payload], 8) 
       }
     case "GET_DOGS_BY_NAME": 
-   // const result = [...state.allDogs].filter(d => d.name.includes(action.payload));
+   const result = [...state.allDogs].filter(d => d.name.toLowerCase().includes(action.payload.toLowerCase()))
 //console.log(state.allDogs)
       return {
         ...state,
         //allDogs: action.payload,
-        dogsRender: [...state.allDogs].filter(d => d.name.toLowerCase().includes(action.payload.toLowerCase()))
+        dogsRender: pageModulated(result, 8)
       }
     case "GET_DETAIL": 
       //const ids = [...state.allDogs].filter(d => d.id.includes(action.payload))
@@ -36,16 +38,39 @@ export default function rootReducer(state = initialState, action) {
     case "GET_TEMPERAMENTS":
       return {
         ...state,
-        tempers: action.payload
+        tempers: action.payload,
+        dogsRender: action.payload
       }
     case "CREATE_DOG":
       //const state1 = [...state]
 //console.log(state1)
       return {
         ...state,
-        allDogs: action.payload
+        dogsRender: action.payload
       }
-    
+    case "DELETE_DOG":
+      return {
+        ...state,
+        dogsRender: action.payload
+      }
+    case "UPDATE_DOG":
+      return {
+        ...state,
+        dogsRender: action.payload
+      }
+    case "CHANGE_PAGE":
+      const act = action.payload
+      return {
+        ...state,
+        page: act == "prev" ?
+        state.page > 0 ?
+        state.page - 1 :
+        state.page :
+        state.page < state.dogsRender.length - 1 ?
+        state.page + 1 :
+        state.page
+      }
+
     default:
       return {
         ...state

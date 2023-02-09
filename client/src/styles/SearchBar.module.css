@@ -2,7 +2,7 @@
   font-size: 20px;
   font-family: cursive;
   height: 25px;
-  border:inset rgb(79, 148, 0);
+  border:inset rgb(110, 206, 0);
   background-color: rgba(1, 1, 10, 0.8) ;
   border-radius: 5px;
   margin-right: 10px;
@@ -20,7 +20,7 @@
   border-radius: 10px;
   font-family: cursive;
   background-color: #34495E;
-  color: rgb(44, 175, 4);
+  color: rgb(0, 9, 134);
 }
 .bar button:hover{
   color: rgb(255, 0, 0);

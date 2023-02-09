@@ -1,0 +1,31 @@
+.prev {
+    /* height: 38px;
+    width: 100px; */
+    margin: 10px;
+    border: inset #5499C7;
+    border-radius: 10px;
+    font-family: cursive;
+    background-color: #34495E;
+    color: rgb(0, 9, 134);
+    
+}
+.prev:hover{
+    color: rgb(255, 0, 0);
+    opacity: 0.6;
+    cursor: pointer;
+}
+.next {
+     /* height: 38px;
+    width: 100px; */
+    margin: 10px;
+    border: inset #5499C7;
+    border-radius: 10px;
+    font-family: cursive;
+    background-color: #34495E;
+    color: rgb(0, 9, 134);
+}
+.next:hover{
+    color: rgb(255, 0, 0);
+    opacity: 0.6;
+    cursor: pointer;
+}

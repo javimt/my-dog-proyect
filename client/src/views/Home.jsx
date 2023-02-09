@@ -2,7 +2,7 @@ import React from "react";
 import Cards from "../components/Cards";
 import NavBar from "../components/NavBar";
 import style from '../styles/Home.module.css';
-
+import Pages from "../components/Pages.jsx";
 
 export default function Home() {
 
@@ -23,6 +23,7 @@ export default function Home() {
   return (
     <div className={style.body} >
       <NavBar />
+      <Pages />
       <Cards />
     </div>
   )
