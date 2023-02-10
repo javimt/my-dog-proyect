@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 //import pageModulated from "../pageFunction";
 import { changePage } from "../redux/action"; 
 import style from "../styles/Pages.module.css";

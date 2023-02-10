@@ -10,7 +10,7 @@
   text-decoration: none;
   margin: 15px;
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 10px; 
   align-items: center;
   justify-content: center;
   
@@ -57,7 +57,8 @@
     font-family:cursive;
     color: rgb(110, 153, 9);
     margin-top: 10px;
-    text-decoration: none;
+    /* text-decoration: none; */
+    background-color: transparent;
   }
 .p{
     width: fit-content;
@@ -67,4 +68,5 @@
     font-size: 18px;
     color: rgb(9, 46, 253);
     margin: 20px 15px;
+    background-color: transparent;
 }

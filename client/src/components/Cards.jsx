@@ -11,7 +11,7 @@ export default function Cards() {
 
   useEffect(() => {
     if(!stateDog.length)dispatch(getDogs());
-  },[])
+  })
 //console.log(stateDog)
   return (
     <div>
@@ -31,7 +31,7 @@ export default function Cards() {
               </Link>
             </div>
           )
-        }) : <h2></h2>
+        }) : <h2>no llegó nada</h2>
       } 
     </div>
   );

@@ -1,5 +1,5 @@
 //import { cases } from "../action";
-import pageModulated from "../../pageFunction";
+import pageModulated, { filter, filtred, pageLength } from "../../pageFunction";
 
 const initialState = {
   
@@ -7,7 +7,8 @@ const initialState = {
   dogsRender: [],
   detail: [],
   tempers: [],
-  page: 0
+  page: 0,
+  //pages: 0
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -19,7 +20,9 @@ export default function rootReducer(state = initialState, action) {
       return {
        ...state,
        allDogs: action.payload,
-       dogsRender: pageModulated([...action.payload], 8) 
+       dogsRender: pageModulated([...action.payload], 8),
+       //pages: pageLength(action.payload),
+       //page: 0 
       }
     case "GET_DOGS_BY_NAME": 
    const result = [...state.allDogs].filter(d => d.name.toLowerCase().includes(action.payload.toLowerCase()))
@@ -40,7 +43,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         tempers: action.payload,
-        dogsRender: action.payload
+        //dogsRender: action.payload
       }
     case "CREATE_DOG":
       //const state1 = [...state]
@@ -63,35 +66,40 @@ export default function rootReducer(state = initialState, action) {
       const act = action.payload
       return {
         ...state,
-        page: act == "prev" ?
-        state.page > 0 ?
+        page: act === "prev" ?
+        state.page > 0 ?   // && state.page - 1 : 
         state.page - 1 :
         state.page :
         state.page < state.dogsRender.length - 1 ?
-        state.page + 1 :
+        state.page + 1 : 
         state.page
       }
     case "SORT_BY_WEIGHT":
-      const weightArr = action.payload === "asc" ?
-        dogs.sort((a, b)=> {
-          //compara dos valores, en este caso los dos pesos
-          if (isNaN(a.weight) || isNaN(b.weight)) return -1;
-          if (parseInt(a.weight) > parseInt(b.weight)) return 1; //los va posicionando a la derecha
-          if (parseInt(a.weight) < parseInt(b.weight)) return -1; //o a la izquierda
-          return 0; //o si son iguales los deja así
-        }) : 
-        dogs.sort((a, b) => {
-          if (isNaN(a.weight) || isNaN(b.weight)) return -1;
-          if (parseInt(a.weight) > parseInt(b.weight)) return -1;
-          if (parseInt(a.weight) < parseInt(b.weight)) return 1;
-          return 0;
+      const weightArr = action.payload === "asc" 
+      ? dogs.sort((a, b) => {
+        if (a.weight > b.weight) {
+          return 1;
+        }
+        if (b.weight > a.weight) {
+          return -1;
+        }
+        return 0;
+      })
+    : dogs.sort((a, b) => {
+        if (a.weight > b.weight) {
+          return -1;
+        }
+        if (b.weight > a.weight) {
+          return 1;
+        }
+        return 0;
       });
       return {
         ...state,
         dogsRender: weightArr,
       }
     case "SORT_BY_NAME":
-      const sortName = action.payload === "AZ"
+      const sortName = action.payload === "asc"
       ? dogs.sort((a, b) => {
         if (a.name > b.name) {
           return 1;
@@ -110,10 +118,10 @@ export default function rootReducer(state = initialState, action) {
         }
         return 0;
       });
-return {
-  ...state,
-  dogs: sortName,
-};
+    return {
+      ...state,
+      dogs: sortName,
+    };
 
     default:
       return {
