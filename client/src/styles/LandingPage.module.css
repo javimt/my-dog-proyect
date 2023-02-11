@@ -24,6 +24,6 @@ body{
 }
 .landing button:hover{
     cursor: pointer;
-    color: rgb(157, 255, 0);
+    color: rgb(0, 17, 255);
     opacity: 0.6;
 }

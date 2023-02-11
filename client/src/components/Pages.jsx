@@ -6,7 +6,7 @@ import style from "../styles/Pages.module.css";
 
 export default function Pages(arr, pages) {
   const dispatch = useDispatch();
-  const pagesDb = useSelector(state => state.pages)
+  const pagesDb = useSelector(state => state.pages);
 console.log(pagesDb)
 
   //const numbers = Math.ceil(arr.length / pages)

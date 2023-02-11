@@ -8,6 +8,7 @@ import style from "../styles/Cards.module.css";
 export default function Cards() {
   const stateDog = useSelector(state => state.dogsRender);
   const page = useSelector(state => state.page);
+  //const pages = useSelector(state => state.pages)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,6 +21,7 @@ export default function Cards() {
         stateDog.length ? stateDog[page].map(d => {
   //console.log(d.Temperaments)
           return (
+            
             <div key={d.id}>
               <Link to={`/dogs/${d.id}`} >
                 <Card 
