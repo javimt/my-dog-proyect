@@ -8,7 +8,6 @@ export default function pageModulated(arr, page) {
     pageNumbers.push(arr.splice(0, page));
   }
   return pageNumbers;
-
 }
 
 export function pageNumbers(arr, pages) {

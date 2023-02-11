@@ -30,7 +30,9 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         //allDogs: action.payload,
-        dogsRender: pageModulated(result, 8)
+        dogsRender: pageModulated(result, 8),
+        pages: pageNumbers(result, 8),
+        page: 0
       }
     case "GET_DETAIL": 
       //const ids = [...state.allDogs].filter(d => d.id.includes(action.payload))

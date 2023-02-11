@@ -1,9 +1,9 @@
-*{
+body{
     font-family: cursive;
-    /* background: url("../images/perros\ prado.jpg");
+    background: url("../images/bufanda.jfif");
     background-color: black;
     background-size: cover;
-    background-attachment: fixed; */
+    background-attachment: fixed;
     object-fit: contain;
 }
 .landing{
@@ -19,8 +19,8 @@
     font-family: cursive;
     font-weight: 600;
     color: rgb(255, 0, 0);
-    margin-top: 300px;
-    /* margin-left: 720px; */
+    margin-top: 500px;
+    margin-left: 720px;
 }
 .landing button:hover{
     cursor: pointer;

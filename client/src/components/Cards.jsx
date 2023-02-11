@@ -3,6 +3,7 @@ import Card from "./Card";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getDogs } from "../redux/action";
+import style from "../styles/Cards.module.css";
 
 export default function Cards() {
   const stateDog = useSelector(state => state.dogsRender);
@@ -14,7 +15,7 @@ export default function Cards() {
   },[])
 //console.log(stateDog)
   return (
-    <div>
+    <div className={style.allCards}>
       {
         stateDog.length ? stateDog[page].map(d => {
   //console.log(d.Temperaments)

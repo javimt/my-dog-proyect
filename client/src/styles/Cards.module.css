@@ -1,0 +1,8 @@
+.allCards{
+    display: flex;
+    gap: 30px;
+    margin: 30px 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-decoration:none
+    }

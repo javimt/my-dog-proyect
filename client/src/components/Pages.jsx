@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 //import pageModulated from "../pageFunction";
 import { changePage } from "../redux/action"; 
@@ -8,25 +8,27 @@ export default function Pages(arr, pages) {
   const dispatch = useDispatch();
   const pagesDb = useSelector(state => state.pages)
 console.log(pagesDb)
+
+  //const numbers = Math.ceil(arr.length / pages)
+  const numbersPage = [];
+  for(let i = 0; i <= Math.ceil(arr.length / pages); i++) {
+    numbersPage.push(i);
+  }
+  //console.log(numbersPage)
+
   function handlerPage(e) {
     dispatch(changePage(e.target.value));
-    //dispatch()
+console.log(e.target.value)
   }
-  
-    const numbers = Math.ceil(arr.length / pages)
-    const numbersPage = [];
-    for(let i = 0; i <= numbers; i++) {
-      numbersPage.push(i);
-    }
-  
-
+   
   return (
     <div>
       <ul>
         {pagesDb.length && numbersPage?.map(n => {
+  console.log(numbersPage)
           return (
             <li key={n} >
-              <a onClick={() => Pages(n)}>{n}</a>
+              <a onClick={() => handlerPage(n)}>{n}</a>
             </li>
           )
         })}
