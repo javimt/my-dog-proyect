@@ -11,11 +11,20 @@ export default function pageModulated(arr, page) {
 
 }
 
+export function pageNumbers(arr, pages) {
+  let numbers = Math.ceil(arr.length / pages)
+  let numbersPages = [];
+  for(let i = 0; i <= numbers; i++) {
+    numbersPages.push(i);
+  }
+  return numbersPages;
+}
+
 export function pageLength (array){
   return array.length/8
 }
 
-export function filtred (array , funct = ""){
+/* export function filtred (array , funct = ""){
   switch(funct){
     case "asc":
       return sortByWeight(array, funct)
@@ -31,4 +40,4 @@ export function filtred (array , funct = ""){
 
     default: return sortByName(array)
   }
-}
+} */

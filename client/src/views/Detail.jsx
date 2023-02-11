@@ -20,7 +20,7 @@ console.log(detail.name)
   useEffect(() => {
    if(!data.length)dispatch(getDogs());
    dispatch(getDetail(id));
-  })
+  },[])
 
   return detail.hasOwnProperty("name") ? (
     <div className={style.body}>

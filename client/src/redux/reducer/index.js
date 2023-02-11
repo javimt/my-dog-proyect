@@ -1,5 +1,5 @@
 //import { cases } from "../action";
-import pageModulated, { filter, filtred, pageLength } from "../../pageFunction";
+import pageModulated, { pageNumbers } from "../../pageFunction";
 
 const initialState = {
   
@@ -8,7 +8,7 @@ const initialState = {
   detail: [],
   tempers: [],
   page: 0,
-  //pages: 0
+  pages: 0
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -21,8 +21,8 @@ export default function rootReducer(state = initialState, action) {
        ...state,
        allDogs: action.payload,
        dogsRender: pageModulated([...action.payload], 8),
-       //pages: pageLength(action.payload),
-       //page: 0 
+       pages: pageNumbers([...action.payload], 8),
+       page: 0 
       }
     case "GET_DOGS_BY_NAME": 
    const result = [...state.allDogs].filter(d => d.name.toLowerCase().includes(action.payload.toLowerCase()))
@@ -77,21 +77,13 @@ export default function rootReducer(state = initialState, action) {
     case "SORT_BY_WEIGHT":
       const weightArr = action.payload === "asc" 
       ? dogs.sort((a, b) => {
-        if (a.weight > b.weight) {
-          return 1;
-        }
-        if (b.weight > a.weight) {
-          return -1;
-        }
+        if (a.weight > b.weight) return 1;
+        if (b.weight > a.weight) return -1;
         return 0;
       })
     : dogs.sort((a, b) => {
-        if (a.weight > b.weight) {
-          return -1;
-        }
-        if (b.weight > a.weight) {
-          return 1;
-        }
+        if (a.weight > b.weight) return -1;
+        if (b.weight > a.weight) return 1;
         return 0;
       });
       return {
@@ -101,21 +93,13 @@ export default function rootReducer(state = initialState, action) {
     case "SORT_BY_NAME":
       const sortName = action.payload === "asc"
       ? dogs.sort((a, b) => {
-        if (a.name > b.name) {
-          return 1;
-        }
-        if (b.name > a.name) {
-          return -1;
-        }
+        if (a.name > b.name) return 1;
+        if (b.name > a.name) return -1;
         return 0;
       })
     : dogs.sort((a, b) => {
-        if (a.name > b.name) {
-          return -1;
-        }
-        if (b.name > a.name) {
-          return 1;
-        }
+        if (a.name > b.name) return -1;
+        if (b.name > a.name) return 1;
         return 0;
       });
     return {

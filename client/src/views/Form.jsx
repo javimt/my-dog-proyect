@@ -42,7 +42,7 @@ export default function Form() {
   useEffect(() => {
     dispatch(getDogs())
     dispatch(getTemperaments())
-  })
+  },[]); 
 
 
 //============================>> HANDLERS <<==============================\\

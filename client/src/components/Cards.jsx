@@ -11,7 +11,7 @@ export default function Cards() {
 
   useEffect(() => {
     if(!stateDog.length)dispatch(getDogs());
-  })
+  },[])
 //console.log(stateDog)
   return (
     <div>
