@@ -7,7 +7,7 @@
   border-radius: 5px;
   margin-right: 10px;
   padding-left: 10px;
-  color:rgb(200, 255, 0);
+  color:rgb(110, 206, 0);;
   margin-left: 30px;
   padding: 5px;
   cursor: auto;
@@ -20,10 +20,10 @@
   border-radius: 10px;
   font-family: cursive;
   background-color: #34495E;
-  color: rgb(0, 9, 134);
+  color: rgb(248, 248, 250);
 }
 .bar button:hover{
-  color: rgb(255, 0, 0);
+  color: rgb(43, 255, 0);
   opacity: 0.6;
   cursor: pointer;
 }

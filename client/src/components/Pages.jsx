@@ -1,41 +1,45 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-//import pageModulated from "../pageFunction";
+import { useDispatch, useSelector} from "react-redux";
+//import { pageNumbers } from "../pageFunction";
 import { changePage } from "../redux/action"; 
 import style from "../styles/Pages.module.css";
 
-export default function Pages(arr, pages) {
+export default function Pages() {
   const dispatch = useDispatch();
-  const pagesDb = useSelector(state => state.pages);
-console.log(pagesDb)
-
-  //const numbers = Math.ceil(arr.length / pages)
-  const numbersPage = [];
-  for(let i = 0; i <= Math.ceil(arr.length / pages); i++) {
-    numbersPage.push(i);
-  }
-  //console.log(numbersPage)
+   
+  /* const numbers = data.map((e,i) => i)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dogsPerPage, setDogsPerPage] = useState(8);
+  const indexOfLastDog = currentPage * dogsPerPage;
+  const indexOfFirstDog = indexOfLastDog - dogsPerPage;
+  const currentDogs = data.slice(indexOfFirstDog, indexOfLastDog);
+console.log(currentDogs) */
+  //const page = useSelector(state => state.page);
+  //const allData = data.map((e,i) => [e, i]) 
+  //const allPages = [...allData, pages]
+  /* const pageNumber = []
+  for (let i = 1; i <= Math.ceil(data / dogsPerPage); i++) {
+console.log(i)
+    pageNumber.push(i + 1); 
+  } */
 
   function handlerPage(e) {
     dispatch(changePage(e.target.value));
-console.log(e.target.value)
+//console.log(e.target.value)
   }
-   
+
+  /* function handlerNum(e) {
+    e.preventDefault();
+    dispatch(changePage(e.target.value))
+  } */
+
+//console.log(pageNumber)
+//console.log(allData)
+
   return (
     <div>
-      <ul>
-        {pagesDb.length && numbersPage?.map(n => {
-  console.log(numbersPage)
-          return (
-            <li key={n} >
-              <a onClick={() => handlerPage(n)}>{n}</a>
-            </li>
-          )
-        })}
       <button className={style.prev} value='prev' onClick={handlerPage} >Prev</button>
       <button className={style.next} value='next' onClick={handlerPage} >Next</button>
-      </ul>
-      
     </div>
   )
 

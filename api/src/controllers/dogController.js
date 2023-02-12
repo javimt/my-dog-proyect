@@ -113,7 +113,7 @@ const createDog = async (req, res, next) => {
     }
    res.status(400).send('name is required')
   } catch (error){
-   res.json(error)
+   res.json(error) 
   }
 }
 

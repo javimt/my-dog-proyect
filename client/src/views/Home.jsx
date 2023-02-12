@@ -3,8 +3,10 @@ import Cards from "../components/Cards";
 import NavBar from "../components/NavBar";
 import style from '../styles/Home.module.css';
 import Pages from "../components/Pages.jsx";
+import Paginated from "../components/Paginated";
+import Filters from "../components/Filters";
 
-export default function Home() { 
+export default function Home(dogsPerPage, data, handlerPage) { 
 
   //  Input de búsqueda para encontrar razas de perros por nombre
   //  Área donde se verá el listado de razas de perros. Deberá mostrar su:
@@ -23,7 +25,13 @@ export default function Home() {
   return (
     <div className={style.body} >
       <NavBar />
+      <Filters />
       <Pages />
+      <Paginated
+        dogsPerPage={dogsPerPage}
+        data={data.length}
+        paginated={handlerPage}
+      />
       <Cards />
     </div>
   )

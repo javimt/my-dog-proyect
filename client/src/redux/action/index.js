@@ -115,12 +115,12 @@ export const filterDogsByApi = (payload) => {
   }
 }
 
-export const filterDogsByDb = (payload) => {
+/* export const filterDogsByDb = (payload) => {
   return {
     types: "FILTER_BY_DB",
     payload
   }
-}
+} */
 //======================>> END FILTERS <<=========================\\
 
 

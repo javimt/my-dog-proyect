@@ -7,6 +7,7 @@ const initialState = {
   dogsRender: [],
   detail: [],
   tempers: [],
+  changePage:[],
   page: 0,
   pages: 0
 };
@@ -18,11 +19,11 @@ export default function rootReducer(state = initialState, action) {
     //const response = action.payload
 //console.log(response)
       return {
-       ...state,
-       allDogs: action.payload,
-       dogsRender: pageModulated([...action.payload], 8),
-       pages: pageNumbers([...action.payload], 8),
-       page: 0 
+        ...state,
+        allDogs: action.payload,
+        dogsRender: pageModulated([...action.payload], 8),
+        //pages: pageNumbers([...action.payload], 8), 
+        page: 0 
       }
     case "GET_DOGS_BY_NAME": 
    const result = [...state.allDogs].filter(d => d.name.toLowerCase().includes(action.payload.toLowerCase()))
@@ -31,7 +32,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         //allDogs: action.payload,
         dogsRender: pageModulated(result, 8),
-        pages: pageNumbers(result, 8),
+        //pages: pageNumbers(result, 8),
         page: 0
       }
     case "GET_DETAIL": 
@@ -64,6 +65,25 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         dogsRender: action.payload
       }
+    case "FILTER_BY_TEMPERAMENTS":
+      const dogsTemp =
+        action.payload === "all"
+          ? dogs //state.copyAllDogs
+          : dogs.filter((elem) => elem.temperament?.includes(action.payload)); //uso la copia de todos los perros, porque este filtro se va a asignar a allDogs
+      return {
+        //así que si elijo otra opción va a filtrar en un allDogs ya filtrado
+        ...state,
+        dogsRender: dogsTemp,
+      };
+    case "FILTER_BY_API":
+      const apiFilt =
+        action.payload === "api"
+          ? dogs.filter((elem) => !elem.createInDb)
+          : dogs.filter((elem) => elem.createInDb);
+      return {
+        ...state,
+        dogsRender: action.payload === "all" ? dogs : apiFilt,
+      };
     case "CHANGE_PAGE":
       const act = action.payload
       return {
