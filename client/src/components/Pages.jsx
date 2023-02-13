@@ -6,7 +6,9 @@ import style from "../styles/Pages.module.css";
 
 export default function Pages() {
   const dispatch = useDispatch();
-   
+  const page = useSelector(state => state.page);
+  const pages = useSelector(state => state.pages)
+console.log()
   /* const numbers = data.map((e,i) => i)
   const [currentPage, setCurrentPage] = useState(1);
   const [dogsPerPage, setDogsPerPage] = useState(8);
@@ -17,29 +19,39 @@ console.log(currentDogs) */
   //const page = useSelector(state => state.page);
   //const allData = data.map((e,i) => [e, i]) 
   //const allPages = [...allData, pages]
-  /* const pageNumber = []
-  for (let i = 1; i <= Math.ceil(data / dogsPerPage); i++) {
-console.log(i)
-    pageNumber.push(i + 1); 
-  } */
+  const allPages = Math.ceil(pages) 
+  const pageNumber = []
+  //const allPages = parseInt(pageNumber.map(e => e))
+  for (let i = 0; i <= Math.ceil(allPages); i++) {
+//console.log(i)
+    pageNumber.push(i); 
+  }
+console.log(pageNumber)
 
-  function handlerPage(e) {
+  const handlerPage = (e) => {
     dispatch(changePage(e.target.value));
 //console.log(e.target.value)
   }
 
-  /* function handlerNum(e) {
-    e.preventDefault();
+  function handlerNum(e) {
     dispatch(changePage(e.target.value))
-  } */
-
-//console.log(pageNumber)
-//console.log(allData)
+  }
 
   return (
     <div>
-      <button className={style.prev} value='prev' onClick={handlerPage} >Prev</button>
-      <button className={style.next} value='next' onClick={handlerPage} >Next</button>
+      <nav>
+        <ul>
+          {pageNumber.length && pageNumber.map((i, n) => {
+            return (  
+              <li key={i} >
+                <a onClick={handlerNum}>{n}</a>
+              </li>
+            )})
+          } 
+        <button className={style.prev} value='prev' onClick={handlerPage} >Prev</button>
+        <button className={style.next} value='next' onClick={handlerPage} >Next</button>
+      </ul>
+    </nav>
     </div>
   )
 
