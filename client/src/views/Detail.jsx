@@ -48,7 +48,7 @@ export default function Detail() {
       </div>
       <br />
       <h3 className={style.weight}>Weight min: {detail.weightMin}</h3>
-      <h3 className={style.weight}>Weight min: {detail.weightMax}</h3>
+      <h3 className={style.weight}>Weight max: {detail.weightMax}</h3>
         {/* <p>{`Min: ${detail.weight.join("").split("-")[0]}`}</p>
         <p>{`Max: ${detail.weight.join("").split("-")[1]}`}</p> */}
         

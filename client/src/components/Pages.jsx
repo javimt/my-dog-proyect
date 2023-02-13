@@ -21,7 +21,7 @@ console.log(currentDogs) */
   const allPages = Math.ceil(pages) 
   const pageNumber = []
   //const allPages = parseInt(pageNumber.map(e => e))
-  for (let i = 0; i <= Math.ceil(allPages); i++) {
+  for (let i = 0; i <= Math.ceil(allPages) - 1; i++) {
 //console.log(i)
     pageNumber.push(i); 
   }
@@ -43,7 +43,7 @@ console.log(pageNumber)
         {pageNumber.length && pageNumber.map((i, n) => {
           return (  
             <li key={i} >
-              <a onClick={() => handlerNum(i)}>{n}</a>
+              <a className={style.click} onClick={() => handlerNum(i)}>{n}</a>
             </li>
           )})
         } 

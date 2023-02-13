@@ -33,7 +33,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         //allDogs: action.payload,
         dogsRender: pageModulated(result, 8),
-        pages: pageLength(result, 8),
+        pages: pageNumbers(result, 8),
         page: 0
       }
     case "GET_DETAIL": 
