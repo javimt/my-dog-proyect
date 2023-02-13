@@ -6,7 +6,7 @@ import style from "../styles/Pages.module.css";
 
 export default function Pages() {
   const dispatch = useDispatch();
-  const page = useSelector(state => state.page);
+  //const page = useSelector(state => state.page);
   const pages = useSelector(state => state.pages)
 console.log()
   /* const numbers = data.map((e,i) => i)
@@ -16,7 +16,6 @@ console.log()
   const indexOfFirstDog = indexOfLastDog - dogsPerPage;
   const currentDogs = data.slice(indexOfFirstDog, indexOfLastDog);
 console.log(currentDogs) */
-  //const page = useSelector(state => state.page);
   //const allData = data.map((e,i) => [e, i]) 
   //const allPages = [...allData, pages]
   const allPages = Math.ceil(pages) 
@@ -33,25 +32,23 @@ console.log(pageNumber)
 //console.log(e.target.value)
   }
 
-  function handlerNum(e) {
-    dispatch(changePage(e.target.value))
+  function handlerNum(num) {
+    dispatch(changePage(num))
   }
 
   return (
-    <div>
-      <nav>
-        <ul>
-          {pageNumber.length && pageNumber.map((i, n) => {
-            return (  
-              <li key={i} >
-                <a onClick={handlerNum}>{n}</a>
-              </li>
-            )})
-          } 
+    <div >
+      <ul className={style.container}>
         <button className={style.prev} value='prev' onClick={handlerPage} >Prev</button>
+        {pageNumber.length && pageNumber.map((i, n) => {
+          return (  
+            <li key={i} >
+              <a onClick={() => handlerNum(i)}>{n}</a>
+            </li>
+          )})
+        } 
         <button className={style.next} value='next' onClick={handlerPage} >Next</button>
       </ul>
-    </nav>
     </div>
   )
 

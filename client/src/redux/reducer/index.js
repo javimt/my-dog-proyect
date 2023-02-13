@@ -33,7 +33,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         //allDogs: action.payload,
         dogsRender: pageModulated(result, 8),
-        pages: pageNumbers(result, 8),
+        pages: pageLength(result, 8),
         page: 0
       }
     case "GET_DETAIL": 
@@ -68,9 +68,9 @@ export default function rootReducer(state = initialState, action) {
       }
     case "FILTER_BY_TEMPERAMENTS":
       const dogsTemp =
-        action.payload === "all" ? 
+        action.payload !== "all" ? 
         dogs.filter((e) => e.temperament?.includes(action.payload)/*.map(e => e)*/) : 
-        dogs.temperament/* ? )*/;
+        dogs/* ? )*/;
 console.log(dogs/* .filter((e) => e.temperament.map(e => e) )*/) 
       return {
         ...state,
@@ -90,7 +90,7 @@ console.log(dogs/* .filter((e) => e.temperament.map(e => e) )*/)
       const act = action.payload
       return {
         ...state,
-        page: act === "prev" ? 
+        page: !["prev","next"].includes(act) ? act : act === "prev" ? 
         state.page > 0 ?   // && state.page - 1 : 
         state.page - 1 :
         state.page :

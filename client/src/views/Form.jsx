@@ -326,8 +326,7 @@ const validate = (input) => {
               <button 
                 disabled={!input.name || errors.name || errors.heightMin || errors.heightMax || errors.weightMin || errors.weightMax} 
                 className={style.btn1} 
-                type="submit" > Create 
-              </button>
+                type="submit" >Create</button>
             ) : <button className={style.btn2} type="submit" onClick={handlerError}>Create</button>
           }
         </form>

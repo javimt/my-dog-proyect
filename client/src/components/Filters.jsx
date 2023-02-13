@@ -59,7 +59,7 @@ export default function Filters() {
             <option 
               name='all'
               value={t.name} 
-              key={t.id}
+              key={`filter_+${t.id}`}
               > {t.name} </option>
           );
         })}

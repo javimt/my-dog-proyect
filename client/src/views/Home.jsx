@@ -3,7 +3,6 @@ import Cards from "../components/Cards";
 import NavBar from "../components/NavBar";
 import style from '../styles/Home.module.css';
 import Pages from "../components/Pages.jsx";
-//import Paginated from "../components/Paginated";
 import Filters from "../components/Filters";
 
 export default function Home() { 
@@ -27,11 +26,6 @@ export default function Home() {
       <NavBar />
       <Filters />
       <Pages />
-      {/* <Paginated
-        dogsPerPage={dogsPerPage}
-        data={data.length}
-        paginated={handlerPage}
-      /> */} 
       <Cards />
     </div>
   )

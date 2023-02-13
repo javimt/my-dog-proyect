@@ -29,7 +29,7 @@ export default function NavBar() {
       <div className={style.reset}>
         <Link to='/home'>
           <button className={style.home} onClick={handlerReset} type="submit">
-            {`>>`}<img className={style.img} src={dog} alt="" /> {`<<`}
+            {`>>`} <img className={style.img} src={dog} alt="" /> {`<<`}
           </button>
         </Link>
       </div>
