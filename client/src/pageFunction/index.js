@@ -20,23 +20,5 @@ export function pageNumbers(arr, pages) {
 }
 
 export function pageLength (array){
-  return array.length/8
+  return Math.ceil(array.length / 8)
 }
-
-/* export function filtred (array , funct = ""){
-  switch(funct){
-    case "asc":
-      return sortByWeight(array, funct)
-    
-    case "desc":
-      return sortByWeight(array, funct)
-
-    case "A_to_Z":
-      return sortByName(array, funct)
-
-    case "Z_to_A":
-      return sortByName(array, funct)
-
-    default: return sortByName(array)
-  }
-} */

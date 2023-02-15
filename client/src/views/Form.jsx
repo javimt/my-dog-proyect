@@ -157,7 +157,7 @@ const validate = (input) => {
   //=========>> WEIGHT <<========\\
   if(!input.weightMax) {
     errors.weightMax = "You must enter a minimum and maximum weight";
-  }else if(input.weightMax > 200) {
+  }else if(input.weightMax > 200 && input.weightMax < 1000) {
     errors.weightMax = "The maximum height must be less than 200cm"
   }else if(!/^[0-9]+$/.test(input.weightMax)) {
     errors.weightMax = "Can only contain numbers";
@@ -177,19 +177,19 @@ const validate = (input) => {
     errors.life_span = "You must enter a life span";
   } else if(!/^[0-9]+$/.test(input.life_span)) {
     errors.life_span = "Can only contain numbers";
-  } else if(input.life_span.length < 1) {
-    errors.life_span = "You need to select at least 1 temperament"
+  } else if(input.life_span.length === 0) {
+    errors.life_span = "You need a life_span"
   }
   //=========>> END LIFE_SPAN <<=========\\
 
   //=========>> TEMPERAMENT <<==========\\
   if (!input.temperaments) {
     errors.temperaments = "You must select a temperaments or create a new one";
-  } else if(input.temperaments.length < 1 || input.temperaments.length > 10) {
+  } else if(input.temperaments.length == 0 || input.temperaments.length > 10) {
     errors.temperaments = "You need select one temperaments"
-  } else if(input.temperaments === input.temperaments.value) {
+  } /* else if(input.temperaments === input.temperaments) {
     errors.temperaments = "You can't repeat temperaments"
-  }
+  } */
   //==========>> END TEMPERAMENT <<==========\\
 
   return errors;
@@ -300,7 +300,7 @@ const validate = (input) => {
             <div className={style.select}>
               <label htmlFor="">Temperament: </label>
               <select className={style.selct} onChange={handlerSelect}>
-                <option className={style.input} hidden value="">Select</option>
+                <option className={errors.temperaments && style.error || style.input} hidden value="">Select</option>
                 {
                   tempers?.map(t => 
                     <option 
@@ -324,7 +324,7 @@ const validate = (input) => {
           {
             input.name !== " " ? (
               <button 
-                disabled={!input.name || errors.name || errors.heightMin || errors.heightMax || errors.weightMin || errors.weightMax} 
+                disabled={!input.name || errors.name || errors.heightMin || errors.heightMax || errors.weightMin || errors.weightMax || errors.temperaments} 
                 className={style.btn1} 
                 type="submit" >Create</button>
             ) : <button className={style.btn2} type="submit" onClick={handlerError}>Create</button>

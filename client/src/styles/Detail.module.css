@@ -10,15 +10,7 @@
     border-radius: 8px;
     background-color: rgba(12, 53, 236, 0.205) ;
     color: white;
-      /* height: 100vh;
-      position: absolute;
-      align-self: center;
-      width: 800px;
-      height: 500px;
-      margin: 100px 0 0 300px;
-      transition: all 0.25s;
-      box-shadow: 0 2px 2px rgba(0, 0, 0, 2); 
-      */
+   
 }
 .btn button{
     border-radius: 10px;
@@ -35,19 +27,6 @@
     color: rgb(72, 255, 0);
     opacity: 0.6;
 }
-/* .btn button{
-    margin-top: 15px;
-    font-size: 20px;
-    font-family: cursive;
-    border-radius: 10px;
-    border: inset #5499C7;
-    color: rgb(100, 248, 37);
-    background-color: #34495E;
-    cursor: pointer;
-}
-.btn button:hover{
-    background-color: #5499C7;   
-} */
 .id{
     text-align: left;
     font-size: 15px; 
@@ -89,41 +68,11 @@
 }
 .height {
     font-family: cursive;
-    color: blue;
+    color: rgb(238, 238, 245);
 }
 .weight {
     font-family: cursive;
-    color: blue;
+    color: rgb(255, 255, 255);
 }
 
-  
-  /* .detail{
-    padding-top: 5px;
-    margin:auto;
-    margin-top: 60px;
-    margin-bottom: 60px;
-    font-family: sans-serif;
-    text-align:center;
-    width:330px;
-    border: solid black 1px;
-    border-radius: 8px;
-    background-color: rgba(1, 1, 10, 0.8) ;
-    color: white;
-}
-.detail div{
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-}
-.detail div h2{
-    text-align: center;
-}
-.detail  button{
-    margin-left: 90%;
-    height:25px;
-    background-color: red;
-    color: white;
-    font-weight: 600;
-  }*/
- 
   

@@ -22,14 +22,6 @@ export const getDogsByName = (name) => {
     type: "GET_DOGS_BY_NAME",
     payload: name
   }
-  /* return async function(dispatch) {
-    const response = await axios.get(`http://localhost:3001/dogs?name=${name}`);
-console.log(response.data)
-    return dispatch({
-      type: "GET_DOGS_BY_NAME",
-      payload: response.data
-    })
-  } */
 };
 
 export const getDetail = (id) => {
@@ -61,7 +53,7 @@ export const getTemperaments = () => {
 export const createDogs = (payload) => {
   return () => {
     const dogCreate = axios.post("http://localhost:3001/dogs", payload);
-console.log(payload)
+//console.log(payload)
     return dogCreate;
   }
 }
@@ -95,7 +87,7 @@ console.log(updateDog)
     }
   }
 }
-//======================>> FILTERS <<=========================\\
+//========================>> FILTERS <<=========================\\
 
 // Botones/Opciones para filtrar por:
 // Temperamento
@@ -109,18 +101,12 @@ export const filterByTemperaments = (payload) => {
 }
 
 export const filterDogsByApi = (payload) => {
+//console.log(payload)
   return {
-    types: "FILTER_BY_API",
-    payload
+    type: "FILTER_DOGS_BY_API",
+    payload: payload
   }
 }
-
-/* export const filterDogsByDb = (payload) => {
-  return {
-    types: "FILTER_BY_DB",
-    payload
-  }
-} */
 //======================>> END FILTERS <<=========================\\
 
 
@@ -155,5 +141,5 @@ export const changePage = (payload) => {
   }
 }
 
-//========================>> END PAGINATED <<==========================\\
+//========================>> END PAGINATED <<=========================\\
 

@@ -1,22 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByTemperaments, filterDogsByApi, changePage, sortByWeight, sortByName, } from "../redux/action";
+import { filterByTemperaments, filterDogsByApi, sortByWeight, sortByName, getTemperaments, getDogs } from "../redux/action";
 import style from '../styles/Filter.module.css'
 
 export default function Filters() {
 
-    // X Botones/Opciones para filtrar por:
+  // X Botones/Opciones para filtrar por:
   //    Temperamento
   //    Raza existente (es decir las que vienen de la API) o agregada por nosotros (creadas mediante el form)
   // X Botones/Opciones para ordenar tanto ascendentemente como descendentemente las razas de perro por:
   //    Orden alfabético
   //    Peso
 
+  useEffect(() => {
+    dispatch(getTemperaments());
+    dispatch(getDogs());
+  },[])
 
   const dispatch = useDispatch();
   const [order, setOrder] = useState("");
-  const temperaments = useSelector((state) => state.tempers)
-//console.log(temperaments.map(e => e))
+  const tempers = useSelector((state) => state.tempers)
+  const dataApi = useSelector(state => state.dogsRender)
+console.log()
 
   function handlerFilterByTemps(e) {
     dispatch(filterByTemperaments(e.target.value)); 
@@ -28,14 +33,14 @@ export default function Filters() {
 
   function handlerOrderWeight(e) {
     dispatch(sortByWeight(e.target.value));
-    setOrder(`Ordenado ${e.target.value}`); 
+    //setOrder(`Ordenado ${e.target.value}`); 
   }
 
   function handlerOrderAlfab(e) {
     e.preventDefault();
     dispatch(sortByName(e.target.value));  
     //setCurrentPage(0); 
-    setOrder(`Ordenado ${e.target.value}`);
+    //setOrder(`Ordenado ${e.target.value}`);
   }
 
   return (
@@ -53,14 +58,12 @@ export default function Filters() {
       <select onChange={handlerFilterByTemps} className={style.tem}>
         <option hidden>Filter Temperament...</option>
         <option value="all"> All </option>
-        {temperaments?.map((t) => {
-          //muestro todos los temperamentos como opciones
+        {tempers.length && tempers.map((t) => {
           return (
             <option 
-              name='all'
               value={t.name} 
               key={`filter_${t.id}`}
-              > {t.name} </option>
+            > {t.name} </option>
           );
         })}
       </select>

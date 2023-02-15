@@ -1,7 +1,7 @@
 import React from "react";
 import style from '../styles/SearchBar.module.css';
 //import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { useState } from "react";
 import { getDogsByName } from "../redux/action";
 
@@ -29,16 +29,11 @@ export default function SearchBar() {
       // setName("")
     //}
   }
-  
-  /* function handleReset(e) {
-    e.preventDefault();
-    dispatch(getDogs())
-  } */
 
   return (
     <div className={style.bar}>
-      <input /* className={style.input} */ value={name} type="text" placeholder="Write your breed" onChange={handleName}/>
-      <button /*className={style.button}*/ type="submit" onClick={handleSubmit} > Search </button>
+      <input value={name} type="text" placeholder="Write your breed" onChange={handleName}/>
+      <button type="submit" onClick={handleSubmit} > Search </button>
     </div>
   );
 }

@@ -20,7 +20,7 @@ export default function Detail() {
   useEffect(() => {
    if(!data.length)dispatch(getDogs());
    dispatch(getDetail(id));
-  },[])
+  },[dispatch])
 
   return detail.hasOwnProperty("name") ? (
     <div className={style.body}>
@@ -33,25 +33,15 @@ export default function Detail() {
       <h3 className={style.title}>{detail.name}</h3>
       <img className={style.image} src={detail.image} alt=""  width="250px"/>
       <h3 className={style.temperament}>temperaments: {detail.Temperaments ? detail.Temperaments.map(e => e.name).join(",") : detail.temperament}
-       {/* }
-          ! detail.createdInDb
-          ? detail.temperament + " "
-          : detail.temperament.split(", ").map(t => t.name + " ")
-        } */}
       </h3>
      <h3 className={style.life}>life span: {detail.life_span}</h3>
       <div className={style.text}>
         <h3 className={style.height}>Height min: {detail.heightMin}</h3> 
-          {/* <p>{`Min: ${detail.height.join("").split("-")[0]}`}</p>
-          <p>{`Max: ${detail.height.join("").split("-")[1]}`}</p> */}
          <h3 className={style.height}>Height max: {detail.heightMax}</h3>
       </div>
       <br />
       <h3 className={style.weight}>Weight min: {detail.weightMin}</h3>
       <h3 className={style.weight}>Weight max: {detail.weightMax}</h3>
-        {/* <p>{`Min: ${detail.weight.join("").split("-")[0]}`}</p>
-        <p>{`Max: ${detail.weight.join("").split("-")[1]}`}</p> */}
-        
     </div>
   ): <div>no llegó nada</div>
 }
