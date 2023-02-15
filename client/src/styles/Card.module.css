@@ -12,7 +12,7 @@
   margin: 10px;
   flex-wrap: wrap;
   margin-bottom: 5px; 
-  align-items: center;
+  align-items: center; 
   justify-items: auto;
   transition: all 0.45s;
 }

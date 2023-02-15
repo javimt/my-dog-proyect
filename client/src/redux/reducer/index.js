@@ -83,7 +83,7 @@ export default function rootReducer(state = initialState, action) {
     case "FILTER_DOGS_BY_API":
       const dataDogs = state.dogsRender
       const dogsData = dataDogs.flat()
-console.log(dogsData)
+//console.log(dogsData)
       const apiFilter =
         action.payload !== "api" && action.payload !== "all"
           ? dogsData.filter((e) => e?.createdInDb)

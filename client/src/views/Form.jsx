@@ -90,13 +90,6 @@ console.log(value);
     if(value !== "Select") {
       setInput({...input, temperaments:[...input.temperaments, value]});
     }
-    /* setInput({
-      ...input,
-      temperament:
-      ! input.temperament.includes(value) && value !== 'Select'
-      ? [...input.temperament, value]
-      : [...input.temperament]
-    }) */
   }
 
   function handlerError(e) {
