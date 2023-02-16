@@ -30,12 +30,13 @@ console.log()
                   name={d.name}
                   image={d.image}
                   weightMin={d.weightMin}
-                  weightMax={d.weightMax}
+                  weightMax={d.weightMax} 
                   temperament={
                     d.Temperaments ? 
                     d.Temperaments.map((e) => e.name).join(",") : 
                     d.temperament
                   }
+                  created= {d.createdInDb}
                 />
               </Link>
             </div>

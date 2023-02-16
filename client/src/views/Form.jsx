@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import style from '../styles/Form.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { getTemperaments, createDogs, getDogs, deleteDog, updateDog } from "../redux/action";
+//import queryString from "query-string";
 //import DeleteUpdate from "../components/DeleteUpdate";
 
 export default function Form() {
@@ -14,13 +15,16 @@ export default function Form() {
   // Años de vida
   // Posibilidad de seleccionar/agregar uno o más temperamentos
   // Botón/Opción para crear una nueva raza de perro
-
+  
+  const { search } = useLocation();
+  //const { visit } = queryString();
   const dispatch = useDispatch();
   const dogs = useSelector(state => state.dogsRender);
   const tempers = useSelector(state => state.tempers);
-  const { id } = useParams();
   const history = useHistory();
   const [errors, setErrors] = useState({});
+  const dataId = search && search.slice(4)
+console.log(dataId)
 
   const [input, setInput] = useState({
     name: "",
@@ -52,7 +56,7 @@ export default function Form() {
       ...input,
       [e.target.name]: e.target.value
     });
-console.log(input)
+//console.log(input)
     setErrors(
       validate({
         ...input,
@@ -62,20 +66,25 @@ console.log(input)
   }
 
   //const [selectStateName, setSelectStateName] = useState([])
-  function handlerSubmit(e) {
+  async function handlerSubmit(e) {
+
     e.preventDefault();
-    //if(!errors.name && !errors.heightMin || !errors.heightMax || !errors.weightMin || !errors.weightMax || !errors.temperament) {
-      dispatch(createDogs(input));
-      alert("dog created!");
-      //setInput("");
+    if(dataId) {
+      updateDog(input, dataId);
       history.push('/home');
-      dispatch(getDogs())
-      dispatch(getTemperaments())
-      //setSelectStateName([])
-    //} else {
-    //  if(!input.temperament.length)alert("Temperament are missing");
-    //  else alert("Imcomplete required fields!");
-    //}
+    } else {
+      const created = await createDogs(input)
+      if(created != 'its was created!') {
+        alert("dog created!")
+        history.push('/home');
+      } else {
+        alert('dogs already exist' );
+      }
+console.log(created)
+    }
+    dispatch(getDogs())
+    dispatch(getTemperaments())
+
   }
 
   function handlerSelect(e) {
@@ -101,13 +110,13 @@ console.log(input)
     })
   }
 
-  function handlerDelete(e) {
+  /* function handlerDelete(e) {
     dispatch(deleteDog(e.target.value))
   }
 
   function handlerUpdate(e) {
     dispatch(updateDog(e.target.value))
-  }
+  } */
 
 //============================>> END HANDLERS <<==============================\\
 
@@ -133,7 +142,10 @@ const validate = (input) => {
 //=========>> HEIGHT <<========\\
   if(input.image.length === 0) {
     errors.image = "Must contain an image"
-  }
+  } /* else if(!/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/.test(input.image)){
+    errors.image = "It's not a correct format "
+  } */
+    
 //=========>> HEIGHT <<========\\
 
   //=========>> HEIGHT <<========\\
@@ -147,8 +159,10 @@ const validate = (input) => {
 
   if(!input.heightMin) {
     errors.heightMin = "You must enter a minimum height";
+  } else if(input.heightMin === input.heightMax) {
+    errors.heightMin = "The minimum and maximun height cannot be equals"
   } else if(input.heightMin >= input.heightMax) {
-    errors.heightMin = "The minimum and maximum height cannot be the same."
+    errors.heightMin = "The minimum height cannot be greater than the maximum height"
   } else if(!/^[0-9]+$/.test(input.heightMin)) {
     errors.heightMin = "Can only contain numbers";
   }
@@ -156,18 +170,20 @@ const validate = (input) => {
   
   //=========>> WEIGHT <<========\\
   if(!input.weightMax) {
-    errors.weightMax = "You must enter a minimum and maximum weight";
-  }else if(input.weightMax > 200 && input.weightMax < 1000) {
+    errors.weightMax = "You must enter a maximum weight";
+  } else if(input.weightMax > 200 && input.weightMax < 1000) {
     errors.weightMax = "The maximum height must be less than 200cm"
-  }else if(!/^[0-9]+$/.test(input.weightMax)) {
+  } else if(!/^[0-9]+$/.test(input.weightMax)) {
     errors.weightMax = "Can only contain numbers";
   };
 
   if(!input.weightMin) {
     errors.weightMin = "You must enter a minimum and maximum weight";
-  }else if(input.weightMin >= input.weightMax) {
-    errors.weightMin = "The minimum and maximum weight cannot be the same."
-  }else if(!/^[0-9]+$/.test(input.weightMin)) {
+  } else if(input.heightMin === input.heightMax) {
+    errors.heightMin = "The minimum and maximun height cannot be equals"
+  } else if(input.weightMin >= input.weightMax) {
+    errors.weightMin = "The minimum weight cannot be greater than the maximum weight"
+  } else if(!/^[0-9]+$/.test(input.weightMin)) {
     errors.weightMin = "Can only contain numbers";
   };
   //=========>> END HEIGHT <<========\\
@@ -209,7 +225,7 @@ const validate = (input) => {
           <div className={style.div}>
             <label className={style.title} htmlFor="name">Name:</label>
              <input 
-              className={errors.name && style.error || style.input} 
+              className={errors.heightMin ? style.error : style.input} 
               name="name"  
               value={input.name}
               type="text"
@@ -221,7 +237,7 @@ const validate = (input) => {
           <div className={style.div}>
             <label className={style.title} htmlFor="image">Image:</label>
             <input 
-              className={style.input}
+              className={/* errors.heightMin ? style.error :  */style.input}
               name="image" 
               value={input.image}
               type="text"
@@ -244,7 +260,7 @@ const validate = (input) => {
                   onChange={handlerChange}
                 />
                 <p className={style.p}>{errors.heightMin}</p>
-                {/* <br /> */}
+                
                 <label className={style.title} htmlFor="heightMax">HeightMax: </label>
                 <input 
                   className={errors.heightMax ? style.error : style.input}
@@ -329,12 +345,12 @@ const validate = (input) => {
           {
             input.name !== " " ? (
               <button 
-                disabled={!input.name || errors.name || errors.heightMin || errors.heightMax || errors.image || errors.weightMin || errors.weightMax || errors.temperaments} 
+                /* disabled={!input.name || errors.name || errors.heightMin || errors.image  || errors.heightMax || errors.weightMin || errors.weightMax || errors.temperaments} */
                 className={style.btn1} 
-                type="submit" >Create</button>
-            ) : <button className={style.btn2} onClick={handlerError} type="submit" >Create</button>
+                type="submit" >{dataId ? "Update" : "Create"}</button>
+            ) : <button className={style.btn2} onClick={handlerError} type="submit" >Created</button>
           }
-          {
+          {/* {
           <div>
             <button
               disabled={dogs.length < 172}
@@ -345,7 +361,7 @@ const validate = (input) => {
               type="submit" 
               onClick={() => handlerUpdate(id)} >Update</button>
           </div>
-          }
+          } */}
         </form>
         
       </div>

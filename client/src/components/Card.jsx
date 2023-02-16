@@ -10,6 +10,8 @@ export default function Card({ name, image, temperament, weightMin, weightMax })
   // - Peso
 
 //{weight.map(e => e.metric.slice(0, 4))}
+
+
   return (
     <div className={style.card} >
       <h4 className={style.name} >{name}</h4>

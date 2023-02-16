@@ -50,42 +50,19 @@ export const getTemperaments = () => {
   }
 }
 
-export const createDogs = (payload) => {
-  return () => {
-    const dogCreate = axios.post("http://localhost:3001/dogs", payload);
-//console.log(payload)
-    return dogCreate;
-  }
+export const createDogs = async (payload) => {
+  const dogCreate = await axios.post("http://localhost:3001/dogs", payload)
+  return dogCreate.data
 }
 
 export const deleteDog = (id) => {
-  return async function(dispatch) {
-    try {
-      const deleteDog = axios.delete(`http://localhost:3001/dogs/${id}`)
-console.log(deleteDog)
-    return dispatch({
-      type: "DELETE_DOG",
-      payload: deleteDog.data
-    })
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  const deleteDog = axios.delete(`http://localhost:3001/dogs/${id}`)
+  
 }
 
-export const updateDog = (id) => {
-  return async function(dispatch) {
-    try {
-      const updateDog = axios.delete(`http://localhost:3001/dogs/${id}`)
-console.log(updateDog)
-    return dispatch({
-      type: "UPDATE_DOG",
-      payload: updateDog.data
-    })
-    } catch (error) {
-      console.error(error)
-    }
-  }
+export const updateDog = (object, id) => {
+  const data = axios.put(`http://localhost:3001/dogs/${'?id=', id}`,object)
+  data.then(response => console.log("updated"))
 }
 //========================>> FILTERS <<=========================\\
 

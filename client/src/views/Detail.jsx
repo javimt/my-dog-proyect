@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from 'react-router-dom';
 import { getDetail, getDogs } from "../redux/action";
 import style from '../styles/Detail.module.css';
+import DeleteUpdate from "../components/DeleteUpdate";
 
-export default function Detail() {
+export default function Detail({created}) {
 
   // Los campos mostrados en la ruta principal para cada raza (imagen, nombre y temperamento)
   // Altura
@@ -15,12 +16,13 @@ export default function Detail() {
   const dispatch = useDispatch();
   const detail = useSelector(state => state.detail);
   const data = useSelector(state => state.dogsRender);
-//console.log(detail.name) 
+console.log(detail) 
 
   useEffect(() => {
    if(!data.length)dispatch(getDogs());
    dispatch(getDetail(id));
   },[dispatch])
+console.log(created)
 
   return detail.hasOwnProperty("name") ? (
     <div className={style.body}>
@@ -28,6 +30,12 @@ export default function Detail() {
         <Link to='/home'>
           <button>Go Back</button>
         </Link>
+      </div>
+      <div>
+        { detail.hasOwnProperty("createdInDb") &&
+          <DeleteUpdate 
+          id={id}
+        />}
       </div>
       {/* <h3 className={style.id}>Dog Number: {detail.id}</h3> */}
       <h3 className={style.title}>{detail.name}</h3>

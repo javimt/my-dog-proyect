@@ -43,7 +43,7 @@ export default function rootReducer(state = initialState, action) {
 //console.log(ids)
       return {
         ...state,
-        detail: action.payload[0] //ids
+        detail: action.payload[0] //ids  [{1}]
       }
     case "GET_TEMPERAMENTS":
       return {
@@ -56,17 +56,16 @@ export default function rootReducer(state = initialState, action) {
 //console.log(state1)
       return {
         ...state,
-        dogsRender: action.payload
+        dogsRender: action.payload,
       }
     case "DELETE_DOG":
       return {
         ...state,
-        dogsRender: action.payload[0]
       }
     case "UPDATE_DOG":
       return {
         ...state,
-        dogsRender: action.payload[0]
+        dogsRender: action.payload
       }
     case "FILTER_BY_TEMPERAMENTS":
 //console.log(action.payload)  
@@ -128,9 +127,9 @@ console.log(weightArr)
         return 0;
         })
       : dogs.sort((a, b) => {
-        if (a.name > b.name) return -1;
         if (b.name > a.name) return 1;
-        return 0;
+        if (a.name > b.name) return -1;
+        return 0; 
       });
     return {
       ...state,
