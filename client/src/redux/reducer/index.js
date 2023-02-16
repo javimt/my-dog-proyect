@@ -61,12 +61,12 @@ export default function rootReducer(state = initialState, action) {
     case "DELETE_DOG":
       return {
         ...state,
-        dogsRender: action.payload
+        dogsRender: action.payload[0]
       }
     case "UPDATE_DOG":
       return {
         ...state,
-        dogsRender: action.payload
+        dogsRender: action.payload[0]
       }
     case "FILTER_BY_TEMPERAMENTS":
 //console.log(action.payload)  
@@ -109,18 +109,8 @@ export default function rootReducer(state = initialState, action) {
     case "SORT_BY_WEIGHT":
       const weightArr =
        action.payload === "asc" 
-      ? dogs.sort((a, b) => {
-          if (isNaN(a.weightMin) || isNaN(b.weightMax)) return -1;
-          if (a.weightMin > b.weightMax) return 1;
-          if (b.weightMax > a.weightMin) return -1;
-          return 0;
-        })
-      : dogs.sort((a, b) => {
-        if (isNaN(a.weightMax) || isNaN(b.weightMin)) return -1;
-        if (a.weightMax > b.weightMin) return -1;
-        if (b.weightMin > a.weightMax) return 1;
-        return 0;
-      });
+      ? dogs.sort((a, b) => a.weightMin - b.weightMin)
+      : dogs.sort((a, b) => b.weightMin - a.weightMin);
 console.log(weightArr)
       return {
         ...state,
@@ -128,6 +118,9 @@ console.log(weightArr)
         page: 0,
       }
     case "SORT_BY_NAME":
+      /* action.payload === "asc"
+          ? state.countries.sort((a, b) =>  a.name.localeCompare(b.name))
+          : state.countries.sort((a, b) =>  b.name.localeCompare(a.name)); */
       const sortName = action.payload === "AZ"
       ? dogs.sort((a, b) => {
         if (a.name > b.name) return 1;

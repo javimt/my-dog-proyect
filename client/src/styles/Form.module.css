@@ -1,4 +1,16 @@
-.error {border: 2px solid red
+.error {
+  font-size: 20px;
+  font-family: cursive;
+  height: 25px;
+  border: inset #f51000;
+  background-color: rgba(0, 0, 0, 0.411) ;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding-left: 10px;
+  color: rgb(255, 251, 0);
+  margin-left: 30px;
+  margin-right: 10px;
+  padding: 5px;
 }
 
 .container {
@@ -197,22 +209,22 @@
   float: left;
   margin-left: 20px;
 }
-
+*/
 .delete {
-  margin: 20px 0 0 10px;
+  margin: 1.5px;
   font-size: 20px;
   font-family: cursive;
   border-radius: 10px;
   border: inset #5499C7;
-  color: white;
+  color: rgb(236, 16, 16);
   background-color: #34495E;
-  padding: 0 6px 0 6px;
+  padding: auto;
   display: flex;
-  height: 30px;
+  height: auto;
   justify-content: center;
 }
+.delete:hover {
+  cursor: pointer;
+}
 
-.temper {
-  margin: 0;
-  padding: 0 6px 0 6px;
-} */
+ 

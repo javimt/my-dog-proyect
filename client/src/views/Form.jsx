@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import style from '../styles/Form.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
-import { getTemperaments, createDogs, getDogs } from "../redux/action";
+import { Link, useHistory, useParams } from 'react-router-dom';
+import { getTemperaments, createDogs, getDogs, deleteDog, updateDog } from "../redux/action";
+//import DeleteUpdate from "../components/DeleteUpdate";
 
 export default function Form() {
 
@@ -15,10 +16,9 @@ export default function Form() {
   // Botón/Opción para crear una nueva raza de perro
 
   const dispatch = useDispatch();
-  const dogs = useSelector(state => state.allDogs);
+  const dogs = useSelector(state => state.dogsRender);
   const tempers = useSelector(state => state.tempers);
-  //const [button, setButton] = useState(true)
-//console.log(tempers.map(e=>e.name))
+  const { id } = useParams();
   const history = useHistory();
   const [errors, setErrors] = useState({});
 
@@ -79,33 +79,34 @@ console.log(input)
   }
 
   function handlerSelect(e) {
-    if(input.temperaments.includes(e.target.value)) {
+    if(!input.temperaments.includes(e.target.value) && e.target.value !== "select") {
       setInput({
         ...input,
         temperaments: [...input.temperaments, e.target.value]
       });
     }
-    const value = e.target.value;
-console.log(value);
-    if(value !== "Select") {
-      setInput({...input, temperaments:[...input.temperaments, value]});
-    }
   }
 
   function handlerError(e) {
     e.preventDefault();
-    //if(input.length === 0){
-      alert("Complete the form!");
-    //} 
-    //alert("dog created!")
+    if(input.length === 0) alert("Complete the form!");
+    alert("dog created!")
     //setButton(errors)
   }
 
-  function handlerDelete(e) {
+  function handlerDeleteTempers(e) {
     setInput({
       ...input,
-      temperaments: input.temperaments.filter(t => t === e)// d.Temperaments ? d.Temperaments.map(e => e.name).join(",") : d.temperament
+      temperaments: input.temperaments.filter(t => t !== e.target.name)// d.Temperaments ? d.Temperaments.map(e => e.name).join(",") : d.temperament
     })
+  }
+
+  function handlerDelete(e) {
+    dispatch(deleteDog(e.target.value))
+  }
+
+  function handlerUpdate(e) {
+    dispatch(updateDog(e.target.value))
   }
 
 //============================>> END HANDLERS <<==============================\\
@@ -128,6 +129,12 @@ const validate = (input) => {
     errors.name = "The dog already exists, use another name";
   };
   //=========>> END NAME <<========\\
+
+//=========>> HEIGHT <<========\\
+  if(input.image.length === 0) {
+    errors.image = "Must contain an image"
+  }
+//=========>> HEIGHT <<========\\
 
   //=========>> HEIGHT <<========\\
   if(!input.heightMax) {
@@ -176,9 +183,9 @@ const validate = (input) => {
   //=========>> END LIFE_SPAN <<=========\\
 
   //=========>> TEMPERAMENT <<==========\\
-  if (!input.temperaments) {
-    errors.temperaments = "You must select a temperaments or create a new one";
-  } else if(input.temperaments.length == 0 || input.temperaments.length > 10) {
+  if (input.temperaments.length === 0) {
+    errors.temperaments = "You must select a temperaments";
+  } else if(!/^[a-zA-Z]+$/.test(input.temperaments)) {
     errors.temperaments = "You need select one temperaments"
   } /* else if(input.temperaments === input.temperaments) {
     errors.temperaments = "You can't repeat temperaments"
@@ -191,11 +198,11 @@ const validate = (input) => {
 
   return (
     <div className={style.container}>
-      <div className={style.nav}>
+      
         <Link to='/home'>
           <button className={style.btn} >Back to Home</button>
         </Link>
-      </div> 
+       
       <div className={style.form}>
         <h2 className={style.h1}>Create</h2>
         <form onSubmit={handlerSubmit}>
@@ -228,7 +235,7 @@ const validate = (input) => {
               <div className={style.div}>
                 <label className={style.title} htmlFor="heightMin">HeightMin: </label>
                 <input 
-                  className={errors.heightMin && style.error || style.input}
+                  className={errors.heightMin ? style.error : style.input}
                   type="number" 
                   name="heightMin"
                   min="0"
@@ -236,10 +243,11 @@ const validate = (input) => {
                   value={input.heightMin}
                   onChange={handlerChange}
                 />
-                <br />
+                <p className={style.p}>{errors.heightMin}</p>
+                {/* <br /> */}
                 <label className={style.title} htmlFor="heightMax">HeightMax: </label>
                 <input 
-                  className={errors.heightMax && style.error || style.input}
+                  className={errors.heightMax ? style.error : style.input}
                   type="number" 
                   name="heightMax"
                   min="0"
@@ -247,6 +255,7 @@ const validate = (input) => {
                   value={input.heightMax}
                   onChange={handlerChange}
                 />
+                <p className={style.p}>{errors.heightMax}</p>
               </div>
             </div>
           </div>
@@ -255,7 +264,7 @@ const validate = (input) => {
               <div className={style.div}>
                 <label className={style.title} htmlFor="weightMin">WeightMIn: </label>
                 <input 
-                  className={errors.weightMin && style.error || style.input}
+                  className={errors.weightMin ? style.error : style.input}
                   type="number" 
                   name="weightMin"
                   min="0"
@@ -263,10 +272,11 @@ const validate = (input) => {
                   value={input.weightMin}
                   onChange={handlerChange}
                 />
-                <br />
+                <p className={style.p}>{errors.weightMin}</p>
+                
                 <label className={style.title} htmlFor="weightMax">WeightMax: </label>
                 <input 
-                  className={errors.weightMax && style.error || style.input}
+                  className={errors.weightMax ? style.error : style.input}
                   type="number" 
                   name="weightMax"
                   min="0"
@@ -274,13 +284,14 @@ const validate = (input) => {
                   value={input.weightMax}
                   onChange={handlerChange}
                 />
+                <p className={style.p}>{errors.weightMax}</p>
               </div>
             </div>
           </div>
           <div className={style.div}>
             <label className={style.title} htmlFor="life_span">Life span: </label>
             <input 
-              className={errors.life_span && style.error || style.input}
+              className={errors.life_span ? style.error : style.input}
               name="life_span"
               min="0"
               max="100"
@@ -288,12 +299,13 @@ const validate = (input) => {
               value={input.life_span}
               onChange={handlerChange}
             />
+            <p className={style.p}>{errors.life_span}</p>
           </div>
           <div className={style.container}>
             <div className={style.select}>
               <label htmlFor="">Temperament: </label>
               <select className={style.selct} onChange={handlerSelect}>
-                <option className={errors.temperaments && style.error || style.input} hidden value="">Select</option>
+                <option className={errors.temperaments ? style.error : style.input} hidden value="">Select</option>
                 {
                   tempers?.map(t => 
                     <option 
@@ -309,7 +321,7 @@ const validate = (input) => {
           <div className={style.delete}>
             {input.temperaments.map(t => (
               <div key={t} className={style.temp}>
-                <button onClick={handlerDelete} className={style.x}>X</button>
+                <button onClick={handlerDeleteTempers} className={style.x} name={t}>X</button>
                 <p className={style.p}>{t}</p>
               </div>
             ))}
@@ -317,10 +329,22 @@ const validate = (input) => {
           {
             input.name !== " " ? (
               <button 
-                disabled={!input.name || errors.name || errors.heightMin || errors.heightMax || errors.weightMin || errors.weightMax || errors.temperaments} 
+                disabled={!input.name || errors.name || errors.heightMin || errors.heightMax || errors.image || errors.weightMin || errors.weightMax || errors.temperaments} 
                 className={style.btn1} 
                 type="submit" >Create</button>
-            ) : <button className={style.btn2} type="submit" onClick={handlerError}>Create</button>
+            ) : <button className={style.btn2} onClick={handlerError} type="submit" >Create</button>
+          }
+          {
+          <div>
+            <button
+              disabled={dogs.length < 172}
+              type="submit" 
+              onClick={() => handlerDelete(id)} >Delete</button>
+            <button
+              disabled={dogs.length < 172}
+              type="submit" 
+              onClick={() => handlerUpdate(id)} >Update</button>
+          </div>
           }
         </form>
         

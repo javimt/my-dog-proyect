@@ -15,7 +15,7 @@ export default function Detail() {
   const dispatch = useDispatch();
   const detail = useSelector(state => state.detail);
   const data = useSelector(state => state.dogsRender);
-//console.log(detail.name)
+//console.log(detail.name) 
 
   useEffect(() => {
    if(!data.length)dispatch(getDogs());

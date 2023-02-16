@@ -29,7 +29,7 @@ console.log()
   function handlerNum(num) {
     dispatch(changePage(num))
   }
-
+ 
   return (
     <div >
       <ul className={style.container}>

@@ -40,17 +40,17 @@ console.log()
   return (
     <div className={style.container}> 
       <select onChange={handlerOrderAlfab} className={style.order}>
-        <option hidden>Sort by alfb...</option>
+        <option hidden>Sort by alfb</option>
         <option className={style.select} value="AZ">A-Z</option>
         <option className={style.select} value="ZA">Z-A</option>
       </select>
       <select onChange={handlerOrderWeight} className={style.weight}>
-        <option hidden>Sort by weight...</option>
-        <option className={style.select} value="asc">menor a mayor...</option>
-        <option className={style.select} value="desc">mayor a menor...</option>
+        <option hidden>Sort by weight</option>
+        <option className={style.select} value="asc"> {`<-`} ascending {`->`}</option>
+        <option className={style.select} value="desc"> {`->`} descending {`<-`}</option>
       </select>
       <select onChange={handlerFilterByTemps} className={style.temperament}>
-        <option hidden>Filter Temperament...</option>
+        <option hidden>Filter Temperament</option>
         <option className={style.select} value="all"> All </option>
         {tempers.length && tempers.map((t) => {
           return (
