@@ -1,0 +1,22 @@
+.delete {
+    margin: 10px;
+    border: inset #5499C7;
+    border-radius: 10px;
+    font-family: cursive;
+    background-color: #34495E;
+    color: rgb(243, 243, 243);
+}
+.delete:hover {
+    cursor: pointer;
+}
+.update {
+    margin: 10px;
+    border: inset #5499C7;
+    border-radius: 10px;
+    font-family: cursive;
+    background-color: #34495E;
+    color: rgb(243, 243, 243);
+}
+.update:hover {
+    cursor: pointer;
+}

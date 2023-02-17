@@ -4,7 +4,6 @@ import NavBar from "../components/NavBar";
 import style from '../styles/Home.module.css';
 import Pages from "../components/Pages.jsx";
 import Filters from "../components/Filters";
-//import DeleteUpdate from "../components/DeleteUpdate";
 
 export default function Home() { 
 
@@ -25,7 +24,6 @@ export default function Home() {
   return (
     <div className={style.body} >
       <NavBar />
-      {/* <DeleteUpdate /> */}
       <Filters />
       <Pages />
       <Cards />

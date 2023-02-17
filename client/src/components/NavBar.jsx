@@ -4,7 +4,6 @@ import SearchBar from './SearchBar.jsx';
 import dog from '../images/PERROS (313).gif'
 import { useDispatch } from 'react-redux';
 import { getDogs } from '../redux/action';
-//import { useHistory } from 'react-router-dom';
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -13,14 +12,15 @@ export default function NavBar() {
   function handlerReset(e) {
     e.preventDefault();
     dispatch(getDogs())
-    //history.push('/home')
   }
+
+  /* const handlerReset = (e) => {
+    e.preventDefault();
+    window.location.href = window.location.href;
+  }; */
 
   return (
     <nav className={style.nav} >
-      {/* <div className={style.dog}>
-        
-      </div> */}
       <div className={style.create}>
         <Link to='/form' >
           <button className={style.link}>Create</button>
@@ -36,10 +36,6 @@ export default function NavBar() {
       <div className={style.search}> 
         <SearchBar />
       </div>
-      {/* <button className={style.prev}  onClick={handlerPrev} >Prev</button>
-      <button className={style.next} onClick={handlerNext} >Next</button>
-      <button>Asc</button>
-      <button>Des</button> */}
     </nav>
   )
 }

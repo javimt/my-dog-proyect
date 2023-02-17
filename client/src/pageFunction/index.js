@@ -1,4 +1,3 @@
-import { sortByName, sortByWeight } from "../redux/action";
 
 export default function pageModulated(arr, page) {
 

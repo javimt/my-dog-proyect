@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from 'react-router-dom';
 import { getDetail, getDogs } from "../redux/action";
 import style from '../styles/Detail.module.css';
 import DeleteUpdate from "../components/DeleteUpdate";
 
-export default function Detail({created}) {
+export default function Detail() {
 
   // Los campos mostrados en la ruta principal para cada raza (imagen, nombre y temperamento)
   // Altura
@@ -15,14 +15,28 @@ export default function Detail({created}) {
   const { id } = useParams();
   const dispatch = useDispatch();
   const detail = useSelector(state => state.detail);
-  const data = useSelector(state => state.dogsRender);
-console.log(detail) 
+  const [detailId, setDetailId] = useState(null);
+  const [loading, setLoading] = useState(true);
+//console.log(detail) 
 
-  useEffect(() => {
-   if(!data.length)dispatch(getDogs());
-   dispatch(getDetail(id));
-  },[dispatch])
-console.log(created)
+useEffect(() => {
+  async function renderDetail() {
+    const response = await dispatch(getDetail(id));
+    setDetailId(response);
+    setLoading(false);
+  }
+  renderDetail();
+},[id]);
+
+if (loading) {
+  return <div>Cargando...</div>;
+}
+  /* useEffect(() => {
+   //if(!data.length && id.length > 0) dispatch(getDogs());
+    dispatch(getDetail(id));
+  },[id]) */
+
+//console.log(created)
 
   return detail.hasOwnProperty("name") ? (
     <div className={style.body}>
@@ -37,7 +51,6 @@ console.log(created)
           id={id}
         />}
       </div>
-      {/* <h3 className={style.id}>Dog Number: {detail.id}</h3> */}
       <h3 className={style.title}>{detail.name}</h3>
       <img className={style.image} src={detail.image} alt=""  width="250px"/>
       <h3 className={style.temperament}>temperaments: {detail.Temperaments ? detail.Temperaments.map(e => e.name).join(",") : detail.temperament}
@@ -51,5 +64,5 @@ console.log(created)
       <h3 className={style.weight}>Weight min: {detail.weightMin}</h3>
       <h3 className={style.weight}>Weight max: {detail.weightMax}</h3>
     </div>
-  ): <div>no llegó nada</div>
+  ): <div>....</div>
 }

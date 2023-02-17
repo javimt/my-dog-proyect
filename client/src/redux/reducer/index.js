@@ -1,5 +1,5 @@
 //import { cases } from "../action";
-import pageModulated, { pageNumbers, pageLength } from "../../pageFunction";
+import pageModulated, { pageLength } from "../../pageFunction";
 
 const initialState = {
   
@@ -7,8 +7,6 @@ const initialState = {
   dogsRender: [],
   detail: [],
   tempers: [],
-  sorts: [],
-  changePage: [],
   pages: 0,
   page: 0,
 };
@@ -17,43 +15,33 @@ export default function rootReducer(state = initialState, action) {
   const dogs = state.allDogs;
   switch(action.type) {
     case "GET_DOGS":
-    //const response = action.payload
-//console.log(response)
       return {
         ...state,
         allDogs: action.payload,
         dogsRender: pageModulated([...action.payload], 8),
-        //sorts: action.payload,
         pages: pageLength([...action.payload], 8), 
         page: 0
       }
     case "GET_DOGS_BY_NAME": 
-   const result = [...state.allDogs].filter(d => d.name.toLowerCase().includes(action.payload.toLowerCase()))
+    const result = [...state.allDogs].filter(d => d.name.toLowerCase().includes(action.payload.toLowerCase()))
 //console.log(result)
-//console.log(pageLength(result, 8))
       return {
         ...state,
-        //allDogs: action.payload,
         dogsRender: pageModulated([...result], 8),
         pages: pageLength(result, 8),
         page: 0
       }
     case "GET_DETAIL": 
-      //const ids = [...state.allDogs].filter(d => d.id.includes(action.payload))
-//console.log(ids)
       return {
         ...state,
-        detail: action.payload[0] //ids  [{1}]
+        detail: action.payload[0] 
       }
     case "GET_TEMPERAMENTS":
       return {
         ...state,
         tempers: action.payload,
-        //dogsRender: action.payload
       }
     case "CREATE_DOG":
-      //const state1 = [...state]
-//console.log(state1)
       return {
         ...state,
         dogsRender: action.payload,
@@ -110,16 +98,13 @@ export default function rootReducer(state = initialState, action) {
        action.payload === "asc" 
       ? dogs.sort((a, b) => a.weightMin - b.weightMin)
       : dogs.sort((a, b) => b.weightMin - a.weightMin);
-console.log(weightArr)
+//console.log(weightArr)
       return {
         ...state,
         dogsRender: pageModulated([...weightArr], 8),
         page: 0,
       }
     case "SORT_BY_NAME":
-      /* action.payload === "asc"
-          ? state.countries.sort((a, b) =>  a.name.localeCompare(b.name))
-          : state.countries.sort((a, b) =>  b.name.localeCompare(a.name)); */
       const sortName = action.payload === "AZ"
       ? dogs.sort((a, b) => {
         if (a.name > b.name) return 1;

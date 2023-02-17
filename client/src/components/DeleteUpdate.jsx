@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteDog, updateDog, getDogs } from "../redux/action";
+import { deleteDog, getDogs } from "../redux/action";
+import style from '../styles/DeleteUpdate.module.css'
 
 export default function DeleteUpdate({id}) {
 
@@ -11,7 +12,6 @@ console.log("aca esta", id)
 
   useEffect(() => {
     if(!data.length)dispatch(getDogs());
-    //dispatch(getDetail(id));
   },[])
 
   function handlerDelete() {
@@ -20,17 +20,14 @@ console.log("aca esta", id)
     dispatch(getDogs());
   }
 
-   /*function handlerUpdate(e) {
-    dispatch(updateDog(e.target.value)) 
-  }*/
 
   return (
     <div>
       <Link to='/home'>
-        <button type="button" onClick={handlerDelete} >Delete</button>
+        <button className={style.delete} type="button" onClick={handlerDelete} >Delete</button>
       </Link>
       <Link to={`/form/${"?id=" + id}`} >
-        <button type="button" >Update</button>
+        <button className={style.update} type="button" >Update</button>
       </Link>
     </div>
   )

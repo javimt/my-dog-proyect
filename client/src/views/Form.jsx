@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import style from '../styles/Form.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { getTemperaments, createDogs, getDogs, deleteDog, updateDog } from "../redux/action";
-//import queryString from "query-string";
-//import DeleteUpdate from "../components/DeleteUpdate";
+import { getTemperaments, createDogs, getDogs, updateDog } from "../redux/action";
 
 export default function Form() {
 
@@ -17,14 +15,13 @@ export default function Form() {
   // Botón/Opción para crear una nueva raza de perro
   
   const { search } = useLocation();
-  //const { visit } = queryString();
   const dispatch = useDispatch();
   const dogs = useSelector(state => state.dogsRender);
   const tempers = useSelector(state => state.tempers);
   const history = useHistory();
   const [errors, setErrors] = useState({});
   const dataId = search && search.slice(4)
-console.log(dataId)
+//console.log(dataId)
 
   const [input, setInput] = useState({
     name: "",
@@ -37,11 +34,6 @@ console.log(dataId)
     temperaments: []
   })
 //console.log(dogs) 
-
-  /* useEffect(() => {
-    if(!input.name.length > 0 && !input.heightMin.length > 0 && !input.heightMax.length > 0  && !input.weightMin.length > 0 && !input.weightMax.length > 0)setButton(false);
-    else setButton(true)
-  },[]); */
 
   useEffect(() => {
     dispatch(getDogs())
@@ -65,7 +57,6 @@ console.log(dataId)
     )
   }
 
-  //const [selectStateName, setSelectStateName] = useState([])
   async function handlerSubmit(e) {
 
     e.preventDefault();
@@ -78,13 +69,12 @@ console.log(dataId)
         alert("dog created!")
         history.push('/home');
       } else {
-        alert('dogs already exist' );
+        alert('the dog already exist' );
       }
-console.log(created)
+//console.log(created)
     }
     dispatch(getDogs())
     dispatch(getTemperaments())
-
   }
 
   function handlerSelect(e) {
@@ -98,25 +88,16 @@ console.log(created)
 
   function handlerError(e) {
     e.preventDefault();
-    if(input.length === 0) alert("Complete the form!");
-    alert("dog created!")
-    //setButton(errors)
+    if(input.length < 8) alert("Complete the form!");
+    else alert("dog created!")
   }
 
   function handlerDeleteTempers(e) {
     setInput({
       ...input,
-      temperaments: input.temperaments.filter(t => t !== e.target.name)// d.Temperaments ? d.Temperaments.map(e => e.name).join(",") : d.temperament
+      temperaments: input.temperaments.filter(t => t !== e.target.name)
     })
   }
-
-  /* function handlerDelete(e) {
-    dispatch(deleteDog(e.target.value))
-  }
-
-  function handlerUpdate(e) {
-    dispatch(updateDog(e.target.value))
-  } */
 
 //============================>> END HANDLERS <<==============================\\
 
@@ -140,9 +121,9 @@ const validate = (input) => {
   //=========>> END NAME <<========\\
 
 //=========>> HEIGHT <<========\\
-  if(input.image.length === 0) {
+ if(input.image.length === 0) {
     errors.image = "Must contain an image"
-  } /* else if(!/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/.test(input.image)){
+  }  /* else if(!/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/.test(input.image)){
     errors.image = "It's not a correct format "
   } */
     
@@ -203,9 +184,7 @@ const validate = (input) => {
     errors.temperaments = "You must select a temperaments";
   } else if(!/^[a-zA-Z]+$/.test(input.temperaments)) {
     errors.temperaments = "You need select one temperaments"
-  } /* else if(input.temperaments === input.temperaments) {
-    errors.temperaments = "You can't repeat temperaments"
-  } */
+  } 
   //==========>> END TEMPERAMENT <<==========\\
 
   return errors;
@@ -225,7 +204,7 @@ const validate = (input) => {
           <div className={style.div}>
             <label className={style.title} htmlFor="name">Name:</label>
              <input 
-              className={errors.heightMin ? style.error : style.input} 
+              className={errors.name ? style.error : style.input} 
               name="name"  
               value={input.name}
               type="text"
@@ -237,7 +216,7 @@ const validate = (input) => {
           <div className={style.div}>
             <label className={style.title} htmlFor="image">Image:</label>
             <input 
-              className={/* errors.heightMin ? style.error :  */style.input}
+              className={errors.image ? style.error : style.input}
               name="image" 
               value={input.image}
               type="text"
@@ -345,23 +324,12 @@ const validate = (input) => {
           {
             input.name !== " " ? (
               <button 
-                /* disabled={!input.name || errors.name || errors.heightMin || errors.image  || errors.heightMax || errors.weightMin || errors.weightMax || errors.temperaments} */
+                disabled={!input.name || errors.name || errors.heightMin || errors.image || errors.heightMax || errors.weightMin || errors.weightMax || errors.temperaments}
                 className={style.btn1} 
                 type="submit" >{dataId ? "Update" : "Create"}</button>
             ) : <button className={style.btn2} onClick={handlerError} type="submit" >Created</button>
           }
-          {/* {
-          <div>
-            <button
-              disabled={dogs.length < 172}
-              type="submit" 
-              onClick={() => handlerDelete(id)} >Delete</button>
-            <button
-              disabled={dogs.length < 172}
-              type="submit" 
-              onClick={() => handlerUpdate(id)} >Update</button>
-          </div>
-          } */}
+          
         </form>
         
       </div>
