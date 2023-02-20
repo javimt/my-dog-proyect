@@ -12,7 +12,7 @@ console.log("aca esta", id)
 
   useEffect(() => {
     if(!data.length)dispatch(getDogs());
-  },[])
+  },[data,dispatch])
 
   function handlerDelete() {
     deleteDog(id);

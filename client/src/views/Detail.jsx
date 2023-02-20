@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from 'react-router-dom';
-import { getDetail, getDogs } from "../redux/action";
+import { getDetail } from "../redux/action";
 import style from '../styles/Detail.module.css';
 import DeleteUpdate from "../components/DeleteUpdate";
 
@@ -15,7 +15,7 @@ export default function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const detail = useSelector(state => state.detail);
-  const [detailId, setDetailId] = useState(null);
+  const [, setDetailId] = useState(null);
   const [loading, setLoading] = useState(true);
 //console.log(detail) 
 
@@ -26,17 +26,11 @@ useEffect(() => {
     setLoading(false);
   }
   renderDetail();
-},[id]);
+},[dispatch,id]);
 
 if (loading) {
-  return <div>Cargando...</div>;
+  return <div>loading...</div>;
 }
-  /* useEffect(() => {
-   //if(!data.length && id.length > 0) dispatch(getDogs());
-    dispatch(getDetail(id));
-  },[id]) */
-
-//console.log(created)
 
   return detail.hasOwnProperty("name") ? (
     <div className={style.body}>
@@ -64,5 +58,5 @@ if (loading) {
       <h3 className={style.weight}>Weight min: {detail.weightMin}</h3>
       <h3 className={style.weight}>Weight max: {detail.weightMax}</h3>
     </div>
-  ): <div>....</div>
+  ): <div>loading...</div>
 }

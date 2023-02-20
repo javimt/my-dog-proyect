@@ -34,7 +34,7 @@ export const getDetail = (id) => {
       payload: response.data
     })
     } catch (error) {
-      console.error(error)
+      return ({error: error.message})
     }
   }
 }
@@ -57,7 +57,6 @@ export const createDogs = async (payload) => {
 
 export const deleteDog = (id) => {
   const deleteDog = axios.delete(`http://localhost:3001/dogs/${id}`)
-  
 }
 
 export const updateDog = (object, id) => {

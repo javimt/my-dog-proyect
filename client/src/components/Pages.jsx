@@ -37,7 +37,7 @@ console.log()
         {pageNumber.map((i, n) => {
           return (  
             <li key={i} >
-              <a className={style.click} onClick={() => handlerNum(i)}>{n + 1}</a>
+              <p className={style.click} onClick={() => handlerNum(i)}>{n + 1}</p>
             </li>
           )})
         } 

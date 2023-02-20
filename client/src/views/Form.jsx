@@ -38,7 +38,7 @@ export default function Form() {
   useEffect(() => {
     dispatch(getDogs())
     dispatch(getTemperaments())
-  },[]); 
+  },[dispatch]); 
 
 
 //============================>> HANDLERS <<==============================\\
@@ -65,7 +65,7 @@ export default function Form() {
       history.push('/home');
     } else {
       const created = await createDogs(input)
-      if(created != 'its was created!') {
+      if(created !== 'its was created!') {
         alert("dog created!")
         history.push('/home');
       } else {

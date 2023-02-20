@@ -15,7 +15,7 @@ console.log()
  
   useEffect(() => {
     if (!stateDog.length) dispatch(getDogs());
-  },[]);
+  },[stateDog,dispatch]);
 
   return (
     <div className={style.allCards}>

@@ -22,8 +22,9 @@ export default function rootReducer(state = initialState, action) {
         pages: pageLength([...action.payload], 8), 
         page: 0
       }
-    case "GET_DOGS_BY_NAME": 
-    const result = [...state.allDogs].filter(d => d.name.toLowerCase().includes(action.payload.toLowerCase()))
+    case "GET_DOGS_BY_NAME":
+    console.log(action.payload)//if(action.payload === ) 
+      const result = [...state.allDogs].filter(d => d.name.toLowerCase().includes(action.payload.toLowerCase()))
 //console.log(result)
       return {
         ...state,
@@ -72,7 +73,7 @@ export default function rootReducer(state = initialState, action) {
       const dogsData = dataDogs.flat()
 //console.log(dogsData)
       const apiFilter =
-        action.payload !== "api" && action.payload !== "all"
+        action.payload !== "api"
           ? dogsData.filter((e) => e?.createdInDb)
           : dogs;
       return {
@@ -86,7 +87,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         page: !["prev","next"].includes(act) ? act : act === "prev" ? 
-        state.page > 0 ?   // && state.page - 1 : 
+        state.page > 0 ? 
         state.page - 1 :
         state.page :
         state.page < state.dogsRender.length - 1 ?
