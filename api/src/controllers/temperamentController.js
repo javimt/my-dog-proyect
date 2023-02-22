@@ -13,9 +13,9 @@ async function getAllApiTemperaments() {
     return {
       id: d.id,
       name: d.name,
-      heightMin: d.height.metric.split(" - ")[0],// d.height.metric.split(" - ")[1]],// [d.height.metric],  //heightFiltred.trim(),
+      heightMin: d.height.metric.split(" - ")[0],
       heightMax: d.height.metric.split(" - ")[1],
-      weightMin: d.weight.metric.split(" - ")[0],//[`weightMin: ${d.weight.metric.split(" - ")[0]}, weightMax: ${d.weight.metric.split(" - ")[1]}`],
+      weightMin: d.weight.metric.split(" - ")[0],
       weightMax: d.weight.metric.split(" - ")[1],
       life_span: d.life_span,
       image: d.image.url,
@@ -49,7 +49,7 @@ const getAllTemperaments = async (req, res, next) => {
         temperObj.map(async e => await Temperament.findOrCreate({ 
           where: {name: e.name},
         }));
-console.log(temperObj);
+//console.log(temperObj);
         await Temperament.bulkCreate(temperSet);
         return res.status(200).json(await Temperament.findAll());
   

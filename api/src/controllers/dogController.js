@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Dog, Temperament } = require('../db');
+const { Dog, Temperament, temperDog } = require('../db');
 //const jsonApi = require('../../jsonApi.json');
 
 const apiUrl = "https://api.thedogapi.com/v1/breeds/";
@@ -10,37 +10,20 @@ async function getAllApiData() {
   const dataApi = await apiInfo.data.map(d => {
 
            // const dataApi = dataJson.map(d => {
-    
-  /* const heightArr = [];
-  if(d.height) {
-    heightArr = d.height.metric.slice(0, 2).split(' - ');
-    heightArr.push(d.height.metric.split(' - '));
-  } */
 
-  /* const heightArr = d.height.metric;
-  const heightFiltred = []
-  if(heightArr.length) {
-    const max = [...heightArr].join("").split("-")[1]//.trim();
-    const min = [...heightArr].join("").split("-")[0]//.trim();
-    heightFiltred.push([min, max])
-    return [min, max]; 
-  }
- */
     return {
       id: d.id,
-      name: d.name,
-      heightMin: d.height.metric.split(" - ")[0],// d.height.metric.split(" - ")[1]],// [d.height.metric],  //heightFiltred.trim(),
+      name: d.name, 
+      heightMin: [...d.height.metric.split(" - ")][0].replace("NaN", "0"),
       heightMax: d.height.metric.split(" - ")[1],
-      weightMin: d.weight.metric.split(" - ")[0],//[`weightMin: ${d.weight.metric.split(" - ")[0]}, weightMax: ${d.weight.metric.split(" - ")[1]}`],
+      weightMin: [...d.weight.metric.split(" - ")][0].replace("NaN", "0"),
       weightMax: d.weight.metric.split(" - ")[1],
-      life_span: d.life_span,
       image: d.image.url,
       temperament: d.temperament,
     }
   })
   const myDb = await Dog.findAll({include: {model: Temperament}});
   const allApiData = [...dataApi, ...myDb];
-//console.log(allApiData)
   return allApiData;
 }
 
@@ -49,21 +32,15 @@ const getAllDogs = async (req, res, next) => {
 
   // Obtener un listado de las razas de perro
   // Debe devolver solo los datos necesarios para la ruta principal
-  
-  const name = req.query.name;
-  //try {
-    const dataApi = await getAllApiData();
-    //if(dataApi.length) {
-      ! name 
-      ? res.status(200).json({ length: dataApi.length, data: dataApi })
-      : res.status(200).json(dataApi.filter(r => r.name.toLowerCase().includes(name.toLowerCase())))
-      // res.status(400).send('missing data')
-   // }
-//console.log(dataApi)
-   /*  res.status(400).send('missing data');
+  try {
+    const {name} = req.query;
+  const dataApi = await getAllApiData();
+    ! name 
+    ? res.status(200).json({ length: dataApi.length, data: dataApi })
+    : res.status(200).json(dataApi.filter(r => r.name.toLowerCase().includes(name.toLowerCase())))
   } catch (error) {
-    return ({error: error.message})
-  } */
+    return res.status(400).send({error: error.message})
+  }   
 }
 
 
@@ -73,13 +50,12 @@ const getDogsId = async (req, res, next) => {
   // Debe traer solo los datos pedidos en la ruta de detalle de raza de perro
   // Incluir los temperamentos asociados
 
-  const id = req.params.id;
+  const {id} = req.params;
   try {
     const allData = await getAllApiData();
     if(allData.length) {
-      return res.status(200).json(allData.filter(i => i.id == id));
+      return res.status(200).json(allData.filter(i => i.id == id ));
     }
-//console.log(allData);
     return res.status(400).send('missing data');
   } catch (error) {
     return ({ error: error.message });
@@ -92,7 +68,6 @@ const createDog = async (req, res, next) => {
   // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de raza de perro por body
   // Crea una raza de perro en la base de datos relacionada con sus temperamentos
 
-//console.log(req.body.temperaments)
   const { name, weightMin, weightMax, heightMin, heightMax, life_span, image, temperaments } = req.body;
   try {
     if(name && weightMin && weightMax && heightMin && heightMax) {
@@ -102,30 +77,29 @@ const createDog = async (req, res, next) => {
         },
         defaults: { name, weightMin, weightMax, heightMin, heightMax, life_span, image } 
      }); 
+     if(dogCreated[1]) {
       temperaments?.map(async t => {
         const temper = await Temperament.findOne({ where: { name: t } });
-        dogCreated[0].addTemperament(temper);  
-//console.log(`hola ..${dogCreated[0]}`)
+        dogCreated[0].addTemperament(temper); 
       });
-//console.log(dogCreated[0]);  
+     }
       await Temperament.findAll();
-      return res.status(200).json({ data: dogCreated[1] ? dogCreated : 'its was created!' })
+      return res.status(200).json( dogCreated[1] ? dogCreated : 'its was created!' )
     }
    res.status(400).send('name is required')
   } catch (error){
-   res.json(error) 
+   return res.send({error: error.message})  
   }
 }
 
 
 const deleteDog = async (req, res, next) => {
-  const {id} = req.params; 
+  const id = req.params.id; 
   try {
     Dog.destroy({where: {id: id}});
     let dataApi = await getAllApiData();
     let dataDb = await Dog.findAll({include: Temperament});
-//console.log(dataDb) 
-    dataDb = dataDb.map(e => {
+    dataDb = await dataDb.map(e => {
       return {
         id: e.id,
         name: e.name,
@@ -138,9 +112,7 @@ const deleteDog = async (req, res, next) => {
         temperaments: e.temperaments.map(t => t.name).join(",")
       }
     })
-    //const myDb = await Dog.findAll({include: {model: Temperament}});
     let allApiData = [...dataApi, ...dataDb];
-console.log(allApiData)
     res.status(200).json(allApiData);
   } catch(error) {
     return ({error: error.message})
@@ -150,22 +122,31 @@ console.log(allApiData)
 
 const updateDog = async (req, res, next) => {
   const id = req.params.id;
-  const dog = req.body
+  const { temperaments } = req.body
   try {
-    let dogUpdated = await Dog.update(dog, {
+    const dogUpdated = await Dog.update(req.body, {
       where: {
         id: id
       }
     })
-//console.log(dogUpdated)
-    return res.json(dog/*{createdInDb: true}*/)
+    const updatedDog = await Dog.findAll({where: {id:id}});
+//console.log(updatedDog.dataValues)
+    if(temperaments.length)await temperDog.destroy({where: {DogId: id}})
+    if(dogUpdated) {
+      temperaments?.map(async t => {
+        const temper = await Temperament.findOne({ where: { name: t } });
+        updatedDog[0].addTemperament(temper); 
+      });
+    }
+    dogUpdated.length ?
+    res.status(200).json(await temperDog.findAll({})) :
+    res.status(400).send('missing data')
   } catch (error) {
     return ({error: error.message})
   }
 }
 
 module.exports = {
-  //getAllApiData,
   getAllDogs,
   getDogsId,
   createDog,
