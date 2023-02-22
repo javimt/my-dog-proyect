@@ -6,3 +6,8 @@
     flex-wrap: wrap;
     text-decoration:none
 }
+.option {
+    color: rgb(44, 110, 44);
+    align-items: center;
+    justify-content: center;
+}

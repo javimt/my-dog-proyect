@@ -24,6 +24,6 @@
 }
 .bar button:hover{
   color: rgb(132, 167, 5);
-  opacity: 0.6;
+  opacity: 0.8;
   cursor: pointer;
 }

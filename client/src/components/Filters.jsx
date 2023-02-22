@@ -11,15 +11,13 @@ export default function Filters() {
   // X Botones/Opciones para ordenar tanto ascendentemente como descendentemente las razas de perro por:
   //    Orden alfabético
   //    Peso
+  
   const dispatch = useDispatch();
   const tempers = useSelector((state) => state.tempers)
-  console.log()
 
   useEffect(() => {
     dispatch(getTemperaments());
   },[dispatch])
-
-  
 
   function handlerFilterByTemps(e) {
     dispatch(filterByTemperaments(e.target.value)); 

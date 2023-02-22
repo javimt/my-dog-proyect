@@ -1,8 +1,6 @@
-//import { cases } from "../action";
 import pageModulated, { pageLength } from "../../pageFunction";
 
 const initialState = {
-  
   allDogs: [],
   dogsRender: [],
   detail: [],
@@ -12,7 +10,7 @@ const initialState = {
 };
 
 export default function rootReducer(state = initialState, action) {
-  const dogs = state.allDogs;
+  const dogs = [...state.allDogs];
   switch(action.type) {
     case "GET_DOGS":
       return {
@@ -23,9 +21,7 @@ export default function rootReducer(state = initialState, action) {
         page: 0
       }
     case "GET_DOGS_BY_NAME":
-    console.log(action.payload)//if(action.payload === ) 
       const result = [...state.allDogs].filter(d => d.name.toLowerCase().includes(action.payload.toLowerCase()))
-//console.log(result)
       return {
         ...state,
         dogsRender: pageModulated([...result], 8),
@@ -57,7 +53,6 @@ export default function rootReducer(state = initialState, action) {
         dogsRender: action.payload
       }
     case "FILTER_BY_TEMPERAMENTS":
-//console.log(action.payload)  
       const dogsTemp =
         action.payload !== "all"
           ? dogs.filter((t) => t.temperament?.includes(action.payload))
@@ -71,7 +66,6 @@ export default function rootReducer(state = initialState, action) {
     case "FILTER_DOGS_BY_API":
       const dataDogs = state.dogsRender
       const dogsData = dataDogs.flat()
-//console.log(dogsData)
       const apiFilter =
         action.payload !== "api"
           ? dogsData.filter((e) => e?.createdInDb)
@@ -99,30 +93,30 @@ export default function rootReducer(state = initialState, action) {
        action.payload === "asc" 
       ? dogs.sort((a, b) => a.weightMin - b.weightMin)
       : dogs.sort((a, b) => b.weightMin - a.weightMin);
-//console.log(weightArr)
       return {
         ...state,
         dogsRender: pageModulated([...weightArr], 8),
         page: 0,
       }
     case "SORT_BY_NAME":
-      const sortName = action.payload === "AZ"
-      ? dogs.sort((a, b) => {
+      const sortName = action.payload
+      const order = [...state.dogsRender].flat().sort((a, b) => { 
         if (a.name > b.name) return 1;
         if (b.name > a.name) return -1;
-        return 0;
-        })
-      : dogs.sort((a, b) => {
+      return 0;
+      }) 
+        if(sortName === "AZ") return {...state, dogsRender: pageModulated(order, 8),page:0}
+        else return {...state, dogsRender: pageModulated(order.reverse(), 8),page:0}
+        /* dogs.sort((a, b) => {
         if (b.name > a.name) return 1;
         if (a.name > b.name) return -1;
         return 0; 
-      });
-    return {
+      });*/
+    /* return {
       ...state,
       dogsRender: pageModulated([...sortName], 8),
       page: 0,
-    };
-
+    }; */
     default:
       return {
         ...state

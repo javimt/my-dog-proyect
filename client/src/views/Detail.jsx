@@ -17,7 +17,6 @@ export default function Detail() {
   const detail = useSelector(state => state.detail);
   const [, setDetailId] = useState(null);
   const [loading, setLoading] = useState(true);
-//console.log(detail) 
 
 useEffect(() => {
   async function renderDetail() {

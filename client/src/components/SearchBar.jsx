@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from '../styles/SearchBar.module.css';
 import { useDispatch } from 'react-redux';
 import { getDogsByName } from "../redux/action";
@@ -12,6 +12,12 @@ export default function SearchBar() {
     e.preventDefault();
     setName(e.target.value); 
   }
+
+  useEffect(() => {
+    if(name.length) {
+      dispatch(getDogsByName(name))
+    } 
+  },[dispatch,name])
   
   function handlerSubmit(e) {
     e.preventDefault();

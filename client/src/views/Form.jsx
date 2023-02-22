@@ -21,7 +21,7 @@ export default function Form() {
   const history = useHistory();
   const [errors, setErrors] = useState({});
   const dataId = search && search.slice(4)
-//console.log(dataId)
+console.log(dataId)
 
   const [input, setInput] = useState({
     name: "",
@@ -69,7 +69,7 @@ export default function Form() {
         alert("dog created!")
         history.push('/home');
       } else {
-        alert('the dog already exist' );
+        alert('the dog already exist');
       }
 //console.log(created)
     }
@@ -88,7 +88,7 @@ export default function Form() {
 
   function handlerError(e) {
     e.preventDefault();
-    if(input.length < 8) alert("Complete the form!");
+    if(input.length < 5) alert("Complete the form!");
     else alert("dog created!")
   }
 
@@ -184,7 +184,9 @@ const validate = (input) => {
     errors.temperaments = "You must select a temperaments";
   } else if(!/^[a-zA-Z]+$/.test(input.temperaments)) {
     errors.temperaments = "You need select one temperaments"
-  } 
+  } else if(input.temperaments.length > 5) {
+    errors.temperament = "You cannot select more than 5 elements"
+  }
   //==========>> END TEMPERAMENT <<==========\\
 
   return errors;
@@ -193,11 +195,9 @@ const validate = (input) => {
 
   return (
     <div className={style.container}>
-      
-        <Link to='/home'>
-          <button className={style.btn} >Back to Home</button>
-        </Link>
-       
+      <Link to='/home'>
+        <button className={style.btn} >Back to Home</button>
+      </Link>
       <div className={style.form}>
         <h2 className={style.h1}>Create</h2>
         <form onSubmit={handlerSubmit}>
@@ -329,9 +329,7 @@ const validate = (input) => {
                 type="submit" >{dataId ? "Update" : "Create"}</button>
             ) : <button className={style.btn2} onClick={handlerError} type="submit" >Created</button>
           }
-          
         </form>
-        
       </div>
     </div>
   )

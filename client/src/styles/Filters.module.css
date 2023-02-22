@@ -1,3 +1,8 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .order {
     /* height: 38px;
     width: 100px; */
@@ -7,7 +12,6 @@
     font-family: cursive;
     background-color: #34495E;
     color: rgb(243, 243, 243);
-    
 }
 .order:hover{
     color: rgb(132, 167, 5);

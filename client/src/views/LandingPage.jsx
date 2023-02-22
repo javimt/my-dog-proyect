@@ -9,7 +9,7 @@ export default function LandingPage() {
 
   return (
     <div className={style.landing} >
-      <h2> Welcome </h2>
+      <h2> Welcome to my wawwff </h2>
       <Link to='/home' >
         <button> Get into </button>
       </Link>

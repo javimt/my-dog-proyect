@@ -7,22 +7,20 @@ import style from "../styles/Cards.module.css";
 
 export default function Cards() {
   const stateDog = useSelector(state => state.dogsRender);
+  const allDogs = useSelector(state => state.allDogs)
   const page = useSelector((state) => state.page);
   const dispatch = useDispatch();
-
-//console.log(allPages)
-console.log()
  
   useEffect(() => {
-    if (!stateDog.length) dispatch(getDogs());
-  },[stateDog,dispatch]);
+    if (!allDogs.length) dispatch(getDogs());
+  },[allDogs,dispatch]);
 
   return (
+    stateDog.length ? 
     <div className={style.allCards}>
       {stateDog.length && stateDog[page].map((d) => {
-//console.log(d.Temperaments)
           return (
-            <div key={`card_ ${d.id}`}>
+            <div key={`card_${d.id}`}>
               <Link to={`/dogs/${d.id}`}>
                 <Card
                   name={d.name}
@@ -41,6 +39,8 @@ console.log()
           );
         })
       }
-    </div>
+    </div> : !stateDog.length && allDogs.length ? 
+              <h2 className={style.option}>Dog not found</h2> :
+              <h2>Loading...</h2>
   );
 }
