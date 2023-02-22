@@ -12,7 +12,7 @@ export default function DeleteUpdate({id}) {
 
   useEffect(() => {
     if(!data.length)dispatch(getDogs());
-  },[data,dispatch])
+  })
 
   function handlerDelete() {
     deleteDog(id);

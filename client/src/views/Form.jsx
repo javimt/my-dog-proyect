@@ -33,7 +33,6 @@ console.log(dataId)
     life_span: "",
     temperaments: []
   })
-//console.log(dogs) 
 
   useEffect(() => {
     dispatch(getDogs())
@@ -48,7 +47,6 @@ console.log(dataId)
       ...input,
       [e.target.name]: e.target.value
     });
-//console.log(input)
     setErrors(
       validate({
         ...input,
@@ -71,7 +69,6 @@ console.log(dataId)
       } else {
         alert('the dog already exist');
       }
-//console.log(created)
     }
     dispatch(getDogs())
     dispatch(getTemperaments())
@@ -88,7 +85,7 @@ console.log(dataId)
 
   function handlerError(e) {
     e.preventDefault();
-    if(input.length < 5) alert("Complete the form!");
+    if(input.length < 8) alert("Complete the form!");
     else alert("dog created!")
   }
 
