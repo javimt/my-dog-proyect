@@ -1,0 +1,29 @@
+.bar input{
+  font-size: 20px;
+  font-family: cursive;
+  height: 25px;
+  border:inset rgb(110, 206, 0);
+  background-color: rgba(1, 1, 10, 0.8) ;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding-left: 10px;
+  color:rgb(132, 167, 5);
+  margin-left: 30px;
+  padding: 5px;
+  cursor: auto;
+}
+.bar button{
+  /* height: 38px;
+  width: 100px; */
+  margin: 10px;
+  border: inset #5499C7;
+  border-radius: 10px;
+  font-family: cursive;
+  background-color: #34495E;
+  color: rgb(248, 248, 250);
+}
+.bar button:hover{
+  color: rgb(132, 167, 5);
+  opacity: 0.8;
+  cursor: pointer;
+}

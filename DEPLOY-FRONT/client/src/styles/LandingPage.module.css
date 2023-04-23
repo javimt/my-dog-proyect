@@ -1,0 +1,29 @@
+body{
+    font-family: cursive;
+    background: url("../images/bufanda.jfif");
+    background-color: rgb(214, 212, 212);
+    background-size: cover;
+    background-attachment: fixed;
+    object-fit: contain;
+}
+.landing{
+    color: rgb(0, 4, 255);
+    text-align: center;
+}
+
+.landing button{
+    border-radius: 10px;
+    border: inset #5499C7;
+    font-size: 25px;
+    background-color:rgba(101, 235, 223, 0.8) ;
+    font-family: cursive;
+    font-weight: 600;
+    color: rgb(255, 0, 0);
+    margin-top: 500px;
+    margin-left: 720px;
+}
+.landing button:hover{
+    cursor: pointer;
+    color: rgb(0, 17, 255);
+    opacity: 0.6;
+}

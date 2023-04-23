@@ -1,0 +1,13 @@
+.allCards{
+    display: flex;
+    gap: 30px;
+    margin: 30px 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-decoration:none
+}
+.option {
+    color: rgb(44, 110, 44);
+    align-items: center;
+    justify-content: center;
+}

@@ -116,10 +116,10 @@ __Ruta principal__: debe contener
   - Nombre
   - Temperamento
   - Peso
-- [ ] Botones/Opciones para filtrar por:
+- [X] Botones/Opciones para filtrar por:
   - Temperamento
   - Raza existente (es decir las que vienen de la API) o agregada por nosotros (creadas mediante el form)
-- [ ] Botones/Opciones para ordenar tanto ascendentemente como descendentemente las razas de perro por:
+- [X] Botones/Opciones para ordenar tanto ascendentemente como descendentemente las razas de perro por:
   - Orden alfabético
   - Peso
 - [X] Paginado para ir buscando y mostrando las siguientes razas, mostrando 8 razas por página.
@@ -189,5 +189,5 @@ __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y pagin
 ## Testing
 
 - [ ] Al menos tener un componente del frontend con sus tests respectivos
-- [ ] Al menos tener una ruta del backend con sus tests respectivos
-- [ ] Al menos tener un modelo de la base de datos con sus tests respectivos
+- [X] Al menos tener una ruta del backend con sus tests respectivos
+- [X] Al menos tener un modelo de la base de datos con sus tests respectivos

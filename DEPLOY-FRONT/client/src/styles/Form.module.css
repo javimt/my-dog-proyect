@@ -1,0 +1,230 @@
+.error {
+  font-size: 20px;
+  font-family: cursive;
+  height: 25px;
+  border: inset #f51000;
+  background-color: rgba(0, 0, 0, 0.411) ;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding-left: 10px;
+  color: rgb(255, 251, 0);
+  margin-left: 30px;
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.container {
+  padding: 0;
+  width: 100%;
+  height: 650px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  flex: auto;
+}
+
+.nav {
+  width: 100%;
+  height: 90px;
+  margin-top: 0;
+  background-color: rgba(4, 0, 245, 0);
+  transition: all 0.25s;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 2);
+}
+
+.form {
+  border-radius: 8px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 2);
+  margin: 15px;
+  text-align: center;
+  transition: all 0.25s;
+  background-color:rgba(184, 204, 252, 0.452);
+}
+.btn{
+  /* height: 38px;
+  width: 100px; */
+  margin: 10px;
+  border: inset #5499C7;
+  border-radius: 10px;
+  font-family: cursive;
+  font-weight: 600;
+  background-color: #34495E;
+  color: rgb(249, 255, 248);
+  font-size: 25px;
+}
+.btn:hover{
+  color: rgb(136, 255, 0);
+  opacity: 0.6;
+  cursor: pointer;
+}
+.btn1 {
+    border-radius: 10px;
+    border: inset #5499C7;
+    font-size: 25px;
+    background-color:rgba(102, 102, 219, 0.8) ;
+    font-family: cursive;
+    font-weight: 600;
+    color: rgb(255, 0, 0);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.btn1:hover {
+    cursor: pointer;
+    color: rgb(72, 255, 0);
+    opacity: 0.6;
+} 
+.h1 {
+  color: #0000ff;
+}
+/* .btn1 {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    margin: 5px 5px 0 5px;
+} */
+.btn2 {
+  border-radius: 10px;
+  border: inset #5499C7;
+  font-size: 25px;
+  background-color:rgba(102, 102, 219, 0.8) ;
+  font-family: cursive;
+  font-weight: 600;
+  color: rgb(234, 245, 230);
+  margin-top: 15px;
+}
+.btn2 :hover {
+  cursor: pointer;
+  color: rgb(255, 60, 0);
+  opacity: 0.6;
+} 
+.title {
+  color: rgb(0, 0, 243);
+  font-size: 18px;
+  font-family: cursive;
+  font-weight: 300;
+  background-color: rgba(0, 4, 255, 0);
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.p {
+  font-size: 13px;
+  color: #000000;
+  margin: 0;
+  font-weight: 300;
+}
+.selct {
+  /* margin-left: 5px;
+  margin-right: 5px; */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: inset #5499C7;
+  background-color: black;
+  border-radius: 10px;
+  padding: 3px;
+  font-size: 20px;
+  font-weight: 300;
+  font-family: cursive;
+  color: rgba(165, 202, 0, 0.904);
+}
+.selct:hover {
+  cursor: pointer;
+}
+.input {
+  font-size: 20px;
+  font-family: cursive;
+  height: 25px;
+  border: inset #5499C7;
+  background-color: rgba(0, 0, 0, 0.411) ;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding-left: 10px;
+  color: rgb(255, 251, 0);
+  margin-left: 30px;
+  margin-right: 10px;
+  padding: 5px;
+}
+.select {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: inset #5499C7;
+  border-radius: 10px;
+  padding: 3px;
+  font-size: 20px;
+  font-family: cursive;
+  color: #0000ff;
+} 
+/* .delete {
+  margin: 20px 0 0 10px;
+  font-size: 20px;
+  font-family: cursive;
+  border-radius: 10px;
+  border: inset #5499C7;
+  color: white;
+  background-color: #34495E;
+  padding: 0 6px 0 6px;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+}
+.div {
+  margin-top: 10px;
+}
+
+.dog{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+.min {
+  width: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: flex-end;
+}
+
+.select {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: inset #5499C7;
+  border-radius: 10px;
+  padding: 3px;
+  font-size: 15px;
+  font-family: cursive;
+}
+
+.select:hover {
+  background-color: #34495E;
+  color: antiquewhite;
+}
+.containers {
+  display: flex;
+  margin-left: 20px;
+}
+
+.floatSelect {
+  float: left;
+  margin-left: 20px;
+}
+*/
+.delete {
+  margin: 1.5px;
+  font-size: 20px;
+  font-family: cursive;
+  border-radius: 10px;
+  border: inset #5499C7;
+  color: rgb(236, 16, 16);
+  background-color: #34495E;
+  padding: auto;
+  display: flex;
+  height: auto;
+  justify-content: center;
+}
+.delete:hover {
+  cursor: pointer;
+}
+
+ 

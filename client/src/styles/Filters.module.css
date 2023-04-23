@@ -1,21 +1,21 @@
 .container {
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .order {
-    /* height: 38px;
-    width: 100px; */
     margin: 10px;
     border: inset #5499C7;
     border-radius: 10px;
     font-family: cursive;
-    background-color: #34495E;
-    color: rgb(243, 243, 243);
+    font-size: 15px;
+    background-color: #b8d8f8de;
+    color: rgba(73, 116, 235, 0.904);
 }
 .order:hover{
-    color: rgb(132, 167, 5);
-    opacity: 0.8;
+    color: rgb(50, 175, 25);
+    opacity: 0.9;
     cursor: pointer;
 }
 .weight {
@@ -23,12 +23,13 @@
     border: inset #5499C7;
     border-radius: 10px;
     font-family: cursive;
-    background-color: #34495E;
-    color: rgb(243, 243, 243);
+    font-size: 15px;
+    background-color: #b8d8f8de;
+    color: rgba(73, 116, 235, 0.904);
 }
 .weight:hover{
-    color: rgb(138, 177, 0);
-    opacity: 0.8;
+    color: rgb(34, 185, 4);
+    opacity: 0.9;
     cursor: pointer;
 }
 .origin {
@@ -36,12 +37,13 @@
     border: inset #5499C7;
     border-radius: 10px;
     font-family: cursive;
-    background-color: #34495E;
-    color: rgb(243, 243, 243);
+    font-size: 15px;
+    background-color: #b8d8f8de;
+    color: rgba(73, 116, 235, 0.904)
 }
 .origin:hover{
-    color: rgb(150, 190, 6);
-    opacity: 0.8;
+    color: rgb(34, 185, 4);
+    opacity: 0.9;
     cursor: pointer;
 }
 .temperament {
@@ -49,15 +51,16 @@
     border: inset #5499C7;
     border-radius: 10px;
     font-family: cursive;
-    background-color: #34495E;
-    color: rgb(243, 243, 243);
+    font-size: 15px;
+    background-color: #b8d8f8de;
+    color: rgba(73, 116, 235, 0.904)
 }
 .temperament:hover{
-    color: rgb(143, 182, 3);
-    opacity: 0.8;
+    color: rgb(50, 175, 25);
+    opacity: 0.9;
     cursor: pointer;
 }
 .select {
-    color: rgb(132, 167, 5);
+    color: rgb(34, 185, 4);
     cursor: auto;
 }
