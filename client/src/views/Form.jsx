@@ -117,21 +117,21 @@ const validate = (input) => {
 
   //=========>> NAME <<========\\
   if(!input.name) {
-    errors.name = "You must enter a breed name";
+    errors.name = "You must enter a breed name⚠️";
   } else if(!/^[a-zA-Z]+$/.test(input.name)) {
-    errors.name = "Invalid name. The name must contain letters";
+    errors.name = "Invalid name. The name must contain letters⚠️";
   } else if(input.name.length < 2) {
-    errors.name = "The name must contain at least 2 letters"
+    errors.name = "The name must contain at least 2 letters⚠️"
   } else if(input.name.length < 2 || input.name.length > 20) {
-    errors.name = "At least 2 letters, less than 20";
+    errors.name = "At least 2 letters, less than 20⚠️";
   } else if(dogs.includes(input.name)) {
-    errors.name = "The dog already exists, use another name";
+    errors.name = "The dog already exists, use another name⚠️";
   };
   //=========>> END NAME <<========\\
 
 //=========>> HEIGHT <<========\\
  if(input.image.length === 0) {
-    errors.image = "Must contain an image"
+    errors.image = "Must contain an image⚠️"
   }  /* else if(!/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/.test(input.image)){
     errors.image = "It's not a correct format "
   } */
@@ -140,51 +140,51 @@ const validate = (input) => {
 
   //=========>> HEIGHT <<========\\
   if(!input.heightMax) {
-    errors.heightMax = "You must enter a maximum height";
+    errors.heightMax = "You must enter a maximum height⚠️";
   } else if(input.heightMax > 200) {
-    errors.heightMax = "The maximum height must be less than 200cm"
+    errors.heightMax = "The maximum height must be less than 200cm⚠️"
   } else if(!/^[0-9]+$/.test(input.heightMax)) {
-    errors.heightMax = "Can only contain numbers";
+    errors.heightMax = "Can only contain numbers⚠️";
   }
 
   if(!input.heightMin) {
-    errors.heightMin = "You must enter a minimum height";
+    errors.heightMin = "You must enter a minimum height⚠️";
   } else if(input.heightMin === input.heightMax) {
-    errors.heightMin = "The minimum and maximun height cannot be equals"
+    errors.heightMin = "The minimum and maximun height cannot be equals⚠️"
   } else if(input.heightMin >= input.heightMax) {
-    errors.heightMin = "The minimum height cannot be greater than the maximum height"
+    errors.heightMin = "The minimum height cannot be greater than the maximum height⚠️"
   } else if(!/^[0-9]+$/.test(input.heightMin)) {
-    errors.heightMin = "Can only contain numbers";
+    errors.heightMin = "Can only contain numbers⚠️";
   }
   //=========>> END HEIGHT <<========\\
   
   //=========>> WEIGHT <<========\\
   if(!input.weightMax) {
-    errors.weightMax = "You must enter a maximum weight";
+    errors.weightMax = "You must enter a maximum weight⚠️";
   } else if(input.weightMax > 200 && input.weightMax < 1000) {
-    errors.weightMax = "The maximum height must be less than 200cm"
+    errors.weightMax = "The maximum height must be less than 200cm⚠️"
   } else if(!/^[0-9]+$/.test(input.weightMax)) {
-    errors.weightMax = "Can only contain numbers";
+    errors.weightMax = "Can only contain numbers⚠️";
   };
 
   if(!input.weightMin) {
-    errors.weightMin = "You must enter a minimum and maximum weight";
+    errors.weightMin = "You must enter a minimum and maximum weight⚠️";
   } else if(input.heightMin === input.heightMax) {
-    errors.heightMin = "The minimum and maximun height cannot be equals"
+    errors.heightMin = "The minimum and maximun height cannot be equals⚠️"
   } else if(input.weightMin >= input.weightMax) {
-    errors.weightMin = "The minimum weight cannot be greater than the maximum weight"
+    errors.weightMin = "The minimum weight cannot be greater than the maximum weight⚠️"
   } else if(!/^[0-9]+$/.test(input.weightMin)) {
-    errors.weightMin = "Can only contain numbers";
+    errors.weightMin = "Can only contain numbers⚠️";
   };
   //=========>> END HEIGHT <<========\\
 
   //=========>> LIFE_SPAN <<=========\\
   if(!input.life_span) {
-    errors.life_span = "You must enter a life span";
+    errors.life_span = "You must enter a life span⚠️";
   } else if(!/^[0-9]+$/.test(input.life_span)) {
-    errors.life_span = "Can only contain numbers";
+    errors.life_span = "Can only contain numbers⚠️";
   } else if(input.life_span.length === 0) {
-    errors.life_span = "You need a life_span"
+    errors.life_span = "You need a life_span⚠️"
   }
   //=========>> END LIFE_SPAN <<=========\\
 
@@ -201,25 +201,27 @@ const validate = (input) => {
         <h2 className={style.h1}>Create</h2>
         <form onSubmit={handlerSubmit}>
           <div className={style.div}>
-            <label className={style.title} htmlFor="name">Name:</label>
+            {/* <label className={style.title} htmlFor="name">Name:</label> */}
              <input 
-              className={errors.name ? style.error : style.input} 
+              className={errors.name ? style.error : style.input}  
               name="name"  
               value={input.name}
               type="text"
               onChange={handlerChange}
+              placeholder="write your Name..."
             /> 
           </div>
            {errors.name && <p className={style.p}>{errors.name}</p>}
 
           <div className={style.div}>
-            <label className={style.title} htmlFor="image">Image:</label>
+            {/* <label className={style.title} htmlFor="image">Image:</label> */}
             <input 
               className={errors.image ? style.error : style.input}
               name="image" 
               value={input.image}
               type="text"
               onChange={handlerChange}
+              placeholder="Insert your image..."
             />
           </div>  
           <p className={style.p}>{errors.image}</p>
@@ -227,7 +229,7 @@ const validate = (input) => {
           <div className={style.dog}>
             <div className={style.height}>
               <div className={style.div}>
-                <label className={style.title} htmlFor="heightMin">HeightMin: </label>
+                {/* <label className={style.title} htmlFor="heightMin">HeightMin: </label> */}
                 <input 
                   className={errors.heightMin ? style.error : style.input}
                   type="number" 
@@ -236,10 +238,11 @@ const validate = (input) => {
                   max="100"
                   value={input.heightMin}
                   onChange={handlerChange}
+                  placeholder="Insert min height..."
                 />
                 <p className={style.p}>{errors.heightMin}</p>
                 
-                <label className={style.title} htmlFor="heightMax">HeightMax: </label>
+                {/* <label className={style.title} htmlFor="heightMax">HeightMax: </label> */}
                 <input 
                   className={errors.heightMax ? style.error : style.input}
                   type="number" 
@@ -248,6 +251,7 @@ const validate = (input) => {
                   max="200"
                   value={input.heightMax}
                   onChange={handlerChange}
+                  placeholder="Insert max height..."
                 />
                 <p className={style.p}>{errors.heightMax}</p>
               </div>
@@ -256,7 +260,7 @@ const validate = (input) => {
           <div className={style.dog}>
             <div className={style.weight}>
               <div className={style.div}>
-                <label className={style.title} htmlFor="weightMin">WeightMIn: </label>
+                {/* <label className={style.title} htmlFor="weightMin">WeightMIn: </label> */}
                 <input 
                   className={errors.weightMin ? style.error : style.input}
                   type="number" 
@@ -265,10 +269,11 @@ const validate = (input) => {
                   max="100"
                   value={input.weightMin}
                   onChange={handlerChange}
+                  placeholder="Insert min weight..."
                 />
                 <p className={style.p}>{errors.weightMin}</p>
                 
-                <label className={style.title} htmlFor="weightMax">WeightMax: </label>
+                {/* <label className={style.title} htmlFor="weightMax">WeightMax: </label> */}
                 <input 
                   className={errors.weightMax ? style.error : style.input}
                   type="number" 
@@ -277,13 +282,14 @@ const validate = (input) => {
                   max="200"
                   value={input.weightMax}
                   onChange={handlerChange}
+                  placeholder="Insert max weight..."
                 />
                 <p className={style.p}>{errors.weightMax}</p>
               </div>
             </div>
           </div>
           <div className={style.div}>
-            <label className={style.title} htmlFor="life_span">Life span: </label>
+            {/* <label className={style.title} htmlFor="life_span">Life span: </label> */}
             <input 
               className={errors.life_span ? style.error : style.input}
               name="life_span"
@@ -292,6 +298,7 @@ const validate = (input) => {
               type="number"
               value={input.life_span}
               onChange={handlerChange}
+              placeholder="Insert life span..."
             />
             <p className={style.p}>{errors.life_span}</p>
           </div>

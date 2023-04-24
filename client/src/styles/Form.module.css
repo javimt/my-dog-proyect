@@ -1,16 +1,17 @@
 .error {
-  font-size: 20px;
+  border: inset #f51000;
+  margin-bottom: 0px;
+  /* font-size: 20px;
   font-family: cursive;
   height: 25px;
-  border: inset #f51000;
   background-color: rgba(153, 180, 243, 0.63);
   border-radius: 5px;
   margin-right: 10px;
   padding-left: 10px;
-  color: rgb(0, 255, 55);
+  color: rgb(41, 130, 247);
   margin-left: 30px;
   margin-right: 10px;
-  padding: 5px;
+  padding: 5px; */
 }
 
 .container {
@@ -96,7 +97,7 @@
 }
 .btn2 :hover {
   cursor: pointer;
-  color: rgb(255, 60, 0);
+  color: rgb(255, 0, 0);
   opacity: 0.6;
 } 
 .title {
@@ -110,7 +111,7 @@
 }
 .p {
   font-size: 13px;
-  color: rgba(102, 102, 219, 0.8) ;
+  color: rgba(255, 0, 0, 0.8) ;
   margin: 0;
   font-weight: 300;
 }
@@ -126,22 +127,23 @@
   font-size: 20px;
   font-weight: 300;
   font-family: cursive;
-  color: rgb(4, 240, 4);
+  color: rgb(6, 131, 6);
 }
 .selct:hover {
   cursor: pointer;
 }
-.input {
+input {
   font-size: 20px;
   font-family: cursive;
   height: 25px;
   border: inset #5499C7;
   background-color: rgba(0, 0, 0, 0.411) ;
-  border-radius: 5px;
+  border-radius: 8px;
   margin-right: 20px;
   margin-left: 5px;
-  color: rgb(0, 255, 55);
+  color: rgb(59, 192, 245);
   padding: 5px;
+  margin-bottom: 20px;
 }
 .select {
   margin-top: 20px;
