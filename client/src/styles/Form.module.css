@@ -126,7 +126,7 @@
   font-size: 20px;
   font-weight: 300;
   font-family: cursive;
-  color: rgba(165, 202, 0, 0.904);
+  color: rgba(165, 202, 0, 0.904); 
 }
 .selct:hover {
   cursor: pointer;
