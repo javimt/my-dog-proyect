@@ -40,7 +40,7 @@ export default function Cards() {
         })
       }
     </div> : !stateDog.length && !allDogs.length ? 
-              <h2 className={style.option}>Dog not found</h2> :
-              <h2>Loading...</h2>
+              <h2>Loading...</h2> :
+              <h2 className={style.option}>Dog not found</h2> 
   );
 }

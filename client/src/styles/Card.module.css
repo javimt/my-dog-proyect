@@ -5,7 +5,7 @@
   contain: unset;
   width: 300px;
   border-radius: 15px;
-  box-shadow: 7px 8px 9px -1px rgba(0, 12, 184, 0.7);
+  box-shadow: 7px 8px 9px -1px rgba(92, 99, 209, 0.7);
   flex-direction: column;
   background-color:rgba(134, 154, 243, 0.589);
   margin: 10px;
@@ -18,7 +18,7 @@
 
 .card:hover{
   transform: translateY(-14px);
-  box-shadow: 8px 9px 10px 5px rgba(223, 213, 213, 0.7);
+  box-shadow: 8px 9px 10px 5px rgba(73, 71, 71, 0.7);
 }
 
 .image{

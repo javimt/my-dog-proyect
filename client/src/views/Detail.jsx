@@ -18,18 +18,18 @@ export default function Detail() {
   const [, setDetailId] = useState(null);
   const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-  async function renderDetail() {
-    const response = await dispatch(getDetail(id));
-    setDetailId(response);
-    setLoading(false);
-  }
-  renderDetail();
-},[dispatch,id]);
+  useEffect(() => {
+    async function renderDetail() {
+      const response = await dispatch(getDetail(id));
+      setDetailId(response);
+      setLoading(false);
+    }
+    renderDetail();
+  },[dispatch,id]);
 
-if (loading) {
-  return <div>loading...</div>;
-}
+  if (loading) {
+    return <div>loading...</div>;
+  }
 
   return detail.hasOwnProperty("name") ? (
     <div className={style.body}>
@@ -51,11 +51,12 @@ if (loading) {
      <h3 className={style.life}>life span: {detail.life_span}</h3>
       <div className={style.text}>
         <h3 className={style.height}>Height min: {detail.heightMin}</h3> 
-         <h3 className={style.height}>Height max: {detail.heightMax}</h3>
+        <h3 className={style.height}>Height max: {detail.heightMax}</h3>
       </div>
       <br />
       <h3 className={style.weight}>Weight min: {detail.weightMin}</h3>
       <h3 className={style.weight}>Weight max: {detail.weightMax}</h3>
     </div>
   ): <div>loading...</div>
+
 }

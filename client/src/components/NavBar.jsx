@@ -7,17 +7,11 @@ import { getDogs } from '../redux/action';
 
 export default function NavBar() {
   const dispatch = useDispatch();
-  //const history = useHistory();
 
   function handlerReset(e) {
     e.preventDefault();
     dispatch(getDogs())
   }
-
-  /* const handlerReset = (e) => {
-    e.preventDefault();
-    window.location.href = window.location.href;
-  }; */
 
   return (
     <nav className={style.nav} >

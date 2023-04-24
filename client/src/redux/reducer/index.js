@@ -101,22 +101,12 @@ export default function rootReducer(state = initialState, action) {
     case "SORT_BY_NAME":
       const sortName = action.payload
       const order = [...state.dogsRender].flat().sort((a, b) => { 
-        if (a.name > b.name) return 1;
-        if (b.name > a.name) return -1;
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+        if (b.name.toLowerCase() > a.name.toLowerCase()) return -1;
       return 0;
       }) 
         if(sortName === "AZ") return {...state, dogsRender: pageModulated(order, 8),page:0}
         else return {...state, dogsRender: pageModulated(order.reverse(), 8),page:0}
-        /* dogs.sort((a, b) => {
-        if (b.name > a.name) return 1;
-        if (a.name > b.name) return -1;
-        return 0; 
-      });*/
-    /* return {
-      ...state,
-      dogsRender: pageModulated([...sortName], 8),
-      page: 0,
-    }; */
     default:
       return {
         ...state

@@ -10,7 +10,6 @@ export default function Pages() {
   const [pageNumber, setPageNumber] = useState([])
 
   useEffect(()=> {
-//console.log(pages)
     const aux = []
     for (let i = 0; i < pages; i++) {
       aux.push(i); 
@@ -18,21 +17,17 @@ export default function Pages() {
     setPageNumber(aux)
   },[pages])
 
-//console.log(pageNumber)
-
   const handlerPage = (e) => {
     const target = e.target.value
     dispatch(changePage(target));
     Array.from(e.target.parentNode.children).slice(1,-1).forEach(e => e.firstChild.className = style.click)
     Array.from(e.target.parentNode.children).slice(1,-1)[target === "next" ? page === pages - 1 ? page : page + 1 : page === 0 ? page : page - 1].firstChild.className = style.clickVisited
-console.log()
   }
 
   function handlerNum(num, e) {
     dispatch(changePage(num))
     Array.from(e.target.parentNode.parentNode.children).slice(1, -1).forEach(e => e.firstChild.className = style.click)
     e.target.className = style.clickVisited
-//console.log();
   }
 
   return (

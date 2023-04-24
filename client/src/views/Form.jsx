@@ -21,9 +21,8 @@ export default function Form() {
   const history = useHistory();
   const [errors, setErrors] = useState({});
   const dataId = search && search.slice(4)
-console.log(dataId)
 
-  const [input, setInput] = useState({
+  const initialState = dataId ? dogs.flat().filter(e => e.id === dataId)[0] : {
     name: "",
     image: "",
     weightMin: "",
@@ -31,6 +30,16 @@ console.log(dataId)
     heightMin: "",
     heightMax: "",
     life_span: "",
+    temperaments: []
+  }
+  const [input, setInput] = useState({
+    name: initialState.name ? initialState.name : "",
+    image: initialState.image ? initialState.image : "",
+    weightMin: initialState.weightMin ? initialState.weightMin : "",
+    weightMax: initialState.weightMax ? initialState.weightMax : "",
+    heightMin: initialState.heightMin ? initialState.heightMin : "",
+    heightMax: initialState.heightMax ? initialState.heightMax : "",
+    life_span: initialState.life_span ? initialState.life_span : "",
     temperaments: []
   })
 
@@ -58,20 +67,23 @@ console.log(dataId)
   async function handlerSubmit(e) {
 
     e.preventDefault();
-    if(dataId) {
-      updateDog(input, dataId);
-      history.push('/home');
-    } else {
-      const created = await createDogs(input)
-      if(created !== 'its was created!') {
-        alert("dog created!")
+console.log(errors)
+    if(!Object.keys(errors).length){
+      if(dataId) {
+        updateDog(input, dataId);
         history.push('/home');
       } else {
-        alert('the dog already exist');
+        const created = await createDogs(input)
+        if(created !== 'its was created!') {
+          alert("dog created!")
+          history.push('/home');
+        } else {
+          alert('the dog already exist');
+        }
       }
+      dispatch(getDogs())
+      dispatch(getTemperaments())
     }
-    dispatch(getDogs())
-    dispatch(getTemperaments())
   }
 
   function handlerSelect(e) {
@@ -175,16 +187,6 @@ const validate = (input) => {
     errors.life_span = "You need a life_span"
   }
   //=========>> END LIFE_SPAN <<=========\\
-
-  //=========>> TEMPERAMENT <<==========\\
-  if (input.temperaments.length === 0) {
-    errors.temperaments = "You must select a temperaments";
-  } else if(!/^[a-zA-Z]+$/.test(input.temperaments)) {
-    errors.temperaments = "You need select one temperaments"
-  } else if(input.temperaments.length > 5) {
-    errors.temperament = "You cannot select more than 5 elements"
-  }
-  //==========>> END TEMPERAMENT <<==========\\
 
   return errors;
 }
@@ -321,7 +323,6 @@ const validate = (input) => {
           {
             input.name !== " " ? (
               <button 
-                disabled={!input.name || errors.name || errors.heightMin || errors.image || errors.heightMax || errors.weightMin || errors.weightMax || errors.temperaments}
                 className={style.btn1} 
                 type="submit" >{dataId ? "Update" : "Create"}</button>
             ) : <button className={style.btn2} onClick={handlerError} type="submit" >Created</button>

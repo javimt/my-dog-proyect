@@ -9,13 +9,10 @@ export default function Card({ name, image, temperament, weightMin, weightMax })
   // - Temperamento
   // - Peso
 
-//{weight.map(e => e.metric.slice(0, 4))}
-
-
   return (
     <div className={style.card} >
       <h4 className={style.name} >{name}</h4>
-      <img className={style.image} src={image} alt="" /* width="200px" height="120px" */ />
+      <img className={style.image} src={image} alt=""  />
       <p className={style.p}>Temperament: {temperament}</p>
       <div> 
         <h3 className={style.p}>Weight min: {weightMin}</h3>

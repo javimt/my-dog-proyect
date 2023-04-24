@@ -20,6 +20,7 @@ async function getAllApiData() {
       weightMax: d.weight.metric.split(" - ")[1],
       image: d.image.url,
       temperament: d.temperament,
+      life_span: d.life_span
     }
   })
   const myDb = await Dog.findAll({include: {model: Temperament}});

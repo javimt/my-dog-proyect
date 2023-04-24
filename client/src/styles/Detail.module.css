@@ -4,11 +4,13 @@
     margin-top: 10px;
     margin-bottom: 10px;
     text-align:center;
+    align-items: center;
     width: 600px;
+    height: auto;
     justify-content: center;
     border: solid black 1px;
     border-radius: 8px;
-    background-color: rgba(12, 53, 236, 0.205) ;
+    background-color: rgba(152, 169, 248, 0.815);
     color: white;
    
 }
@@ -52,9 +54,10 @@
     color: rgb(30, 87, 5);
 }
 .life{
+    margin-left: 40px;
     display: flex;
     font-family: cursive;
-    color: rgb(68, 211, 7);
+    color: rgb(100, 248, 37);
 } 
 .text{
     align-items: center;
@@ -68,11 +71,11 @@
 }
 .height {
     font-family: cursive;
-    color: rgb(238, 238, 245);
+    color: rgba(241, 241, 241, 0.932);
 }
 .weight {
     font-family: cursive;
-    color: rgb(255, 255, 255);
+    color: rgba(65, 68, 71, 0.932);
 }
 
   

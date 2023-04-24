@@ -8,7 +8,6 @@ export default function DeleteUpdate({id}) {
 
   const dispatch = useDispatch();
   const data = useSelector(state => state.dogsRender);
-//console.log()
 
   useEffect(() => {
     if(!data.length)dispatch(getDogs());

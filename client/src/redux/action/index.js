@@ -19,7 +19,7 @@ export const getDogsByName = (name) => {
 
 export const getDetail = (id) => {
   return async function(dispatch) {
-    try {
+    try { 
       const response = await axios.get(`http://localhost:3001/dogs/${id}`);
     return dispatch({
       type: "GET_DETAIL",
