@@ -3,11 +3,11 @@
   font-family: cursive;
   height: 25px;
   border: inset #f51000;
-  background-color: rgba(0, 0, 0, 0.411) ;
+  background-color: rgba(153, 180, 243, 0.63);
   border-radius: 5px;
   margin-right: 10px;
   padding-left: 10px;
-  color: rgb(255, 251, 0);
+  color: rgb(0, 255, 55);
   margin-left: 30px;
   margin-right: 10px;
   padding: 5px;
@@ -24,14 +24,14 @@
   height: fit-content;
   flex: auto;
 }
-.nav {
+/* .nav {
   width: 100%;
   height: 90px;
   margin-top: 0;
   background-color: rgba(4, 0, 245, 0);
   transition: all 0.25s;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 2);
-}
+} */
 
 .form {
   border-radius: 8px;
@@ -76,7 +76,7 @@
     opacity: 0.6;
 } 
 .h1 {
-  color: #0000ff;
+  color: rgb(65, 97, 240);
 }
 /* .btn1 {
     width: 20px;
@@ -100,7 +100,7 @@
   opacity: 0.6;
 } 
 .title {
-  color: rgb(0, 0, 243);
+  color: rgb(65, 65, 240);
   font-size: 18px;
   font-family: cursive;
   font-weight: 300;
@@ -110,7 +110,7 @@
 }
 .p {
   font-size: 13px;
-  color: #000000;
+  color: rgba(102, 102, 219, 0.8) ;
   margin: 0;
   font-weight: 300;
 }
@@ -120,13 +120,13 @@
   margin-top: 20px;
   margin-bottom: 20px;
   border: inset #5499C7;
-  background-color: black;
+  background-color: rgba(110, 148, 235, 0.918);
   border-radius: 10px;
   padding: 3px;
   font-size: 20px;
   font-weight: 300;
   font-family: cursive;
-  color: rgba(165, 202, 0, 0.904);
+  color: rgb(4, 240, 4);
 }
 .selct:hover {
   cursor: pointer;
@@ -138,11 +138,9 @@
   border: inset #5499C7;
   background-color: rgba(0, 0, 0, 0.411) ;
   border-radius: 5px;
-  margin-right: 10px;
-  padding-left: 10px;
-  color: rgb(255, 251, 0);
-  margin-left: 30px;
-  margin-right: 10px;
+  margin-right: 20px;
+  margin-left: 5px;
+  color: rgb(0, 255, 55);
   padding: 5px;
 }
 .select {
@@ -153,21 +151,9 @@
   padding: 3px;
   font-size: 20px;
   font-family: cursive;
-  color: #0000ff;
+  color: rgb(58, 86, 248);
 } 
-/* .delete {
-  margin: 20px 0 0 10px;
-  font-size: 20px;
-  font-family: cursive;
-  border-radius: 10px;
-  border: inset #5499C7;
-  color: white;
-  background-color: #34495E;
-  padding: 0 6px 0 6px;
-  display: flex;
-  height: 30px;
-  justify-content: center;
-}
+/* 
 .div {
   margin-top: 10px;
 }

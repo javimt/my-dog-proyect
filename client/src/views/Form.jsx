@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from '../styles/Form.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { getTemperaments, createDogs, getDogs, updateDog } from "../redux/action";
 
 export default function Form() {

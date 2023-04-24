@@ -9,6 +9,9 @@
     background-color: rgba(235, 237, 245, 0.822);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 2);
 }
+/* .filters {
+    display: flex;
+} */
 .create{
     justify-content: center;
     align-items: center;
@@ -21,8 +24,8 @@
     cursor: pointer;
 }*/
 .link {
-    margin-left: 20px;
-    margin-right: 300px;
+    /* margin-left: 20px;
+    margin-right: 300px; */
     border: inset #5499C7;
     border-radius: 10px;
     font-family: cursive;
@@ -53,15 +56,15 @@
 }
 .img{
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 30px;
     font-size: 30px;
     height: 80px;
     padding:0;
     
 }
 .search{
-    margin-left: 340px;
-    margin-right: 40px;
+     margin-left: auto;
+    margin-right: auto; 
 }
 /* .dog{
     margin-left: auto;

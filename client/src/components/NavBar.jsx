@@ -4,6 +4,7 @@ import SearchBar from './SearchBar.jsx';
 import dog from '../images/PERROS (313).gif'
 import { useDispatch } from 'react-redux';
 import { getDogs } from '../redux/action';
+import Filters from "../components/Filters";
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -23,9 +24,12 @@ export default function NavBar() {
       <div className={style.reset}>
         <Link to='/home'>
           <button className={style.home} onClick={handlerReset} type="submit">
-            {`>>`} <img className={style.img} src={dog} alt="" /> {`<<`}
+            <img className={style.img} src={dog} alt="" />
           </button>
         </Link>
+      </div>
+      <div className={style.filters}>
+        <Filters />
       </div>
       <div className={style.search}> 
         <SearchBar />
