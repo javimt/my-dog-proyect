@@ -51,6 +51,7 @@ export const deleteDog = (id) => {
 }
 
 export const updateDog = (object, id) => {
+  // eslint-disable-next-line no-sequences
   const data = axios.put(`http://localhost:3001/dogs/${'?id=', id}`,object)
   data.then(response => console.log("Dog updated"))
 }
